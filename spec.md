@@ -93,8 +93,8 @@ Run the phase test checklist → mark the phase in Phases → commit `spec: mark
 
 | Phase | Goal | Target | Status |
 |---|---|---|---|
-| M0 | Repo, spec, `.gitignore`, `.env.example`, both apps boot, `/health` | 24 Sept | in progress |
-| M1 | Fault simulator: phantom + 5 faults, `GET /cases`, `GET /cases/{id}/image` | 24–25 Sept | todo |
+| M0 | Repo, spec, `.gitignore`, `.env.example`, both apps boot, `/health` | 24 Sept | done |
+| M1 | Fault simulator: phantom + 5 faults, `GET /cases`, `GET /cases/{id}/image` | 24–25 Sept | next |
 | M2 | 3D viewer: model loads, clickable parts, highlight API | 25 Sept (CP1) | todo |
 | M3 | AI trainer: case → diagnosis → grading → highlight | 25 Sept (CP1) | todo |
 | M4 | AI tutor with RAG + citations | 26 Sept | todo |

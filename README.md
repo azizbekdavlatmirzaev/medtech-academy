@@ -10,6 +10,25 @@ Built at the National AI Hackathon, Namangan, 24–27 September 2026.
 
 See [spec.md](spec.md) for the full specification and progress.
 
+## Run locally
+
+Requirements: Python 3.12+, Node.js 20+.
+
+```bash
+cp .env.example .env            # then fill in ANTHROPIC_API_KEY
+
+# API → http://localhost:8000/health
+cd api
+python -m venv .venv
+.venv/Scripts/pip install -r requirements.txt   # macOS/Linux: .venv/bin/pip
+.venv/Scripts/python -m uvicorn app.main:app --reload --port 8000
+
+# Web → http://localhost:3000
+cd web
+npm install
+npm run dev
+```
+
 ## Status
 Work in progress — see the Phases table in `spec.md`.
 
