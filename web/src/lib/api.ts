@@ -94,6 +94,35 @@ export async function askTutor(question: string): Promise<TutorAnswer> {
   return res.json() as Promise<TutorAnswer>;
 }
 
+export type Progress = {
+  learner: string;
+  attempts: number;
+  cases_done: number;
+  cases_total: number;
+  readiness: number;
+  level: number;
+  ready: boolean;
+  trend: number[];
+  skills: Record<string, number | null>;
+  quiz_pct: number;
+  recent: { case_id: string; title_uz: string; kind: "trainer" | "quiz"; answer_uz: string; correct: boolean; score: number; created_at: string }[];
+  consent_region: string | null;
+};
+
+export type Candidate = { learner: string; region: string; readiness: number; ready: boolean; cases_done: number; skills: Record<string, number | null> };
+
+export const getProgress = (learner: string) => getJson<Progress>(`/learners/${encodeURIComponent(learner)}/progress`);
+export const getRecruitment = () => getJson<Candidate[]>("/recruitment");
+
+export async function setConsent(learner: string, consent: boolean, region: string): Promise<void> {
+  const res = await fetch(`${API_URL}/learners/${encodeURIComponent(learner)}/consent`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ consent, region }),
+  });
+  if (!res.ok) throw new Error(`consent: ${res.status}`);
+}
+
 const LEARNER_KEY = "medtech.learner";
 
 export function loadLearner(): string {
