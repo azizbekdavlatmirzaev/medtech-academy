@@ -24,8 +24,10 @@ export default function LabPage() {
 
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-4 py-8 lg:flex-row lg:px-8">
-      <section className="glass-strong relative h-[60vh] flex-1 overflow-hidden lg:h-[calc(100vh-10rem)]">
-        <ScannerView selected={selected} onSelect={setSelected} xray={xray} spinning={spinning} labels={labels} />
+      <section className="glass-strong relative h-[60vh] min-h-[420px] flex-1 overflow-hidden lg:h-[640px]">
+        <div className="absolute inset-0">
+          <ScannerView selected={selected} onSelect={setSelected} xray={xray} spinning={spinning} labels={labels} />
+        </div>
         <div className="absolute left-4 top-4 flex gap-2">
           <button onClick={() => setXray((v) => !v)} className="btn-ghost bg-bg/80 px-4! py-2! text-sm backdrop-blur">
             {xray ? <EyeOff size={16} /> : <Eye size={16} />} {xray ? "Korpusni ko‘rsat" : "Ichini ko‘rsat"}
@@ -37,7 +39,7 @@ export default function LabPage() {
         <p className="absolute bottom-4 left-4 font-mono text-[11px] text-muted">Sichqoncha bilan aylantiring · g‘ildirak bilan yaqinlashtiring</p>
       </section>
 
-      <aside className="glass flex w-full flex-col gap-4 p-6 lg:w-96">
+      <aside className="glass flex w-full flex-col gap-4 overflow-y-auto p-6 lg:h-[640px] lg:w-96">
         <div>
           <p className="eyebrow">Operator yo‘nalishi</p>
           <h1 className="mt-1 font-display text-2xl font-bold">3D laboratoriya</h1>
