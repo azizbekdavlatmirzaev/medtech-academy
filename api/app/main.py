@@ -1,6 +1,8 @@
 """MedTech Academy API entry point."""
 
 import io
+import threading
+from contextlib import asynccontextmanager
 from datetime import datetime
 from functools import lru_cache
 from zoneinfo import ZoneInfo
@@ -19,7 +21,19 @@ from app.library import search as search_library
 from app.quiz import QUESTIONS, QUESTIONS_BY_ID
 from app.simulator import simulate, to_uint8
 
-app = FastAPI(title="MedTech Academy API", version="0.1.0")
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    # Each slice takes ~2 s to simulate: render every case and quiz image in the
+    # background at startup so the first page view is instant.
+    def warm() -> None:
+        for fault, seed in {("normal", 1), *((c.fault, c.seed) for c in CASES), *((q.fault, q.seed) for q in QUESTIONS if q.fault)}:
+            _render_png(fault, seed)
+
+    threading.Thread(target=warm, daemon=True).start()
+    yield
+
+
+app = FastAPI(title="MedTech Academy API", version="0.1.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,

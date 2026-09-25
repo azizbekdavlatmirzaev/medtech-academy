@@ -158,7 +158,10 @@ export default function Trainer({ caseId }: { caseId: string }) {
           </div>
 
           <div className="glass rise-in flex flex-col gap-4 p-6">
-            <h2 className="font-display text-lg font-semibold">Aksial kesim solishtiruvi</h2>
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h2 className="font-display text-lg font-semibold">Aksial kesim solishtiruvi</h2>
+              <span className="chip">Miya oynasi · WL 40 / WW 80</span>
+            </div>
             <div className="grid grid-cols-2 gap-3">
               <figure className="overflow-hidden rounded-xl border border-coral/40 bg-bg">
                 <p className="bg-coral/80 px-3 py-1 font-mono text-[11px] uppercase">Nuqsonli tasvir</p>
@@ -171,6 +174,10 @@ export default function Trainer({ caseId }: { caseId: string }) {
                 <img src={normalImageUrl()} alt="Soz uskunadagi KT tasviri" className="w-full" />
               </figure>
             </div>
+
+            <p className="font-mono text-[11px] text-muted">
+              Bosh miya, lateral qorinchalar sathi · sintetik anatomik fantom (bemor ma’lumoti emas) · 320×320
+            </p>
 
             {/* Overlay compare: drag to blend the faulty slice over the reference. */}
             <div className="flex flex-col gap-2 rounded-xl border border-line/40 bg-bg/50 p-4">

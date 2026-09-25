@@ -1,7 +1,8 @@
 import numpy as np
 import pytest
 
-from app.simulator import FAULTS, SIZE, simulate, to_uint8
+from app.phantom import BONE_CORTICAL, CSF, WHITE
+from app.simulator import FAULTS, SIZE, phantom, simulate, to_uint8
 
 
 @pytest.fixture(scope="module")
@@ -9,15 +10,33 @@ def normal():
     return simulate("normal", seed=1)
 
 
-def test_normal_is_close_to_phantom_range(normal):
+@pytest.fixture(scope="module")
+def white_matter():
+    return np.abs(phantom() - WHITE) < 3
+
+
+def test_normal_slice_has_realistic_hu(normal, white_matter):
     assert normal.shape == (SIZE, SIZE)
-    assert -0.2 < normal.min() and normal.max() < 1.2
+    assert abs(normal[white_matter].mean() - WHITE) < 3  # tissue keeps its CT number
+    assert 1 < normal[white_matter].std() < 8  # clinical-level quantum noise, not zero
+    assert normal.max() > BONE_CORTICAL * 0.6  # skull stays bright
+    assert normal[np.abs(phantom() - CSF) < 2].mean() < 20  # ventricles are dark
 
 
 @pytest.mark.parametrize("fault", [f for f in FAULTS if f != "normal"])
-def test_every_fault_changes_the_image(normal, fault):
-    rmse = np.sqrt(((simulate(fault, seed=1) - normal) ** 2).mean())
-    assert rmse > 0.005
+def test_every_fault_changes_the_image(normal, white_matter, fault):
+    rmse = np.sqrt(((simulate(fault, seed=1) - normal)[white_matter] ** 2).mean())
+    assert rmse > 1.0  # at least 1 HU of change in brain tissue
+
+
+def test_noise_fault_is_noisier(normal, white_matter):
+    assert simulate("noise", seed=1)[white_matter].std() > 1.3 * normal[white_matter].std()
+
+
+def test_cupping_darkens_the_centre(normal):
+    c = SIZE // 2
+    centre = (slice(c - 20, c + 20), slice(c - 60, c - 30))  # white matter left of the ventricles
+    assert simulate("cupping", seed=1)[centre].mean() < normal[centre].mean() - 5
 
 
 def test_same_seed_is_reproducible():

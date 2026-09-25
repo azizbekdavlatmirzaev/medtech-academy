@@ -1,24 +1,37 @@
 """Physics-based CT fault simulator.
 
-A CT slice is reconstructed from projections (a sinogram). Each fault corrupts
-the sinogram the way the failing component would, then the slice is
-reconstructed with filtered back-projection, so the artifact is genuine.
+A synthetic head (in HU) is converted to X-ray attenuation, forward-projected
+into a sinogram of line integrals, and measured with photon (quantum) noise.
+Each fault corrupts the measurement the way the failing component would, then
+the slice is reconstructed with filtered back-projection and shown in a
+clinical brain window, so every artifact is genuine.
 """
 
 import numpy as np
-from skimage.data import shepp_logan_phantom
-from skimage.transform import iradon, radon, resize
+from skimage.filters import gaussian
+from skimage.transform import iradon, radon
 
-SIZE = 256
-N_ANGLES = 360
-# Fixed display window so every case is rendered on the same intensity scale.
-WINDOW = (-0.1, 1.1)
+from app.phantom import head_phantom
+
+SIZE = 320
+N_ANGLES = 720
+MU_WATER = 0.0148  # attenuation of water per pixel (0.019/mm × 0.78 mm pixels)
+I0_NORMAL = 2.0e7  # unattenuated photons per detector reading (dose-equivalent)
+SOFT_KERNEL_SIGMA = 0.8  # smoothing of a clinical soft-tissue reconstruction kernel, in pixels
+BRAIN_WINDOW = (40, 80)  # level, width in HU
 
 FAULTS = ("normal", "ring", "noise", "cupping", "missing_views", "motion")
 
+_PHANTOM_HU = head_phantom(SIZE)
+
 
 def phantom() -> np.ndarray:
-    return resize(shepp_logan_phantom(), (SIZE, SIZE), anti_aliasing=True)
+    """The ground-truth head slice in HU."""
+    return _PHANTOM_HU.copy()
+
+
+def _attenuation(hu: np.ndarray) -> np.ndarray:
+    return np.clip(MU_WATER * (1 + hu / 1000), 0, None)
 
 
 def _angles() -> np.ndarray:
@@ -27,79 +40,81 @@ def _angles() -> np.ndarray:
     return np.linspace(0.0, 360.0, N_ANGLES, endpoint=False)
 
 
-def _reconstruct(sinogram: np.ndarray, theta: np.ndarray) -> np.ndarray:
-    return iradon(sinogram, theta=theta, filter_name="ramp", circle=True)
+def _measure(p: np.ndarray, i0: float, noise_rng: np.random.Generator) -> np.ndarray:
+    # Photon counting: I = I0·exp(-p) with Poisson noise (Gaussian approximation,
+    # std = sqrt(I)). The same noise field is reused for every fault of a seed,
+    # so comparing a faulty slice with a normal one isolates the artifact.
+    counts = i0 * np.exp(-p)
+    noisy = counts + np.sqrt(counts) * noise_rng.standard_normal(p.shape)
+    return -np.log(np.clip(noisy, 1.0, None) / i0)
 
 
-def _ring(sino: np.ndarray, rng: np.random.Generator) -> np.ndarray:
-    # Detector channels with a wrong gain: a constant error at one detector
-    # position across all angles back-projects into a ring.
-    out = sino.copy()
+def _ring(p: np.ndarray, rng: np.random.Generator) -> np.ndarray:
+    # Detector channels with a wrong gain g: I' = g·I, i.e. p' = p - ln g.
+    # A constant error at one detector position across all angles
+    # back-projects into a ring.
+    out = p.copy()
     n_det = out.shape[0]
-    channels = rng.choice(np.arange(n_det // 4, 3 * n_det // 4), size=3, replace=False)
+    offsets = rng.choice(np.arange(30, 115), size=3, replace=False) * rng.choice([-1, 1], size=3)
+    channels = n_det // 2 + offsets
     for ch in channels:
-        out[ch, :] *= rng.uniform(0.88, 0.92)
+        out[ch, :] -= np.log(rng.uniform(0.975, 0.982))
     return out
 
 
-def _noise(sino: np.ndarray, rng: np.random.Generator) -> np.ndarray:
-    # Too few photons (ageing tube / generator): Poisson noise on the measured
-    # intensity I = I0 * exp(-p), converted back to line integrals.
-    i0 = 2.0e3
-    scale = 0.02  # maps phantom line integrals to realistic attenuation
-    counts = rng.poisson(i0 * np.exp(-sino * scale)).clip(min=1)
-    return -np.log(counts / i0) / scale
-
-
-def _cupping(sino: np.ndarray, rng: np.random.Generator) -> np.ndarray:
+def _cupping(p: np.ndarray, rng: np.random.Generator) -> np.ndarray:
     # Beam hardening without correction: long paths are under-estimated,
-    # the centre of the object looks darker than its edge.
-    k = rng.uniform(0.004, 0.006)
-    return sino - k * sino**2
+    # the centre of the head looks darker than its periphery.
+    k = rng.uniform(0.0035, 0.0045)
+    return p - k * p**2
 
 
-def _missing_views(sino: np.ndarray, rng: np.random.Generator) -> np.ndarray:
-    # Data acquisition / slip-ring dropout: a block of projections is lost.
-    out = sino.copy()
-    start = rng.integers(0, N_ANGLES - 40)
-    out[:, start : start + 30] = 0.0
+def _missing_views(p: np.ndarray, rng: np.random.Generator) -> np.ndarray:
+    # Data acquisition / slip-ring dropout: a block of projections is lost and
+    # the system repeats the last good reading for the missing angles.
+    out = p.copy()
+    start = int(rng.integers(1, N_ANGLES - 50))
+    out[:, start : start + 40] = out[:, start - 1 : start]
     return out
 
 
-def _motion(image: np.ndarray, theta: np.ndarray, rng: np.random.Generator) -> np.ndarray:
+def _motion(att: np.ndarray, theta: np.ndarray, rng: np.random.Generator) -> np.ndarray:
     # Patient moves half-way through the scan; the device is fine.
-    shift = int(rng.integers(6, 10))
-    moved = np.roll(image, shift, axis=1)
+    shift = int(rng.integers(4, 7))
+    moved = np.roll(att, shift, axis=1)
     half = N_ANGLES // 2
-    first = radon(image, theta=theta[:half], circle=True)
+    first = radon(att, theta=theta[:half], circle=True)
     second = radon(moved, theta=theta[half:], circle=True)
     return np.concatenate([first, second], axis=1)
 
 
 def simulate(fault: str, seed: int = 0) -> np.ndarray:
-    """Return a reconstructed CT slice (float array) for the given fault."""
+    """Return a reconstructed CT slice in HU for the given fault."""
     if fault not in FAULTS:
         raise ValueError(f"unknown fault: {fault}")
     rng = np.random.default_rng(seed)
-    image = phantom()
+    noise_rng = np.random.default_rng(seed + 10_000)
+    att = _attenuation(_PHANTOM_HU)
     theta = _angles()
 
-    if fault == "motion":
-        sino = _motion(image, theta, rng)
-    else:
-        sino = radon(image, theta=theta, circle=True)
-        if fault == "ring":
-            sino = _ring(sino, rng)
-        elif fault == "noise":
-            sino = _noise(sino, rng)
-        elif fault == "cupping":
-            sino = _cupping(sino, rng)
-        elif fault == "missing_views":
-            sino = _missing_views(sino, rng)
+    p = _motion(att, theta, rng) if fault == "motion" else radon(att, theta=theta, circle=True)
+    if fault == "cupping":
+        p = _cupping(p, rng)
 
-    return _reconstruct(sino, theta)
+    # Too few photons (ageing tube / generator) means more quantum noise.
+    i0 = I0_NORMAL / 25 if fault == "noise" else I0_NORMAL
+    p = _measure(p, i0, noise_rng)
+
+    if fault == "ring":
+        p = _ring(p, rng)
+    elif fault == "missing_views":
+        p = _missing_views(p, rng)
+
+    mu = iradon(p, theta=theta, filter_name="shepp-logan", circle=True)
+    mu = gaussian(mu, sigma=SOFT_KERNEL_SIGMA, preserve_range=True)
+    return (mu / MU_WATER - 1) * 1000
 
 
-def to_uint8(slice_: np.ndarray) -> np.ndarray:
-    lo, hi = WINDOW
-    return (np.clip((slice_ - lo) / (hi - lo), 0.0, 1.0) * 255).astype(np.uint8)
+def to_uint8(hu: np.ndarray, window: tuple[float, float] = BRAIN_WINDOW) -> np.ndarray:
+    level, width = window
+    return (np.clip((hu - (level - width / 2)) / width, 0.0, 1.0) * 255).astype(np.uint8)
