@@ -96,8 +96,8 @@ Run the phase test checklist → mark the phase in Phases → commit `spec: mark
 | M0 | Repo, spec, `.gitignore`, `.env.example`, both apps boot, `/health` | 24 Sept | done |
 | M1 | Fault simulator: phantom + 5 faults, `GET /cases`, `GET /cases/{id}/image` | 24–25 Sept | done |
 | M2 | 3D viewer: model loads, clickable parts, highlight API | 25 Sept (CP1) | done |
-| M3 | AI trainer: case → diagnosis → grading → highlight | 25 Sept (CP1) | next |
-| M4 | AI tutor with RAG + citations | 26 Sept | todo |
+| M3 | AI trainer: case → diagnosis → grading → highlight | 25 Sept (CP1) | done (live LLM check pending API key) |
+| M4 | AI tutor with RAG + citations | 26 Sept | next |
 | M5 | Dashboard: progress, readiness, recruitment list | 26 Sept (CP2) | todo |
 | M6 | Polish, README, demo script rehearsal, deploy | 26 Sept (CP2) | todo |
 
