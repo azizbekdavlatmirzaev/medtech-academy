@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="uz"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}.gantry-bg{background-image:radial-gradient(circle at 50% 0%,rgba(79,209,181,0.08) 0%,rgba(7,20,37,0) 70%),radial-gradient(circle at 50% 50%,rgba(16,28,46,0.6) 0%,rgba(7,20,37,1) 100%);}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-highest":"#2a3548","primary-container":"#4fd1b5","on-background":"#d7e3fc","error-container":"#93000a","surface-container-low":"#101c2e","tertiary-container":"#ffa697","on-primary-fixed-variant":"#005143","surface-variant":"#2a3548","on-primary-container":"#005648","on-secondary-container":"#a6b6d3","primary-fixed-dim":"#5bdbbf","secondary-fixed-dim":"#b7c7e5","surface-container":"#142032","on-secondary-fixed":"#0b1c32","on-surface":"#d7e3fc","tertiary":"#ffcdc5","background":"#071425","on-surface-variant":"#bbcac4","inverse-on-surface":"#253144","error":"#ffb4ab","secondary-container":"#384760","tertiary-fixed-dim":"#ffb4a7","primary-fixed":"#7af8da","surface-container-lowest":"#030e20","surface-tint":"#5bdbbf","surface-container-high":"#1f2a3d","surface-bright":"#2e3a4d","on-tertiary-container":"#951c0d","on-primary":"#00382e","on-error":"#690005","inverse-surface":"#d7e3fc","surface-dim":"#071425","on-tertiary":"#670400","inverse-primary":"#006b5a","on-error-container":"#ffdad6","primary":"#6feed0","on-secondary":"#213148","secondary-fixed":"#d5e3ff","outline":"#86948f","outline-variant":"#3d4945","tertiary-fixed":"#ffdad4","secondary":"#b7c7e5","on-secondary-fixed-variant":"#384760","on-primary-fixed":"#00201a","on-tertiary-fixed-variant":"#8d1508","surface":"#071425","on-tertiary-fixed":"#400200"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-lg":"1.5rem","margin":"2rem","gutter":"1.5rem","space-md":"1rem","margin-mobile":"1rem","space-xs":"0.25rem","gutter-mobile":"0.75rem","space-sm":"0.5rem","space-xl":"2.5rem"},fontFamily:{"body-lg":["IBM Plex Sans"],"headline-lg":["Space Grotesk"],"body-md":["IBM Plex Sans"],"body-sm":["IBM Plex Sans"],"headline-xl":["Space Grotesk"],"headline-sm":["Space Grotesk"],"label-sm":["JetBrains Mono"],"display-lg-mobile":["Space Grotesk"],"data-metric":["JetBrains Mono"],"headline-md":["Space Grotesk"],"headline-xl-mobile":["Space Grotesk"],"label-md":["JetBrains Mono"],"display-lg":["Space Grotesk"],"label-lg":["JetBrains Mono"]},fontSize:{"body-lg":["16px",{"lineHeight":"26px","fontWeight":"400"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"22px","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"18px","fontWeight":"400"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"500"}],"display-lg-mobile":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"data-metric":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"30px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-xl-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.03em","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.03em","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"500"}]}}}};</script></head><body class="bg-background font-body-md text-body-md text-on-surface min-h-screen selection:bg-primary-container selection:text-on-primary-container relative"><div class="fixed inset-0 pointer-events-none gantry-bg z-0"></div><header class="fixed top-0 left-0 w-full z-50 bg-surface-container/70 backdrop-blur-2xl shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-20 w-full px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-shrink-0"><img alt="MedTech Academy Logotipi" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U22Xwn-Td5mEZo2xmQcfiK700SePxhclU6c9xlfaJd4xxJ2gI1fDzhMYiQalnVvbJ0cPWg9A2RJ0JkkjlDyXReBsofy_xV4ag8XXTVRJYljtnCmazTcOAGW_WauHJp9VjFhmLdOR-F5ULlZtLBwsYj1ztov0lRGFbKm-KXj_UnnULRX7GNPf5iCDlKxDy371vs5larcwbvcS43TcGCQ38GS7h-yxOibfxbeW7LWndqKz4wMnDgwWjSpR8"/><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">MedTech</span><span class="font-headline-sm text-headline-sm text-on-surface font-light">Academy</span></div><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider hidden sm:inline-block">KT Simulyatsiya &amp; AI Markazi</span></div></div><nav class="hidden lg:flex items-center gap-space-xs px-space-xs py-space-xs rounded-full bg-surface-container-lowest/80 backdrop-blur-md" data-active-classes="bg-surface-container-high text-primary font-semibold"><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="bosh-sahifa" href="#">Bosh sahifa</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="3d-laboratoriya" href="#">3D laboratoriya</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="trenajor" href="#">Trenajor</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="ai-ustoz" href="#">AI ustoz</a><a aria-current="page" class="px-space-md py-space-xs rounded-full transition-colors bg-surface-container-high text-primary font-semibold" data-path="natijalar" href="#">Natijalar</a></nav><div class="flex items-center gap-space-md flex-shrink-0"><div class="hidden xl:flex flex-col text-right"><span class="font-label-sm text-label-sm text-primary tracking-wider uppercase flex items-center justify-end gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Faol kalibratsiya</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate max-w-[200px]">O'zbekiston radiologiya va BM assotsiatsiyasi</span></div><div class="flex items-center gap-space-sm"><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface hover:bg-surface-container-high hover:text-on-surface transition-colors hidden sm:inline-flex items-center justify-center" data-path="kirish" href="#">Kirish</a><a class="px-space-md py-space-xs rounded-full font-headline-sm text-label-md bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary font-medium transition-all shadow-[0_0_16px_rgba(79,209,181,0.3)]" data-path="trenajor" href="#">Boshlash</a></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-transparent relative z-10"><div class="flex flex-col w-full">
+<div class="w-full px-margin py-space-lg flex flex-col gap-space-lg">
+<!-- Header Summary & Navigation Tabs -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-sm py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            Telemetriya &amp; Reyting Tizimi
+          </span>
+<span class="font-label-sm text-label-sm text-outline">UZ-RAD-2026</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Natijalar va Kadrlar Birjasi</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          Kompyuter tomografiyasi texnik diagnostikasi bo'yicha shaxsiy ko'nikmalar matritsasi hamda O'zbekiston tibbiyot markazlari uchun sertifikatlangan kadrlar reyestri.
+        </p>
+</div>
+<!-- Segmented Tab Switcher -->
+<div class="inline-flex p-1 rounded-full bg-surface-container-lowest shadow-md self-start md:self-auto">
+<button class="px-space-md py-space-xs rounded-full font-label-md text-label-md transition-all duration-200 bg-surface-container-high text-primary shadow-sm flex items-center gap-2" id="tabBtn1" onclick="switchDashboardTab('tab1')">
+<span class="material-symbols-outlined text-[16px]">school</span>
+<span>Mening natijalarim (Talaba / Muhandis)</span>
+</button>
+<button class="px-space-md py-space-xs rounded-full font-label-md text-label-md transition-all duration-200 text-on-surface-variant hover:text-on-surface flex items-center gap-2" id="tabBtn2" onclick="switchDashboardTab('tab2')">
+<span class="material-symbols-outlined text-[16px]">business_center</span>
+<span>Ish beruvchilar uchun</span>
+</button>
+</div>
+</div>
+<!-- TAB 1 CONTENT: Learner Profile & Analytics -->
+<div class="flex flex-col gap-space-lg transition-opacity duration-300" id="tab1Content">
+<!-- Top Row: Learner Profile Card -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- Main Profile Info -->
+<div class="lg:col-span-8 rounded-xl bg-surface-container-low p-space-lg shadow-xl relative overflow-hidden flex flex-col justify-between gap-space-lg">
+<div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md relative z-10">
+<div class="flex items-center gap-space-md">
+<div class="relative flex-shrink-0">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center shadow-[0_0_24px_rgba(79,209,181,0.25)]">
+<span class="font-headline-md text-headline-md text-primary font-bold">JS</span>
+</div>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-surface-container-lowest flex items-center justify-center">
+<span class="w-3.5 h-3.5 rounded-full bg-primary"></span>
+</div>
+</div>
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold">Jasur Samarov</h2>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm">
+                    ID: BIO-7824-UZ
+                  </span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">medical_services</span>
+<span>Muhandis yo‘nalishi (Biomedical Engineering)</span>
+<span class="text-outline">·</span>
+<span>Toshkent</span>
+</div>
+</div>
+</div>
+<!-- Level Gauge Badge -->
+<div class="flex items-center gap-3 px-space-md py-space-sm rounded-lg bg-surface-container-highest shadow-inner self-stretch sm:self-auto justify-between sm:justify-start">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Kvalifikatsiya</span>
+<span class="font-headline-sm text-headline-sm text-primary">Daraja 3</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">O'rta mutaxassis</span>
+</div>
+</div>
+<!-- Progress Bar & Milestone Info -->
+<div class="flex flex-col gap-space-xs relative z-10">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">workspace_premium</span>
+                Sertifikatga tayyorlik indeksi
+              </span>
+<span class="font-data-metric text-primary">72%</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container-highest overflow-hidden p-0.5">
+<div class="h-full rounded-full bg-gradient-to-r from-primary-fixed-dim to-primary shadow-[0_0_12px_rgba(79,209,181,0.5)] transition-all duration-1000" style="width: 72%;"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-1">
+<span>Daraja 2 (Junior)</span>
+<span class="text-primary font-medium">Keyingi darajagacha 140 XP zarur</span>
+<span>Daraja 4 (Senior)</span>
+</div>
+</div>
+</div>
+<!-- Telemetry Key Metrics -->
+<div class="lg:col-span-4 rounded-xl bg-surface-container-low p-space-lg shadow-xl flex flex-col justify-between gap-space-md">
+<div class="flex items-center justify-between pb-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Klinik audit telemetriyasi</span>
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-md rounded-lg bg-surface-container flex flex-col gap-1 shadow-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px] text-primary">shield</span>
+<span>Xavfsizlik</span>
+</div>
+<span class="font-data-metric text-data-metric text-primary">98%</span>
+<span class="font-body-sm text-body-sm text-outline">ALARA protokoli</span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container flex flex-col gap-1 shadow-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px] text-primary">build</span>
+<span>Nosozliklar</span>
+</div>
+<span class="font-data-metric text-data-metric text-on-surface">42 ta</span>
+<span class="font-body-sm text-body-sm text-outline">Muvaffaqiyatli</span>
+</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container flex items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface">O'rtacha diagnostika tezligi</span>
+<span class="font-data-metric text-headline-sm text-secondary">4 daq 18 son</span>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+              Normada
+            </span>
+</div>
+</div>
+</div>
+<!-- Middle Row: Analytics Graphs (Attempt Dynamics + Skills Radar) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- Line Chart: 10 Attempts Dynamics -->
+<div class="lg:col-span-7 rounded-xl bg-surface-container-low p-space-lg shadow-xl flex flex-col justify-between gap-space-md relative">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Sinovlar dinamikasi</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Oxirgi 10 urinishdagi tashxis aniqligi ko'rsatkichlari</p>
+</div>
+<div class="flex items-center gap-space-sm font-label-sm text-label-sm">
+<span class="flex items-center gap-1 text-primary">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span> Natija (/10)
+              </span>
+<span class="flex items-center gap-1 text-outline">
+<span class="w-2.5 h-0.5 bg-outline"></span> Minimal chegara (7.0)
+              </span>
+</div>
+</div>
+<!-- SVG Visual Line Chart with Interactive Tooltip -->
+<div class="relative w-full h-64 mt-2">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 600 220">
+<defs>
+<lineargradient id="telemetryGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#4fd1b5" stop-opacity="0.32"></stop>
+<stop offset="100%" stop-color="#4fd1b5" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Horizontal Lines -->
+<line stroke="#1f2a3d" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="580" y1="20" y2="20"></line>
+<line stroke="#1f2a3d" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="580" y1="70" y2="70"></line>
+<line stroke="#3d4945" stroke-dasharray="4 2" stroke-width="1.2" x1="40" x2="580" y1="120" y2="120"></line>
+<line stroke="#1f2a3d" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="580" y1="170" y2="170"></line>
+<!-- Y Axis labels -->
+<text fill="#86948f" font-family="JetBrains Mono" font-size="10" text-anchor="end" x="24" y="24">10</text>
+<text fill="#86948f" font-family="JetBrains Mono" font-size="10" text-anchor="end" x="24" y="74">8</text>
+<text fill="#5bdbbf" font-family="JetBrains Mono" font-size="10" text-anchor="end" x="24" y="124">7</text>
+<text fill="#86948f" font-family="JetBrains Mono" font-size="10" text-anchor="end" x="24" y="174">5</text>
+<!-- Values: [6, 7, 5, 8, 7, 9, 8, 10, 8, 9] 
+                   X steps: 60, 115, 170, 225, 280, 335, 390, 445, 500, 555
+                   Y mapping: 10 -> 20, 9 -> 45, 8 -> 70, 7 -> 95, 6 -> 120, 5 -> 145, 4 -> 170
+                   Points:
+                   1: (60, 120)
+                   2: (115, 95)
+                   3: (170, 145)
+                   4: (225, 70)
+                   5: (280, 95)
+                   6: (335, 45)
+                   7: (390, 70)
+                   8: (445, 20)
+                   9: (500, 70)
+                   10: (555, 45)
+              -->
+<!-- Area Fill -->
+<path d="M 60,120 L 115,95 L 170,145 L 225,70 L 280,95 L 335,45 L 390,70 L 445,20 L 500,70 L 555,45 L 555,200 L 60,200 Z" fill="url(#telemetryGrad)"></path>
+<!-- Polyline Curve -->
+<path d="M 60,120 L 115,95 L 170,145 L 225,70 L 280,95 L 335,45 L 390,70 L 445,20 L 500,70 L 555,45" fill="none" stroke="#4fd1b5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<!-- Data Points -->
+<circle cx="60" cy="120" fill="#142032" r="3.5" stroke="#4fd1b5" stroke-width="2"></circle>
+<circle cx="115" cy="95" fill="#142032" r="3.5" stroke="#4fd1b5" stroke-width="2"></circle>
+<circle cx="170" cy="145" fill="#142032" r="3.5" stroke="#ffb4ab" stroke-width="2"></circle>
+<circle cx="225" cy="70" fill="#142032" r="3.5" stroke="#4fd1b5" stroke-width="2"></circle>
+<circle cx="280" cy="95" fill="#142032" r="3.5" stroke="#4fd1b5" stroke-width="2"></circle>
+<circle cx="335" cy="45" fill="#142032" r="3.5" stroke="#4fd1b5" stroke-width="2"></circle>
+<circle cx="390" cy="70" fill="#142032" r="3.5" stroke="#4fd1b5" stroke-width="2"></circle>
+<circle cx="445" cy="20" fill="#6feed0" r="4.5" stroke="#00382e" stroke-width="2"></circle>
+<circle cx="500" cy="70" fill="#142032" r="3.5" stroke="#4fd1b5" stroke-width="2"></circle>
+<circle cx="555" cy="45" fill="#4fd1b5" r="5" stroke="#ffffff" stroke-width="2"></circle>
+<!-- X Axis Labels -->
+<text fill="#86948f" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="60" y="215">#1</text>
+<text fill="#86948f" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="115" y="215">#2</text>
+<text fill="#86948f" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="170" y="215">#3</text>
+<text fill="#86948f" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="225" y="215">#4</text>
+<text fill="#86948f" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="280" y="215">#5</text>
+<text fill="#86948f" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="335" y="215">#6</text>
+<text fill="#86948f" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="390" y="215">#7</text>
+<text fill="#86948f" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="445" y="215">#8</text>
+<text fill="#86948f" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="500" y="215">#9</text>
+<text fill="#6feed0" font-family="JetBrains Mono" font-size="10" font-weight="bold" text-anchor="middle" x="555" y="215">#10</text>
+</svg>
+<!-- Callout Tooltip at Point 10 -->
+<div class="absolute top-2 right-2 sm:right-6 bg-surface-container-highest px-3 py-1.5 rounded-lg shadow-xl pointer-events-none flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-primary font-bold">9/10 — Detektor xatosi</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Vaqt: 3 daq 42 son · To‘liq yechim</span>
+</div>
+</div>
+</div>
+<!-- Radar Chart: Skills Radar (5 Axes) -->
+<div class="lg:col-span-5 rounded-xl bg-surface-container-low p-space-lg shadow-xl flex flex-col justify-between gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Ko'nikmalar radari</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">5 yo‘nalish bo‘yicha amaliy kompetensiya</p>
+</div>
+<span class="p-2 rounded-lg bg-surface-container text-primary">
+<span class="material-symbols-outlined text-[20px]">radar</span>
+</span>
+</div>
+<div class="relative w-full aspect-square max-w-[280px] mx-auto flex items-center justify-center">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 320 320">
+<!-- Concentric Pentagons -->
+<!-- Center is 160, 160. Radius 120 -->
+<!-- 5 angles: -90, -18, 54, 126, 198 deg -->
+<!-- Level 1 (25% = r30) -->
+<polygon fill="none" points="160,130 188,151 177,184 143,184 132,151" stroke="#1f2a3d" stroke-width="1"></polygon>
+<!-- Level 2 (50% = r60) -->
+<polygon fill="none" points="160,100 217,141 195,208 125,208 103,141" stroke="#1f2a3d" stroke-width="1"></polygon>
+<!-- Level 3 (75% = r90) -->
+<polygon fill="none" points="160,70 245,132 213,233 107,233 75,132" stroke="#2a3548" stroke-dasharray="2 2" stroke-width="1"></polygon>
+<!-- Level 4 (100% = r120) -->
+<polygon fill="none" points="160,40 274,123 231,257 89,257 46,123" stroke="#3d4945" stroke-width="1.2"></polygon>
+<!-- Axis radiating lines -->
+<line stroke="#1f2a3d" stroke-width="1" x1="160" x2="160" y1="160" y2="40"></line>
+<line stroke="#1f2a3d" stroke-width="1" x1="160" x2="274" y1="160" y2="123"></line>
+<line stroke="#1f2a3d" stroke-width="1" x1="160" x2="231" y1="160" y2="257"></line>
+<line stroke="#1f2a3d" stroke-width="1" x1="160" x2="89" y1="160" y2="257"></line>
+<line stroke="#1f2a3d" stroke-width="1" x1="160" x2="46" y1="160" y2="123"></line>
+<!-- Data Polygon:
+                   1. Kalibrovka va QC: 92% -> r = 110.4 -> (160, 49.6)
+                   2. Detektor massivi: 88% -> r = 105.6 -> (160 + 105.6*cos(-18°), 160 + 105.6*sin(-18°)) = (260.4, 127.4)
+                   3. Bemor harakati: 85% -> r = 102.0 -> (160 + 102*cos(54°), 160 + 102*sin(54°)) = (219.9, 242.5)
+                   4. DAS va Slip-ring: 64% -> r = 76.8 -> (160 - 76.8*sin(36°), 160 + 76.8*cos(36°)) = (114.9, 222.1)
+                   5. Rentgen trubkasi: 75% -> r = 90.0 -> (160 - 90*cos(18°), 160 - 90*sin(18°)) = (74.4, 132.2)
+              -->
+<polygon fill="#4fd1b5" fill-opacity="0.25" points="160,49.6 260.4,127.4 219.9,242.5 114.9,222.1 74.4,132.2" stroke="#4fd1b5" stroke-width="2.2"></polygon>
+<!-- Radar point nodes -->
+<circle cx="160" cy="49.6" fill="#6feed0" r="3.5"></circle>
+<circle cx="260.4" cy="127.4" fill="#6feed0" r="3.5"></circle>
+<circle cx="219.9" cy="242.5" fill="#6feed0" r="3.5"></circle>
+<circle cx="114.9" cy="222.1" fill="#6feed0" r="3.5"></circle>
+<circle cx="74.4" cy="132.2" fill="#6feed0" r="3.5"></circle>
+<!-- Labels -->
+<text fill="#d7e3fc" font-family="IBM Plex Sans" font-size="10" font-weight="500" text-anchor="middle" x="160" y="24">Kalibrovka &amp; QC (92%)</text>
+<text fill="#bbcac4" font-family="IBM Plex Sans" font-size="10" text-anchor="start" x="282" y="126">Detektor (88%)</text>
+<text fill="#bbcac4" font-family="IBM Plex Sans" font-size="10" text-anchor="start" x="236" y="278">Artefaktlar (85%)</text>
+<text fill="#bbcac4" font-family="IBM Plex Sans" font-size="10" text-anchor="end" x="80" y="278">Slip-ring (64%)</text>
+<text fill="#bbcac4" font-family="IBM Plex Sans" font-size="10" text-anchor="end" x="36" y="126">Rentgen trubkasi (75%)</text>
+</svg>
+</div>
+<div class="px-space-md py-space-xs rounded-lg bg-surface-container flex items-center justify-between text-body-sm text-body-sm">
+<span class="text-on-surface-variant">Tavsiya etilgan modul:</span>
+<span class="text-primary font-medium flex items-center gap-1">
+              Slip-ring profilaktikasi
+              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Bottom Row: Recent Attempts Table -->
+<div class="rounded-xl bg-surface-container-low p-space-lg shadow-xl flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Oxirgi mashg'ulotlar tarixi</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Gantri simulyatorida bajarilgan diagnostika va bartaraf etish seanslari</p>
+</div>
+<button class="px-space-md py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm hover:text-primary transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Hisobotni yuklab olish (PDF)</span>
+</button>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md rounded-l-lg">Holat kodi</th>
+<th class="py-space-sm px-space-md">Nosozlik turi</th>
+<th class="py-space-sm px-space-md">Vaqt</th>
+<th class="py-space-sm px-space-md">Tashxis</th>
+<th class="py-space-sm px-space-md">Ball</th>
+<th class="py-space-sm px-space-md rounded-r-lg text-right">Holat</th>
+</tr>
+</thead>
+<tbody class="text-on-surface font-body-sm text-body-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-space-md px-space-md font-label-md text-primary font-medium">KT-204</td>
+<td class="py-space-md px-space-md font-medium text-on-surface">Konsentrik halqalar</td>
+<td class="py-space-md px-space-md text-on-surface-variant">Bugun, 10:24</td>
+<td class="py-space-md px-space-md text-on-surface">Detektor massivi</td>
+<td class="py-space-md px-space-md font-data-metric text-on-surface">8/10</td>
+<td class="py-space-md px-space-md text-right">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> To‘g‘ri
+                  </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-space-md px-space-md font-label-md text-primary font-medium">KT-189</td>
+<td class="py-space-md px-space-md font-medium text-on-surface">Chiziqli yulduzsimon artefakt</td>
+<td class="py-space-md px-space-md text-on-surface-variant">Kecha, 16:45</td>
+<td class="py-space-md px-space-md text-on-surface">Metall protez</td>
+<td class="py-space-md px-space-md font-data-metric text-primary">10/10</td>
+<td class="py-space-md px-space-md text-right">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> To‘g‘ri
+                  </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-space-md px-space-md font-label-md text-error font-medium">KT-177</td>
+<td class="py-space-md px-space-md font-medium text-on-surface">Anod qizib ketish xatosi (ERR_TH_9)</td>
+<td class="py-space-md px-space-md text-on-surface-variant">12 May</td>
+<td class="py-space-md px-space-md text-on-surface">Trubka sovutish tizimi</td>
+<td class="py-space-md px-space-md font-data-metric text-error">4/10</td>
+<td class="py-space-md px-space-md text-right">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-error-container/30 text-error font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span> Noto‘g‘ri
+                  </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-space-md px-space-md font-label-md text-primary font-medium">KT-165</td>
+<td class="py-space-md px-space-md font-medium text-on-surface">Gantry aylanish sinxronizatsiyasi</td>
+<td class="py-space-md px-space-md text-on-surface-variant">10 May</td>
+<td class="py-space-md px-space-md text-on-surface">Slip-ring cho'tkalari</td>
+<td class="py-space-md px-space-md font-data-metric text-on-surface">9/10</td>
+<td class="py-space-md px-space-md text-right">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> To‘g‘ri
+                  </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- TAB 2 CONTENT: Recruitment / Employer Database -->
+<div class="hidden flex-col gap-space-lg transition-opacity duration-300" id="tab2Content">
+<!-- Recruitment Header Banner -->
+<div class="rounded-xl bg-surface-container-low p-space-lg shadow-xl relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-space-md">
+<div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-secondary/5 blur-3xl pointer-events-none"></div>
+<div class="flex flex-col gap-space-xs z-10">
+<div class="flex items-center gap-2">
+<span class="px-space-sm py-0.5 rounded-full bg-secondary/10 text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+              Talab va Taklif Markazi
+            </span>
+<span class="font-label-sm text-label-sm text-outline">O'zbekiston bo'ylab 128 faol muhandis</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold">
+            Sertifikatlangan mutaxassislar (Klinikalar va servis kompaniyalari uchun)
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+            O'zbekiston bo'ylab KT uskunalarini boshqarish, nosozliklarni aniqlash va ta'mirlashga tayyor, laboratoriya simulyatsiyasidan muvaffaqiyatli o'tgan mutaxassislar bazasi.
+          </p>
+</div>
+<div class="flex items-center gap-space-sm flex-shrink-0 z-10">
+<button class="px-space-md py-space-sm rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">filter_list</span>
+<span>Hudud bo'yicha filter</span>
+</button>
+<button class="px-space-md py-space-sm rounded-full bg-primary-container text-on-primary-container font-headline-sm text-label-md font-medium hover:bg-primary transition-all shadow-[0_0_16px_rgba(79,209,181,0.3)] flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">post_add</span>
+<span>Vakansiya joylash</span>
+</button>
+</div>
+</div>
+<!-- Quick Metrics for Recruiters -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-md flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Akkreditatsiyadan o'tgan</span>
+<span class="font-data-metric text-headline-md text-on-surface">94 nafar</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-md flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">precision_manufacturing</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">O'rtacha amaliy tajriba</span>
+<span class="font-data-metric text-headline-md text-on-surface">180+ soat</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-md flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">location_city</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Hamkor klinikalar</span>
+<span class="font-data-metric text-headline-md text-on-surface">36 ta Markaz</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-md flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">bolt</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Tezkor ishga qabul</span>
+<span class="font-data-metric text-headline-md text-primary">48 soat</span>
+</div>
+</div>
+</div>
+<!-- Recruiter Table: Certified Engineers -->
+<div class="rounded-xl bg-surface-container-low p-space-lg shadow-xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Tayyor muhandislar</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Reyting va tekshirilgan simulyatsiya natijalari asosida saralangan</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              Jonli ma'lumotlar bazasi
+            </span>
+</div>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md rounded-l-lg">Mutaxassis</th>
+<th class="py-space-sm px-space-md">Hudud</th>
+<th class="py-space-sm px-space-md">Daraja</th>
+<th class="py-space-sm px-space-md">O'rtacha ball</th>
+<th class="py-space-sm px-space-md">Rozilik holati</th>
+<th class="py-space-sm px-space-md rounded-r-lg text-right">Harakat</th>
+</tr>
+</thead>
+<tbody class="text-on-surface font-body-sm text-body-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center font-label-sm text-primary font-bold">
+                      FK
+                    </div>
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Farhod Karimov</span>
+<span class="text-outline text-label-sm">KT Uskunalari Ta'mirlash</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-on-surface-variant">Toshkent shahri</td>
+<td class="py-space-md px-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-medium">
+                    Daraja 4 (Senior)
+                  </span>
+</td>
+<td class="py-space-md px-space-md font-data-metric text-primary">9.4 / 10</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">
+                    ✓ Profilni ko‘rsatishga rozi
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-space-md py-1.5 rounded-full bg-primary-container text-on-primary-container hover:bg-primary font-label-md text-label-md font-medium transition-all shadow-sm">
+                    Bog‘lanish
+                  </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center font-label-sm text-secondary font-bold">
+                      DO
+                    </div>
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Dilnoza Olimova</span>
+<span class="text-outline text-label-sm">Biotibbiy Tizimlar Muhandisi</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-on-surface-variant">Samarqand</td>
+<td class="py-space-md px-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-secondary/15 text-secondary font-label-sm text-label-sm font-medium">
+                    Daraja 3 (Middle)
+                  </span>
+</td>
+<td class="py-space-md px-space-md font-data-metric text-on-surface">8.8 / 10</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">
+                    ✓ Profilni ko‘rsatishga rozi
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-space-md py-1.5 rounded-full bg-primary-container text-on-primary-container hover:bg-primary font-label-md text-label-md font-medium transition-all shadow-sm">
+                    Bog‘lanish
+                  </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center font-label-sm text-primary font-bold">
+                      BM
+                    </div>
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Bobur Mirzayev</span>
+<span class="text-outline text-label-sm">Radiatsion Xavfsizlik &amp; QC</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-on-surface-variant">Farg'ona</td>
+<td class="py-space-md px-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-secondary/15 text-secondary font-label-sm text-label-sm font-medium">
+                    Daraja 3 (Middle)
+                  </span>
+</td>
+<td class="py-space-md px-space-md font-data-metric text-on-surface">8.5 / 10</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">
+                    ✓ Profilni ko‘rsatishga rozi
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-space-md py-1.5 rounded-full bg-primary-container text-on-primary-container hover:bg-primary font-label-md text-label-md font-medium transition-all shadow-sm">
+                    Bog‘lanish
+                  </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center font-label-sm text-secondary font-bold">
+                      AY
+                    </div>
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Azizbek Yusupov</span>
+<span class="text-outline text-label-sm">Apparat Kalibrovkasi</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-on-surface-variant">Namangan</td>
+<td class="py-space-md px-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-medium">
+                    Daraja 2 (Junior+)
+                  </span>
+</td>
+<td class="py-space-md px-space-md font-data-metric text-on-surface">8.1 / 10</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">
+                    ✓ Profilni ko‘rsatishga rozi
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-space-md py-1.5 rounded-full bg-primary-container text-on-primary-container hover:bg-primary font-label-md text-label-md font-medium transition-all shadow-sm">
+                    Bog‘lanish
+                  </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function switchDashboardTab(tabId) {
+    const tab1Content = document.getElementById('tab1Content');
+    const tab2Content = document.getElementById('tab2Content');
+    const tabBtn1 = document.getElementById('tabBtn1');
+    const tabBtn2 = document.getElementById('tabBtn2');
+
+    if (tabId === 'tab1') {
+      tab1Content.classList.remove('hidden');
+      tab2Content.classList.add('hidden');
+
+      tabBtn1.className = 'px-space-md py-space-xs rounded-full font-label-md text-label-md transition-all duration-200 bg-surface-container-high text-primary shadow-sm flex items-center gap-2';
+      tabBtn2.className = 'px-space-md py-space-xs rounded-full font-label-md text-label-md transition-all duration-200 text-on-surface-variant hover:text-on-surface flex items-center gap-2';
+    } else {
+      tab1Content.classList.add('hidden');
+      tab2Content.classList.remove('hidden');
+
+      tabBtn2.className = 'px-space-md py-space-xs rounded-full font-label-md text-label-md transition-all duration-200 bg-surface-container-high text-primary shadow-sm flex items-center gap-2';
+      tabBtn1.className = 'px-space-md py-space-xs rounded-full font-label-md text-label-md transition-all duration-200 text-on-surface-variant hover:text-on-surface flex items-center gap-2';
+    }
+  }
+</script></main><footer class="w-full bg-surface-container-low/90 backdrop-blur-xl relative z-10 mt-space-xl"><div class="w-full px-margin py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex flex-col gap-space-xs text-center md:text-left"><div class="flex items-center justify-center md:justify-start gap-space-sm"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">MedTech Academy</span><span class="px-space-sm py-0.5 rounded-full bg-surface-container-high font-label-sm text-label-sm text-secondary uppercase">CT v3.4.1</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Toshkent, O'zbekiston · Tibbiy asbob-uskunalar milliy malaka markazi</p><p class="font-label-sm text-label-sm text-outline">Umummilliy AI Xakaton · Namangan 2026 uchun maxsus ishlab chiqilgan</p></div><div class="flex flex-col sm:flex-row items-center gap-space-lg text-center md:text-right"><div class="flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">Xavfsizlik protokollari</span><span class="font-body-sm text-body-sm text-on-surface-variant">IEC 60601-2-44 KT Radiatsiya Xavfsizligi standarti</span></div><div class="flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">Litsenziya</span><span class="font-body-sm text-body-sm text-on-surface-variant">O'zR SSV Biotibbiyot muhandislik akkreditatsiyasi</span></div></div></div><div class="w-full px-margin py-space-md bg-surface-container-lowest/60 flex flex-col sm:flex-row items-center justify-between gap-space-sm"><span class="font-label-sm text-label-sm text-outline">© 2026 MedTech Academy. Barcha huquqlar himoyalangan.</span><span class="font-label-sm text-label-sm text-outline flex items-center gap-space-xs"><span class="material-symbols-outlined text-[14px] text-primary">verified</span> Klinik o'quv simulyatori</span></div></footer></body></html>

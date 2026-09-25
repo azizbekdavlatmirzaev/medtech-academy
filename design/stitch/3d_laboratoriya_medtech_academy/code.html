@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="uz"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-highest":"#2a3548","primary-container":"#4fd1b5","on-background":"#d7e3fc","error-container":"#93000a","surface-container-low":"#101c2e","tertiary-container":"#ffa697","on-primary-fixed-variant":"#005143","surface-variant":"#2a3548","on-primary-container":"#005648","on-secondary-container":"#a6b6d3","primary-fixed-dim":"#5bdbbf","secondary-fixed-dim":"#b7c7e5","surface-container":"#142032","on-secondary-fixed":"#0b1c32","on-surface":"#d7e3fc","tertiary":"#ffcdc5","background":"#071425","on-surface-variant":"#bbcac4","inverse-on-surface":"#253144","error":"#ffb4ab","secondary-container":"#384760","tertiary-fixed-dim":"#ffb4a7","primary-fixed":"#7af8da","surface-container-lowest":"#030e20","surface-tint":"#5bdbbf","surface-container-high":"#1f2a3d","surface-bright":"#2e3a4d","on-tertiary-container":"#951c0d","on-primary":"#00382e","on-error":"#690005","inverse-surface":"#d7e3fc","surface-dim":"#071425","on-tertiary":"#670400","inverse-primary":"#006b5a","on-error-container":"#ffdad6","primary":"#6feed0","on-secondary":"#213148","secondary-fixed":"#d5e3ff","outline":"#86948f","outline-variant":"#3d4945","tertiary-fixed":"#ffdad4","secondary":"#b7c7e5","on-secondary-fixed-variant":"#384760","on-primary-fixed":"#00201a","on-tertiary-fixed-variant":"#8d1508","surface":"#071425","on-tertiary-fixed":"#400200"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-lg":"1.5rem","margin":"2rem","gutter":"1.5rem","space-md":"1rem","margin-mobile":"1rem","space-xs":"0.25rem","gutter-mobile":"0.75rem","space-sm":"0.5rem","space-xl":"2.5rem"},fontFamily:{"body-lg":["IBM Plex Sans"],"headline-lg":["Space Grotesk"],"body-md":["IBM Plex Sans"],"body-sm":["IBM Plex Sans"],"headline-xl":["Space Grotesk"],"headline-sm":["Space Grotesk"],"label-sm":["JetBrains Mono"],"display-lg-mobile":["Space Grotesk"],"data-metric":["JetBrains Mono"],"headline-md":["Space Grotesk"],"headline-xl-mobile":["Space Grotesk"],"label-md":["JetBrains Mono"],"display-lg":["Space Grotesk"],"label-lg":["JetBrains Mono"]},fontSize:{"body-lg":["16px",{"lineHeight":"26px","fontWeight":"400"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"22px","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"18px","fontWeight":"400"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"500"}],"display-lg-mobile":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"data-metric":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"30px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-xl-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.03em","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.03em","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"500"}]}}}};</script></head><body class="bg-background font-body-md text-body-md text-on-surface min-h-screen selection:bg-primary-container selection:text-on-primary-container"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low/95 backdrop-blur-2xl z-50 flex flex-col pt-space-lg pb-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.5)]"><div class="px-space-lg mb-space-lg flex items-center gap-space-sm"><img alt="MedTech Academy Logotipi" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U22Xwn-Td5mEZo2xmQcfiK700SePxhclU6c9xlfaJd4xxJ2gI1fDzhMYiQalnVvbJ0cPWg9A2RJ0JkkjlDyXReBsofy_xV4ag8XXTVRJYljtnCmazTcOAGW_WauHJp9VjFhmLdOR-F5ULlZtLBwsYj1ztov0lRGFbKm-KXj_UnnULRX7GNPf5iCDlKxDy371vs5larcwbvcS43TcGCQ38GS7h-yxOibfxbeW7LWndqKz4wMnDgwWjSpR8"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight leading-tight">MedTech</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Laboratoriya</span></div></div><div class="px-space-lg py-space-xs mb-space-md"><span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Subtizim Diagnostikasi</span></div><nav class="flex-1 px-space-sm flex flex-col gap-space-xs overflow-y-auto" data-active-classes="bg-surface-container-high text-primary font-semibold"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="trenajor" href="#"><span class="material-symbols-outlined text-[20px]">tune</span>KT Gantri &amp; Nay</a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl transition-all bg-surface-container-high text-primary font-semibold" data-path="3d-laboratoriya" href="#"><span class="material-symbols-outlined text-[20px]">view_in_ar</span>3D Optika &amp; Detektor</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="ai-ustoz" href="#"><span class="material-symbols-outlined text-[20px]">psychology</span>AI Diagnostik Ustoz</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="natijalar" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span>Telemetriya &amp; Natija</a></nav><div class="px-space-lg pt-space-md"><div class="p-space-sm rounded-xl bg-surface-container-lowest/80"><div class="flex items-center justify-between mb-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Nay harorati</span><span class="font-label-sm text-label-sm text-primary">42°C</span></div><div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden"><div class="bg-primary h-full w-[42%]"></div></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-surface-container/70 backdrop-blur-2xl shadow-[0_1px_8px_rgba(0,0,0,0.4)] z-40 flex items-center justify-between px-margin"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md"><span class="material-symbols-outlined text-[16px] text-primary">settings_input_component</span><span>kVp: 120</span><span class="text-outline">|</span><span>mA: 250</span><span class="text-outline">|</span><span>Gantri: 0.5s/rot</span></div></div><div class="flex items-center gap-space-md"><div class="hidden md:flex flex-col text-right"><span class="font-label-sm text-label-sm text-primary uppercase">Rejim: Muhandislik</span><span class="font-label-sm text-label-sm text-on-surface-variant">Assotsiatsiya akkreditatsiyasi</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-20 bg-transparent min-h-screen"><div class="flex flex-col w-full text-on-surface select-none">
+<!-- Top Glass Tactical Ribbon (Floating Viewport Controls) -->
+<div class="relative w-full px-margin pt-space-md z-30 flex items-center justify-between pointer-events-none">
+<div class="flex items-center gap-space-sm bg-surface-container-low/85 backdrop-blur-xl px-space-md py-space-xs rounded-full shadow-[0_4px_24px_rgba(3,14,32,0.8)] pointer-events-auto">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">3D Optika &amp; Detektor Zali</span>
+<span class="text-outline-variant">/</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">LAB-SYS-64R</span>
+</div>
+<!-- Floating Glass Center Controls -->
+<div class="flex items-center gap-space-xs bg-surface-container/90 backdrop-blur-2xl p-space-xs rounded-full shadow-[0_8px_32px_rgba(3,14,32,0.9)] pointer-events-auto">
+<button class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-primary text-on-primary font-headline-sm text-label-md transition-all shadow-[0_0_12px_rgba(79,209,181,0.35)]" id="btn-xray-cut">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span>Ichini ko‘rsat</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-label-md transition-all" id="btn-rotate">
+<span class="material-symbols-outlined text-[18px] text-primary" id="rotate-icon">sync</span>
+<span>Aylantir</span>
+</button>
+<!-- Rotation speed segmented pill -->
+<div class="flex items-center bg-surface-container-lowest/80 p-0.5 rounded-full">
+<button class="px-2 py-0.5 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors">0.5x</button>
+<button class="px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-primary/20 text-primary font-semibold">1x</button>
+<button class="px-2 py-0.5 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors">2x</button>
+</div>
+<button class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-label-md transition-all" id="btn-fan-beam">
+<span class="material-symbols-outlined text-[18px] text-secondary">flare</span>
+<span>Fan Beam</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-label-md transition-all" id="btn-exploded">
+<span class="material-symbols-outlined text-[18px] text-tertiary">layers</span>
+<span>Portlatilgan</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-all" title="Markazga qaytarish">
+<span class="material-symbols-outlined text-[18px]">center_focus_strong</span>
+</button>
+</div>
+<!-- Live Gantry Readout Pill -->
+<div class="flex items-center gap-space-sm bg-surface-container-low/85 backdrop-blur-xl px-space-md py-space-xs rounded-full shadow-[0_4px_24px_rgba(3,14,32,0.8)] pointer-events-auto">
+<span class="material-symbols-outlined text-[16px] text-primary">rotate_right</span>
+<span class="font-label-sm text-label-sm text-on-surface">Burchak: <span class="text-primary font-mono" id="live-angle">214.5°</span></span>
+<span class="text-outline-variant">|</span>
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim font-mono">0.35 s/aylanma</span>
+</div>
+</div>
+<!-- Primary Working Canvas: 3D Visualization Arena & Right Inspector -->
+<div class="relative w-full px-margin mt-space-sm grid grid-cols-12 gap-gutter items-start">
+<!-- 8-Column Center 3D Interactive Canvas -->
+<div class="col-span-12 xl:col-span-8 relative h-[680px] bg-gradient-to-b from-surface-container-low via-surface to-surface-container-lowest rounded-xl overflow-hidden shadow-[0_12px_48px_rgba(3,14,32,0.9)] flex items-center justify-center">
+<!-- Perspective Floor Grid (CSS Perspective Simulation) -->
+<div class="absolute inset-0 opacity-25 pointer-events-none" style="background-image: radial-gradient(circle at 50% 60%, rgba(79, 209, 181, 0.15) 0%, transparent 70%), linear-gradient(to right, rgba(134,148,143,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(134,148,143,0.12) 1px, transparent 1px); background-size: 100% 100%, 36px 36px, 36px 36px;"></div>
+<!-- Radial Ambient Ring Glow Backplate -->
+<div class="absolute w-[480px] h-[480px] rounded-full bg-primary/5 blur-[90px] pointer-events-none"></div>
+<!-- Interactive 3D CT Gantry Vector Stage -->
+<div class="relative w-full h-full flex items-center justify-center">
+<!-- Interactive SVGs & Mechanical Layer Stack -->
+<svg class="w-full h-full max-w-[620px] max-h-[620px] overflow-visible" fill="none" viewbox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="gantryRingGrad" x1="0" x2="600" y1="0" y2="600">
+<stop stop-color="#2a3548"></stop>
+<stop offset="0.5" stop-color="#142032"></stop>
+<stop offset="1" stop-color="#0b1c32"></stop>
+</lineargradient>
+<radialgradient cx="300" cy="300" gradientunits="userSpaceOnUse" id="boreGlow" r="160">
+<stop stop-color="#4fd1b5" stop-opacity="0.12"></stop>
+<stop offset="1" stop-color="#071425" stop-opacity="0"></stop>
+</radialgradient>
+<lineargradient gradientunits="userSpaceOnUse" id="fanBeamGrad" x1="300" x2="300" y1="95" y2="495">
+<stop stop-color="#6feed0" stop-opacity="0.55"></stop>
+<stop offset="0.75" stop-color="#6feed0" stop-opacity="0.15"></stop>
+<stop offset="1" stop-color="#6feed0" stop-opacity="0"></stop>
+</lineargradient>
+<filter height="140%" id="neonTeal" width="140%" x="-20%" y="-20%">
+<fedropshadow dx="0" dy="0" flood-color="#4fd1b5" flood-opacity="0.6" stddeviation="6"></fedropshadow>
+</filter>
+</defs>
+<!-- Outer Gantry Physical Casing Profile -->
+<rect class="transition-all duration-700" fill="url(#gantryRingGrad)" height="480" id="gantry-shell" rx="36" width="460" x="70" y="60"></rect>
+<rect fill="none" height="472" rx="32" stroke="#4fd1b5" stroke-opacity="0.2" stroke-width="1.5" width="452" x="74" y="64"></rect>
+<!-- LED Perimeter Track -->
+<circle cx="300" cy="300" r="230" stroke="#384760" stroke-dasharray="6 6" stroke-width="3"></circle>
+<circle class="transition-transform duration-1000 origin-center" cx="300" cy="300" filter="url(#neonTeal)" r="230" stroke="#4fd1b5" stroke-dasharray="140 320" stroke-width="2"></circle>
+<!-- Inner Bore Shadow & Light Tunnel -->
+<circle cx="300" cy="300" fill="#071425" r="170"></circle>
+<circle cx="300" cy="300" fill="url(#boreGlow)" r="170"></circle>
+<circle cx="300" cy="300" r="170" stroke="#4fd1b5" stroke-opacity="0.4" stroke-width="2"></circle>
+<!-- ROTOR GROUP (Rotates during simulation) -->
+<g class="origin-center transition-transform duration-300" id="gantry-rotor" style="transform-origin: 300px 300px;">
+<!-- Gold Slip Ring Tracks -->
+<circle cx="300" cy="300" r="205" stroke="#d5e3ff" stroke-opacity="0.18" stroke-width="2"></circle>
+<circle cx="300" cy="300" r="195" stroke="#ffb4a7" stroke-opacity="0.25" stroke-width="3"></circle>
+<circle cx="300" cy="300" r="185" stroke="#d5e3ff" stroke-opacity="0.18" stroke-width="2"></circle>
+<!-- Slip Ring Graphite Brushes Simulation Points -->
+<rect fill="#ffa697" height="6" rx="2" width="16" x="495" y="292"></rect>
+<rect fill="#ffa697" height="6" rx="2" width="16" x="495" y="302"></rect>
+<!-- X-Ray Fan Beam Projected Wedge (Interactive) -->
+<polygon class="transition-opacity duration-500" fill="url(#fanBeamGrad)" id="svg-fan-beam" opacity="0.85" points="300,98 170,490 430,490"></polygon>
+<!-- Component 1: X-RAY TUBE ASSEMBLY (Top 12 o'clock) -->
+<g class="cursor-pointer group" id="node-tube">
+<!-- Tube Housing -->
+<rect fill="#1f2a3d" height="54" rx="8" stroke="#5bdbbf" stroke-width="1.5" width="130" x="235" y="70"></rect>
+<!-- Anode target cooling ribs -->
+<line stroke="#86948f" stroke-width="2" x1="250" x2="250" y1="78" y2="116"></line>
+<line stroke="#86948f" stroke-width="2" x1="260" x2="260" y1="78" y2="116"></line>
+<line stroke="#86948f" stroke-width="2" x1="270" x2="270" y1="78" y2="116"></line>
+<!-- Focal Spot Glow Pin -->
+<circle class="animate-ping" cx="300" cy="98" fill="#6feed0" filter="url(#neonTeal)" r="6"></circle>
+<circle cx="300" cy="98" fill="#ffffff" r="4"></circle>
+<!-- Tube Collimator aperture box -->
+<path d="M282 124 L318 124 L310 134 L290 134 Z" fill="#2a3548" stroke="#4fd1b5" stroke-width="1"></path>
+</g>
+<!-- Component 2: CURVED DETECTOR ARRAY (DMS) (Bottom 6 o'clock) -->
+<g class="cursor-pointer group" id="node-detector">
+<!-- Multi-row segmented arc -->
+<path d="M150 480 A 190 190 0 0 0 450 480" fill="none" filter="url(#neonTeal)" stroke="#4fd1b5" stroke-linecap="round" stroke-width="18"></path>
+<!-- Individual sub-modules (dash array) -->
+<path d="M150 480 A 190 190 0 0 0 450 480" fill="none" stroke="#071425" stroke-dasharray="3 9" stroke-width="18"></path>
+<!-- DAS (Data Acquisition) Backing Board -->
+<path d="M142 494 A 206 206 0 0 0 458 494" fill="none" stroke="#384760" stroke-linecap="round" stroke-width="8"></path>
+</g>
+<!-- Component 3: High Voltage Generator Block (Left 9 o'clock) -->
+<g class="cursor-pointer" id="node-hvg">
+<rect fill="#142032" height="80" rx="6" stroke="#86948f" stroke-width="1.5" width="70" x="85" y="260"></rect>
+<circle cx="120" cy="300" fill="#2a3548" r="14"></circle>
+<text fill="#6feed0" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle" x="120" y="304">kV</text>
+</g>
+<!-- Component 4: Oil-to-Air Heat Exchanger (Right 3 o'clock) -->
+<g class="cursor-pointer" id="node-chiller">
+<rect fill="#142032" height="80" rx="6" stroke="#86948f" stroke-width="1.5" width="70" x="445" y="260"></rect>
+<line stroke="#4fd1b5" stroke-opacity="0.6" stroke-width="2" x1="455" x2="505" y1="275" y2="275"></line>
+<line stroke="#4fd1b5" stroke-opacity="0.6" stroke-width="2" x1="455" x2="505" y1="290" y2="290"></line>
+<line stroke="#4fd1b5" stroke-opacity="0.6" stroke-width="2" x1="455" x2="505" y1="305" y2="305"></line>
+<line stroke="#4fd1b5" stroke-opacity="0.6" stroke-width="2" x1="455" x2="505" y1="320" y2="320"></line>
+</g>
+</g>
+<!-- Stationary Patient Couch Tabletop entering Bore -->
+<g id="couch-assembly">
+<!-- Carbon fiber tabletop bar -->
+<path d="M220 340 L380 340 L365 375 L235 375 Z" fill="#2a3548" stroke="#384760" stroke-width="1.5"></path>
+<!-- Longitudinal table guide line -->
+<line stroke="#6feed0" stroke-dasharray="4 4" stroke-opacity="0.6" stroke-width="2" x1="300" x2="300" y1="340" y2="560"></line>
+<!-- Table Pedestal Base -->
+<rect fill="#101c2e" height="190" stroke="#1f2a3d" stroke-width="1" width="100" x="250" y="375"></rect>
+<rect fill="#5bdbbf" height="4" rx="2" width="60" x="270" y="410"></rect>
+</g>
+<!-- Interactive Hotspot Diagnostic Annotations -->
+<!-- Hotspot: Detector -->
+<g class="cursor-pointer transition-transform hover:scale-110 origin-center" onclick="selectComponent('detektor')">
+<circle cx="300" cy="480" fill="#4fd1b5" fill-opacity="0.25" r="14"></circle>
+<circle cx="300" cy="480" fill="#4fd1b5" filter="url(#neonTeal)" r="6"></circle>
+</g>
+<!-- Hotspot: X-Ray Tube -->
+<g class="cursor-pointer transition-transform hover:scale-110 origin-center" onclick="selectComponent('trubka')">
+<circle cx="300" cy="98" fill="#4fd1b5" fill-opacity="0.25" r="14"></circle>
+<circle cx="300" cy="98" fill="#4fd1b5" filter="url(#neonTeal)" r="6"></circle>
+</g>
+<!-- Hotspot: Slip Ring -->
+<g class="cursor-pointer transition-transform hover:scale-110 origin-center" onclick="selectComponent('slipring')">
+<circle cx="495" cy="298" fill="#ffa697" fill-opacity="0.25" r="12"></circle>
+<circle cx="495" cy="298" fill="#ffa697" r="5"></circle>
+</g>
+</svg>
+<!-- Dynamic Visual Callout Card (Floating over canvas) -->
+<div class="absolute bottom-space-lg left-space-lg bg-surface-container/90 backdrop-blur-2xl p-space-md rounded-xl max-w-xs shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase">Fokal Nuqta Optikasi</span>
+<span class="font-label-sm text-label-sm font-mono text-outline">IEC 60336</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Kichik fokal o‘lcham: <strong class="text-on-surface font-mono">0.6 x 0.7 mm</strong>. Qirqim qalinligi 0.625mm bo‘lganda fazoviy o‘lcham aniqligini ta’minlaydi.</p>
+</div>
+<!-- Canvas HUD Watermark Overlay -->
+<div class="absolute top-space-lg left-space-lg pointer-events-none">
+<span class="font-headline-sm text-headline-sm text-outline-variant font-bold opacity-30 tracking-widest uppercase">Gantry Field 3D</span>
+</div>
+</div>
+</div>
+<!-- 4-Column Right Panel: Interactive Parts Inspector -->
+<div class="col-span-12 xl:col-span-4 flex flex-col gap-space-md">
+<!-- Upper Section: Search & Category Filter -->
+<div class="bg-surface-container/80 backdrop-blur-xl p-space-md rounded-xl shadow-[0_8px_32px_rgba(3,14,32,0.6)] flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">KT Tizim qismlari</h2>
+<span class="font-label-sm text-label-sm text-primary bg-primary/10 px-2 py-0.5 rounded-full font-mono">8 TA MODUL</span>
+</div>
+<!-- Filter Segmented Tabs -->
+<div class="flex items-center gap-1 overflow-x-auto p-1 bg-surface-container-lowest/80 rounded-lg">
+<button class="px-space-sm py-1 rounded font-label-sm text-label-sm bg-surface-container-high text-primary font-medium whitespace-nowrap">Barchasi (8)</button>
+<button class="px-space-sm py-1 rounded font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface whitespace-nowrap">Mexanika</button>
+<button class="px-space-sm py-1 rounded font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface whitespace-nowrap">Optika &amp; Nur</button>
+<button class="px-space-sm py-1 rounded font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface whitespace-nowrap">Elektronika</button>
+</div>
+<!-- Interactive Component List -->
+<div class="flex flex-col gap-1.5 mt-space-xs max-h-56 overflow-y-auto pr-1">
+<!-- 1. Detektor Massivi (Active Item) -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-high text-primary cursor-pointer transition-all shadow-[inset_0_0_12px_rgba(79,209,181,0.15)]">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px]">grid_goldenratio</span>
+<span class="font-headline-sm text-label-md font-semibold">Detektor massivi (DMS)</span>
+</div>
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_6px_#4fd1b5]"></span>
+</div>
+<!-- 2. Rentgen trubkasi -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer transition-all">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px]">offline_bolt</span>
+<span class="font-body-md text-label-md">Rentgen trubkasi (X-Ray Tube)</span>
+</div>
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+</div>
+<!-- 3. Slip-ring -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer transition-all">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px]">progress_activity</span>
+<span class="font-body-md text-label-md">Slip-ring va cho'tkalar</span>
+</div>
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+</div>
+<!-- 4. Yuqori kuchlanish generatori -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer transition-all">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px]">electric_bolt</span>
+<span class="font-body-md text-label-md">Yuqori kuchlanish generatori</span>
+</div>
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+</div>
+<!-- 5. DAS -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer transition-all">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px]">memory</span>
+<span class="font-body-md text-label-md">DAS (Ma'lumot yig'ish tizimi)</span>
+</div>
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+</div>
+<!-- 6. Kollimator -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer transition-all">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px]">filter_center_focus</span>
+<span class="font-body-md text-label-md">Kollimator va Bowtie filtri</span>
+</div>
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+</div>
+<!-- 7. Sovutish tizimi -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer transition-all">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px]">ac_unit</span>
+<span class="font-body-md text-label-md">Sovutish tizimi (Oil Chiller)</span>
+</div>
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+</div>
+<!-- 8. Bemor stoli -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer transition-all">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px]">airline_seat_flat</span>
+<span class="font-body-md text-label-md">Bemor stoli va optik datchiklar</span>
+</div>
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+</div>
+</div>
+</div>
+<!-- Lower Section: Expanded Selected Component Inspector Card -->
+<div class="bg-surface-container-high/90 backdrop-blur-2xl p-space-lg rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.65)] flex flex-col justify-between">
+<!-- Header & Hardware ID -->
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase font-mono tracking-wider">MODUL-01 // DETEKTOR</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-semibold">FAOL HOLATDA</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight mb-space-xs">Detektor Massivi (DMS)</h3>
+<!-- Technical Specs Badges -->
+<div class="p-space-sm bg-surface-container-lowest/80 rounded-lg mb-space-md">
+<p class="font-label-sm text-label-sm text-secondary font-mono leading-relaxed">
+              64-qatorli keramika ssintillyator (GOS) <br/>
+              0.625mm izotropik kesim qalinligi <br/>
+              43,008 jami analog-raqamli kanal
+            </p>
+</div>
+<!-- Functionality Description -->
+<div class="mb-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-medium">Vazifasi va Ishlash Asosi</span>
+<p class="font-body-sm text-body-sm text-on-surface mt-1 leading-normal">
+              Bemor tanasidan o‘tgan zaiflashgan X-ray fotonlarini tutib olib, ssintillyatsiya kristallarida ko‘rinadigan yorug‘likka, so‘ngra fotodiodlar orqali past shovqinli elektr signaliga aylantiradi.
+            </p>
+</div>
+<!-- Common Fault Diagnostics Tags -->
+<div class="mb-space-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-medium block mb-space-xs">Ko‘p uchraydigan nosozliklar:</span>
+<div class="flex flex-wrap gap-space-xs">
+<span class="px-2.5 py-1 rounded-full bg-error-container/40 text-error font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                Halqa artefakti (Ring)
+              </span>
+<span class="px-2.5 py-1 rounded-full bg-error-container/40 text-error font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                Kanal drifti (+0.05%)
+              </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm">
+                Termal beqarorlik
+              </span>
+</div>
+</div>
+</div>
+<!-- Action Trigger Button -->
+<button class="w-full py-3 px-space-md rounded-full bg-primary hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-label-md font-semibold tracking-wide transition-all shadow-[0_0_20px_rgba(79,209,181,0.35)] flex items-center justify-center gap-space-xs">
+<span>Shu qism bo‘yicha mashq qilish</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Timeline Scrubber: Skanerlash Jarayoni (Physics Acquisition Stages) -->
+<div class="w-full px-margin mt-space-md mb-space-xl">
+<div class="bg-surface-container/90 backdrop-blur-2xl p-space-md rounded-xl shadow-[0_8px_32px_rgba(3,14,32,0.8)] flex flex-col gap-space-sm">
+<!-- Timeline Header with Telemetry Stats -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">timelapse</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Skanerlash Jarayoni va Bosqichlar</span>
+</div>
+<!-- Live Physics Parameter Stream -->
+<div class="flex items-center gap-space-md bg-surface-container-lowest/80 px-space-md py-1 rounded-full font-label-sm text-label-sm font-mono">
+<span class="text-primary">120 kVp</span>
+<span class="text-outline-variant">·</span>
+<span class="text-secondary">250 mA</span>
+<span class="text-outline-variant">·</span>
+<span class="text-tertiary-fixed-dim">Fan Angle: 52°</span>
+<span class="text-outline-variant">|</span>
+<span class="text-on-surface">Vaqt: <strong class="text-primary font-bold">00:00:24</strong> / 00:00:40</span>
+</div>
+</div>
+<!-- Scrubber Bar Track -->
+<div class="relative w-full py-2 cursor-pointer">
+<!-- Background Track -->
+<div class="w-full h-2.5 rounded-full bg-surface-container-lowest overflow-hidden relative">
+<!-- Filled progress 65% -->
+<div class="h-full bg-gradient-to-r from-primary/60 via-primary to-primary-fixed-dim w-[65%] rounded-full shadow-[0_0_12px_rgba(79,209,181,0.5)]"></div>
+</div>
+<!-- Interactive Scrub Head Pin -->
+<div class="absolute top-1/2 left-[65%] -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-primary border-2 border-surface shadow-[0_0_12px_#6feed0] flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-on-primary"></div>
+</div>
+</div>
+<!-- 3 Distinct CT Physics Stages Markers -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter pt-space-xs">
+<!-- Stage 1 -->
+<div class="flex items-start gap-space-xs p-2 rounded-lg bg-surface-container-low/60">
+<div class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center font-label-sm text-label-sm font-bold shrink-0">1</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-label-md text-on-surface font-semibold">Trubka tezlashishi va Nur generatsiyasi</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono">kVp / mA stabilizatsiya davri</span>
+</div>
+</div>
+<!-- Stage 2 (Active Stage) -->
+<div class="flex items-start gap-space-xs p-2 rounded-lg bg-surface-container-high">
+<div class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold shrink-0 animate-pulse">2</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-label-md text-primary font-semibold">360° Proyeksiyalar to‘plami</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono">Sinogramma yig‘ish (1000+ proy/aylanma)</span>
+</div>
+</div>
+<!-- Stage 3 -->
+<div class="flex items-start gap-space-xs p-2 rounded-lg bg-surface-container-low/60 opacity-60">
+<div class="w-5 h-5 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm font-bold shrink-0">3</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-label-md text-on-surface font-semibold">Filtrlangan teskari proyeksiyalash</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono">FBP va iterativ 3D rekonstruktsiya</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Client-side Interactive Animation Driver -->
+<script>
+    (function init3DLab() {
+      const rotor = document.getElementById('gantry-rotor');
+      const liveAngleText = document.getElementById('live-angle');
+      const fanBeam = document.getElementById('svg-fan-beam');
+      const btnFanBeam = document.getElementById('btn-fan-beam');
+      const btnRotate = document.getElementById('btn-rotate');
+      const rotateIcon = document.getElementById('rotate-icon');
+      const btnExploded = document.getElementById('btn-exploded');
+      const gantryShell = document.getElementById('gantry-shell');
+      const btnXrayCut = document.getElementById('btn-xray-cut');
+
+      let angle = 214.5;
+      let rotating = true;
+      let animId = null;
+
+      function renderRotation() {
+        if (rotating) {
+          angle = (angle + 0.8) % 360;
+          if (rotor) rotor.style.transform = `rotate(${angle}deg)`;
+          if (liveAngleText) liveAngleText.innerText = `${angle.toFixed(1)}°`;
+        }
+        animId = requestAnimationFrame(renderRotation);
+      }
+      animId = requestAnimationFrame(renderRotation);
+
+      if (btnRotate) {
+        btnRotate.addEventListener('click', () => {
+          rotating = !rotating;
+          if (rotateIcon) {
+            rotateIcon.innerText = rotating ? 'pause' : 'play_arrow';
+          }
+        });
+      }
+
+      if (btnFanBeam) {
+        btnFanBeam.addEventListener('click', () => {
+          if (fanBeam) {
+            const isVisible = fanBeam.getAttribute('opacity') !== '0';
+            fanBeam.setAttribute('opacity', isVisible ? '0' : '0.85');
+            btnFanBeam.classList.toggle('bg-primary/20', !isVisible);
+          }
+        });
+      }
+
+      if (btnExploded) {
+        btnExploded.addEventListener('click', () => {
+          if (gantryShell) {
+            const isShifted = gantryShell.getAttribute('transform') !== null;
+            if (isShifted) {
+              gantryShell.removeAttribute('transform');
+              btnExploded.classList.remove('bg-primary/20');
+            } else {
+              gantryShell.setAttribute('transform', 'translate(0, -35)');
+              btnExploded.classList.add('bg-primary/20');
+            }
+          }
+        });
+      }
+
+      if (btnXrayCut) {
+        btnXrayCut.addEventListener('click', () => {
+          if (gantryShell) {
+            const isGhost = gantryShell.getAttribute('fill-opacity') === '0.15';
+            gantryShell.setAttribute('fill-opacity', isGhost ? '1' : '0.15');
+            btnXrayCut.classList.toggle('shadow-[0_0_20px_rgba(79,209,181,0.6)]');
+          }
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>

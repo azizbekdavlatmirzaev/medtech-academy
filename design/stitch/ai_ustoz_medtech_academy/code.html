@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="uz"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-highest":"#2a3548","primary-container":"#4fd1b5","on-background":"#d7e3fc","error-container":"#93000a","surface-container-low":"#101c2e","tertiary-container":"#ffa697","on-primary-fixed-variant":"#005143","surface-variant":"#2a3548","on-primary-container":"#005648","on-secondary-container":"#a6b6d3","primary-fixed-dim":"#5bdbbf","secondary-fixed-dim":"#b7c7e5","surface-container":"#142032","on-secondary-fixed":"#0b1c32","on-surface":"#d7e3fc","tertiary":"#ffcdc5","background":"#071425","on-surface-variant":"#bbcac4","inverse-on-surface":"#253144","error":"#ffb4ab","secondary-container":"#384760","tertiary-fixed-dim":"#ffb4a7","primary-fixed":"#7af8da","surface-container-lowest":"#030e20","surface-tint":"#5bdbbf","surface-container-high":"#1f2a3d","surface-bright":"#2e3a4d","on-tertiary-container":"#951c0d","on-primary":"#00382e","on-error":"#690005","inverse-surface":"#d7e3fc","surface-dim":"#071425","on-tertiary":"#670400","inverse-primary":"#006b5a","on-error-container":"#ffdad6","primary":"#6feed0","on-secondary":"#213148","secondary-fixed":"#d5e3ff","outline":"#86948f","outline-variant":"#3d4945","tertiary-fixed":"#ffdad4","secondary":"#b7c7e5","on-secondary-fixed-variant":"#384760","on-primary-fixed":"#00201a","on-tertiary-fixed-variant":"#8d1508","surface":"#071425","on-tertiary-fixed":"#400200"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-lg":"1.5rem","margin":"2rem","gutter":"1.5rem","space-md":"1rem","margin-mobile":"1rem","space-xs":"0.25rem","gutter-mobile":"0.75rem","space-sm":"0.5rem","space-xl":"2.5rem"},fontFamily:{"body-lg":["IBM Plex Sans"],"headline-lg":["Space Grotesk"],"body-md":["IBM Plex Sans"],"body-sm":["IBM Plex Sans"],"headline-xl":["Space Grotesk"],"headline-sm":["Space Grotesk"],"label-sm":["JetBrains Mono"],"display-lg-mobile":["Space Grotesk"],"data-metric":["JetBrains Mono"],"headline-md":["Space Grotesk"],"headline-xl-mobile":["Space Grotesk"],"label-md":["JetBrains Mono"],"display-lg":["Space Grotesk"],"label-lg":["JetBrains Mono"]},fontSize:{"body-lg":["16px",{"lineHeight":"26px","fontWeight":"400"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"22px","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"18px","fontWeight":"400"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"500"}],"display-lg-mobile":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"data-metric":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"30px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-xl-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.03em","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.03em","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"500"}]}}}};</script></head><body class="bg-background font-body-md text-body-md text-on-surface min-h-screen selection:bg-primary-container selection:text-on-primary-container"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low/95 backdrop-blur-2xl z-50 flex flex-col pt-space-lg pb-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.5)]"><div class="px-space-lg mb-space-lg flex items-center gap-space-sm"><img alt="MedTech Academy Logotipi" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U22Xwn-Td5mEZo2xmQcfiK700SePxhclU6c9xlfaJd4xxJ2gI1fDzhMYiQalnVvbJ0cPWg9A2RJ0JkkjlDyXReBsofy_xV4ag8XXTVRJYljtnCmazTcOAGW_WauHJp9VjFhmLdOR-F5ULlZtLBwsYj1ztov0lRGFbKm-KXj_UnnULRX7GNPf5iCDlKxDy371vs5larcwbvcS43TcGCQ38GS7h-yxOibfxbeW7LWndqKz4wMnDgwWjSpR8"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight leading-tight">MedTech</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Laboratoriya</span></div></div><div class="px-space-lg py-space-xs mb-space-md"><span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Subtizim Diagnostikasi</span></div><nav class="flex-1 px-space-sm flex flex-col gap-space-xs overflow-y-auto" data-active-classes="bg-surface-container-high text-primary font-semibold"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="trenajor" href="#"><span class="material-symbols-outlined text-[20px]">tune</span>KT Gantri &amp; Nay</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="3d-laboratoriya" href="#"><span class="material-symbols-outlined text-[20px]">view_in_ar</span>3D Optika &amp; Detektor</a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl transition-all bg-surface-container-high text-primary font-semibold" data-path="ai-ustoz" href="#"><span class="material-symbols-outlined text-[20px]">psychology</span>AI Diagnostik Ustoz</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="natijalar" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span>Telemetriya &amp; Natija</a></nav><div class="px-space-lg pt-space-md"><div class="p-space-sm rounded-xl bg-surface-container-lowest/80"><div class="flex items-center justify-between mb-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Nay harorati</span><span class="font-label-sm text-label-sm text-primary">42°C</span></div><div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden"><div class="bg-primary h-full w-[42%]"></div></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-surface-container/70 backdrop-blur-2xl shadow-[0_1px_8px_rgba(0,0,0,0.4)] z-40 flex items-center justify-between px-margin"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md"><span class="material-symbols-outlined text-[16px] text-primary">settings_input_component</span><span>kVp: 120</span><span class="text-outline">|</span><span>mA: 250</span><span class="text-outline">|</span><span>Gantri: 0.5s/rot</span></div></div><div class="flex items-center gap-space-md"><div class="hidden md:flex flex-col text-right"><span class="font-label-sm text-label-sm text-primary uppercase">Rejim: Muhandislik</span><span class="font-label-sm text-label-sm text-on-surface-variant">Assotsiatsiya akkreditatsiyasi</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-20 bg-transparent min-h-screen"><div class="flex flex-col w-full">
+<!-- Layout Wrapper: Responsive 12-column Bento/Split Architecture -->
+<div class="w-full px-margin-mobile md:px-margin py-space-md grid grid-cols-1 xl:grid-cols-12 gap-gutter items-start">
+<!-- LEFT & CENTER DUAL-PANE: AI CONVERSATION & INSTRUMENTATION (8 cols on desktop) -->
+<div class="xl:col-span-8 flex flex-col gap-space-md min-w-0">
+<!-- Conversation Stage Terminal -->
+<div class="rounded-xl bg-surface-container/70 backdrop-blur-2xl shadow-xl flex flex-col overflow-hidden">
+<!-- Diagnostic Bar Header -->
+<div class="px-space-lg py-space-md bg-surface-container-high/60 flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[24px]">psychology</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<h1 class="font-headline-sm text-headline-sm text-on-surface truncate">AI Ustoz</h1>
+<span class="text-outline-variant font-label-sm text-label-sm">—</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant hidden sm:inline truncate">KT Fizikasi va Xizmat Ko'rsatish Bo'yicha Maslahatchi</span>
+</div>
+<div class="flex items-center gap-space-xs mt-0.5">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary">Onlayn</span>
+<span class="text-outline-variant font-label-sm text-label-sm">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">RAG Ilmiy manbalarga ulangan (IAEA &amp; SSV protokollari)</span>
+</div>
+</div>
+</div>
+<!-- Quick Telemetry Session Pill -->
+<div class="flex items-center gap-space-xs bg-surface-container-lowest/80 px-space-sm py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] text-primary">shield_with_heart</span>
+<span class="font-label-sm text-label-sm text-secondary">RAG V-4.2 · Faol</span>
+</div>
+</div>
+<!-- Scrollable Conversation Stream -->
+<div class="p-space-lg flex flex-col gap-space-lg overflow-y-auto max-h-[640px] selection:bg-primary-container selection:text-on-primary-container">
+<!-- EXCHANGE 1: User Query -->
+<div class="flex justify-end pl-space-xl">
+<div class="bg-surface-container-highest/90 text-on-surface rounded-2xl rounded-tr-xs p-space-md shadow-md max-w-2xl flex flex-col gap-space-xs">
+<div class="flex items-center justify-between gap-space-md mb-1">
+<span class="font-label-sm text-label-sm text-secondary font-medium uppercase">Klinik Muhandis</span>
+<span class="font-label-sm text-label-sm text-outline">10:42</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">
+                KT apparatida nima sababdan halqa (ring) artefakti paydo bo'ladi va uni qanday yo'qotish mumkin?
+              </p>
+</div>
+</div>
+<!-- EXCHANGE 1: AI Precision Response with RAG Chips -->
+<div class="flex justify-start pr-space-md">
+<div class="bg-surface-container-low/95 text-on-surface rounded-2xl rounded-tl-xs p-space-lg shadow-xl max-w-3xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-6 h-6 rounded bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">neurology</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold tracking-wide uppercase">AI Neyrokonsultant</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Hisoblash: 340ms</span>
+</div>
+<!-- Main Explanation -->
+<div class="font-body-md text-body-md text-on-surface/90 space-y-space-sm leading-relaxed">
+<p>
+                  KT tasvirlarida konsentrik halqa artefaktlari asosan detektor elementlarining birida yoki bir nechtasida kalibrovka xatosi yuz berganda paydo bo'ladi 
+                  <button class="inline-flex items-center justify-center px-1.5 py-0.5 rounded-full bg-primary-container/20 text-primary font-label-sm text-label-sm align-middle hover:bg-primary hover:text-on-primary transition-colors cursor-pointer" onclick="highlightDoc(1)" type="button">[1]</button>. 
+                  Uchinchi avlod skanerlarida detektor gantry bilan birga aylangani sababli, bitta nuqsonli kanal butun aylanma bo'ylab bir xil xatolikni qayd etadi 
+                  <button class="inline-flex items-center justify-center px-1.5 py-0.5 rounded-full bg-primary-container/20 text-primary font-label-sm text-label-sm align-middle hover:bg-primary hover:text-on-primary transition-colors cursor-pointer" onclick="highlightDoc(2)" type="button">[2]</button>.
+                </p>
+<!-- Micro Visual Diagram for Ring Calibration Error -->
+<div class="my-space-md p-space-md bg-surface-container-lowest/90 rounded-xl grid grid-cols-1 md:grid-cols-12 gap-space-md items-center">
+<div class="md:col-span-4 flex flex-col items-center justify-center">
+<svg class="w-28 h-28" fill="none" viewbox="0 0 100 100">
+<!-- Concentric rings depicting the CT detector artifact -->
+<circle cx="50" cy="50" r="44" stroke="#2A3548" stroke-dasharray="3 3" stroke-width="1.5"></circle>
+<circle cx="50" cy="50" opacity="0.4" r="34" stroke="#4FD1B5" stroke-width="1.5"></circle>
+<circle class="animate-spin" cx="50" cy="50" r="24" stroke="#FFB4AB" stroke-dasharray="6 2" stroke-width="2" style="animation-duration: 16s;"></circle>
+<circle cx="50" cy="50" opacity="0.6" r="14" stroke="#4FD1B5" stroke-width="1.5"></circle>
+<circle cx="50" cy="50" fill="#6FEED0" r="4"></circle>
+<path d="M50 16 L50 24" stroke="#FFB4AB" stroke-width="2"></path>
+<circle cx="50" cy="24" fill="#FFB4AB" r="2.5"></circle>
+</svg>
+<span class="font-label-sm text-label-sm text-error mt-1 text-center font-medium">Kanal #184 Og'ishi</span>
+</div>
+<div class="md:col-span-8 flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">Bosqichma-bosqich yo'qotish protokoli:</span>
+<ol class="font-body-sm text-body-sm text-on-surface-variant space-y-1 list-decimal list-inside">
+<li><strong class="text-on-surface">Bo'sh havo kalibrovkasini (Air calibration)</strong> qayta to'liq bajaring.</li>
+<li>Fantom tekshiruvi orqali shovqin ko'rsatkichini (HU) o'lchang 
+                        <button class="inline-flex items-center justify-center px-1.5 py-0.2 rounded-full bg-primary-container/20 text-primary font-label-sm text-label-sm align-middle hover:bg-primary hover:text-on-primary transition-colors cursor-pointer" onclick="highlightDoc(3)" type="button">[3]</button>.
+                      </li>
+<li>Agar xatolik saqlansa, <strong class="text-on-surface">DAS kanal platasini</strong> (Data Acquisition System) apparat diagnostikasidan o'tkazing.</li>
+</ol>
+</div>
+</div>
+</div>
+<!-- Action Bar for Response -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline-variant">Manbalar asosida tasdiqlandi</span>
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1" title="Nusxa olish" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1" title="Amaliyotga saqlash" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- EXCHANGE 2: User Query (Clinical Safety Sensitivity) -->
+<div class="flex justify-end pl-space-xl">
+<div class="bg-surface-container-highest/90 text-on-surface rounded-2xl rounded-tr-xs p-space-md shadow-md max-w-2xl flex flex-col gap-space-xs">
+<div class="flex items-center justify-between gap-space-md mb-1">
+<span class="font-label-sm text-label-sm text-secondary font-medium uppercase">Klinik Muhandis</span>
+<span class="font-label-sm text-label-sm text-outline">10:48</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">
+                Yurak stimulyatori (kardiostimulyator) bo'lgan bemorni KT tekshiruviga kiritsa bo'ladimi?
+              </p>
+</div>
+</div>
+<!-- EXCHANGE 2: AI Safety Refusal & Clinical Disclaimer Card -->
+<div class="flex justify-start pr-space-md">
+<div class="bg-surface-container-low/95 text-on-surface rounded-2xl rounded-tl-xs p-space-lg shadow-xl max-w-3xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-6 h-6 rounded bg-error-container/30 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+</div>
+<span class="font-label-md text-label-md text-error font-bold tracking-wide uppercase">Xavfsizlik Ogohlantirishi &amp; Rad Etish</span>
+</div>
+<span class="font-label-sm text-label-sm text-error bg-error-container/20 px-2 py-0.5 rounded-full">Klinik Cheklov</span>
+</div>
+<!-- Critical Alert Box -->
+<div class="bg-surface-container-highest/60 rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-error text-[22px] shrink-0 mt-0.5">report_problem</span>
+<div class="font-body-md text-body-md text-on-surface space-y-space-xs">
+<p class="font-semibold text-error">
+                      ⚠️ Eslatma: KT tekshiruvi MRI kabi yuqori magnit maydoni yaratmasada, to'g'ridan-to'g'ri nurlanish stimulyator elektronikasiga vaqtinchalik xalaqit berishi mumkin.
+                    </p>
+<p class="text-on-surface-variant font-body-sm text-body-sm">
+                      Bu savol bo'yicha maxsus klinik qaror va bemor kardiostimulyatori modelining rasmiy pasporti talab qilinadi — bu savolga manbalarda to'liq avtomatik javob topilmadi — mutaxassisga murojaat qiling va mas'ul kardiolog bilan muvofiqlashtiring.
+                    </p>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-tertiary">contact_phone</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SSV Shoshilinch Radiologiya Koll-markazi: 1003</span>
+</div>
+<a class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary hover:underline" href="#manbalar">
+<span>Qoidalar ro'yxatiga o'tish</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Suggestion Chips Bar -->
+<div class="px-space-lg pt-space-sm pb-space-xs bg-surface-container-high/40 flex flex-wrap gap-space-xs items-center">
+<span class="font-label-sm text-label-sm text-outline uppercase shrink-0 mr-1">Tavsiyalar:</span>
+<button class="bg-surface-container hover:bg-surface-container-highest text-on-surface-variant hover:text-primary px-space-sm py-1 rounded-full font-label-sm text-label-sm transition-all flex items-center gap-1 cursor-pointer" onclick="insertPrompt('Nurlanish xavfsizligi (ALARA tamoyili)')" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary">local_fire_department</span>
+<span>Nurlanish xavfsizligi (ALARA)</span>
+</button>
+<button class="bg-surface-container hover:bg-surface-container-highest text-on-surface-variant hover:text-primary px-space-sm py-1 rounded-full font-label-sm text-label-sm transition-all flex items-center gap-1 cursor-pointer" onclick="insertPrompt('Halqa artefakti nima?')" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary">blur_circular</span>
+<span>Halqa artefakti nima?</span>
+</button>
+<button class="bg-surface-container hover:bg-surface-container-highest text-on-surface-variant hover:text-primary px-space-sm py-1 rounded-full font-label-sm text-label-sm transition-all flex items-center gap-1 cursor-pointer" onclick="insertPrompt('Bemorni to‘g‘ri joylashtirish va markazlashtirish')" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary">accessibility_new</span>
+<span>Bemorni to‘g‘ri joylashtirish</span>
+</button>
+<button class="bg-surface-container hover:bg-surface-container-highest text-on-surface-variant hover:text-primary px-space-sm py-1 rounded-full font-label-sm text-label-sm transition-all flex items-center gap-1 cursor-pointer" onclick="insertPrompt('kVp va mA parametrlari farqi va nurlanish dozasiga ta\'siri')" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary">tune</span>
+<span>kVp va mA parametrlari farqi</span>
+</button>
+</div>
+<!-- Frosted Interactive Input Bar -->
+<div class="p-space-lg bg-surface-container/90 backdrop-blur-2xl">
+<form class="flex items-center gap-space-sm bg-surface-container-lowest/90 rounded-2xl p-space-xs shadow-inner" id="chatForm" onsubmit="handleSend(event)">
+<button class="w-10 h-10 rounded-xl flex items-center justify-center text-outline hover:text-primary hover:bg-surface-container-high transition-colors" title="Texnik hujjat yoki DICOM biriktirish" type="button">
+<span class="material-symbols-outlined text-[20px]">attach_file</span>
+</button>
+<input autocomplete="off" class="flex-1 bg-transparent px-space-sm py-2 text-on-surface placeholder:text-outline font-body-md text-body-md focus:outline-none" id="chatInput" placeholder="KT uskunasi, xatolik kodi yoki fizik jarayon haqida so'rang..." type="text"/>
+<button class="w-10 h-10 rounded-xl flex items-center justify-center text-outline hover:text-primary hover:bg-surface-container-high transition-colors" title="Ovozli kiritish" type="button">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</button>
+<button class="w-12 h-10 rounded-xl bg-primary text-on-primary hover:bg-primary-fixed flex items-center justify-center font-headline-sm transition-all shadow-md active:scale-95" type="submit">
+<span class="material-symbols-outlined text-[22px]">send</span>
+</button>
+</form>
+<div class="flex items-center justify-between px-space-sm mt-2">
+<span class="font-label-sm text-label-sm text-outline-variant">Tizim faqat sertifikatlangan radiologik adabiyotlarga tayanadi</span>
+<span class="font-label-sm text-label-sm text-primary">Shift + Enter yangi qator</span>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT PANEL: "MANBALAR" (REFERENCE CITATION & RAG EVIDENCE BASE) (4 cols on desktop) -->
+<div class="xl:col-span-4 flex flex-col gap-space-md min-w-0" id="manbalar">
+<!-- Verified Library Module -->
+<div class="rounded-xl bg-surface-container/70 backdrop-blur-2xl shadow-xl flex flex-col overflow-hidden">
+<!-- Header -->
+<div class="p-space-lg bg-surface-container-high/60 flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-[20px]">auto_stories</span>
+</div>
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Tasdiqlangan Manbalar</h2>
+<span class="font-label-sm text-label-sm text-primary">RAG Texnik Kutubxona</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm bg-primary/10 text-primary px-space-sm py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">verified_user</span>
+<span>4 Hujjat</span>
+</span>
+</div>
+<!-- Document List -->
+<div class="p-space-lg flex flex-col gap-space-sm">
+<!-- Document 1: IAEA -->
+<div class="group transition-all duration-300 rounded-xl bg-surface-container-low hover:bg-surface-container-high p-space-md flex flex-col gap-space-xs cursor-pointer" id="doc-card-1">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md bg-primary-container/20 text-primary px-2 py-0.5 rounded-full font-bold">[1] IAEA Training</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold">42-bet</span>
+</div>
+<h3 class="font-headline-sm text-[15px] text-on-surface group-hover:text-primary transition-colors leading-snug">
+              IAEA Training Package on Radiation Protection in CT
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+              Bo'lim: "Ring Artifacts and Detector Calibration". Kalibrovka driftsi va ko'p qatlamli skanerlarda nurlanish korreksiyasi.
+            </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-outline font-mono">IAEA-TECDOC-1958</span>
+<span class="material-symbols-outlined text-[18px] text-outline group-hover:text-primary">arrow_forward</span>
+</div>
+</div>
+<!-- Document 2: WHO Device Series -->
+<div class="group transition-all duration-300 rounded-xl bg-surface-container-low hover:bg-surface-container-high p-space-md flex flex-col gap-space-xs cursor-pointer" id="doc-card-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md bg-secondary-container/40 text-secondary px-2 py-0.5 rounded-full font-bold">[2] WHO Seriyasi</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">78-bet</span>
+</div>
+<h3 class="font-headline-sm text-[15px] text-on-surface group-hover:text-primary transition-colors leading-snug">
+              WHO Medical Device Technical Series: CT Scanners
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+              Bo'lim: "Maintenance &amp; QA Protocols". Skaner gantry aylanmasi davridagi sinxron nosozliklarni tahlil qilish protokollari.
+            </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-outline font-mono">WHO-HQ-MEDDEV-2022</span>
+<span class="material-symbols-outlined text-[18px] text-outline group-hover:text-secondary">arrow_forward</span>
+</div>
+</div>
+<!-- Document 3: SSV 412 -->
+<div class="group transition-all duration-300 rounded-xl bg-surface-container-low hover:bg-surface-container-high p-space-md flex flex-col gap-space-xs cursor-pointer" id="doc-card-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md bg-tertiary-container/30 text-tertiary px-2 py-0.5 rounded-full font-bold">[3] O'zR SSV</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold">15-bet</span>
+</div>
+<h3 class="font-headline-sm text-[15px] text-on-surface group-hover:text-primary transition-colors leading-snug">
+              O'zbekiston Respublikasi SSV 412-sonli buyrug'i
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+              "Davlat radiologik xavfsizlik va rentgen-diagnostika xonalarida ekspluatatsiya qoidalari". Dozimetrik nazorat me'yorlari.
+            </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-outline font-mono">SSV-BUYRUQ-412</span>
+<span class="material-symbols-outlined text-[18px] text-outline group-hover:text-tertiary">arrow_forward</span>
+</div>
+</div>
+<!-- Document 4: IEC Standard -->
+<div class="group transition-all duration-300 rounded-xl bg-surface-container-low hover:bg-surface-container-high p-space-md flex flex-col gap-space-xs cursor-pointer" id="doc-card-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md bg-surface-container-highest text-on-surface-variant px-2 py-0.5 rounded-full font-bold">IEC 61223</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-semibold">112-bet</span>
+</div>
+<h3 class="font-headline-sm text-[15px] text-on-surface group-hover:text-primary transition-colors leading-snug">
+              IEC 61223-3-5: Evaluation and Testing in Medical Imaging
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+              Konstantlik tekshiruvlari va doimiy sifat nazorati (Quality Assurance) sinov mezonlari.
+            </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-outline font-mono">ISO/IEC STANDARD</span>
+<span class="material-symbols-outlined text-[18px] text-outline group-hover:text-primary">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Live Excerpt / Document Preview Card (Sticky bottom within library) -->
+<div class="p-space-lg bg-surface-container-lowest/90 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+<span>IAEA 4.2 Bo'limidan Iqtibos</span>
+</span>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container/40 px-2 py-0.5 rounded">PDF v3.1</span>
+</div>
+<blockquote class="font-body-sm text-body-sm text-on-surface-variant italic bg-surface-container/60 p-space-sm rounded-lg border-l-2 border-primary">
+            "Agar bitta detektor sezgirligi 0.1% dan ko'proq og'sa, halqa artefakti rekonstruktsiya qilingan tomografik kesimda yaqqol vizual ko'rinadi..."
+          </blockquote>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Raqamli imzo mavjud</span>
+</div>
+<a class="px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm flex items-center gap-1.5 transition-colors shadow-sm" href="#" onclick="event.preventDefault(); alert('IAEA_Technical_Package_CT_UZB.pdf yuklab olish boshlandi...');">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>PDF Yuklab olish</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Biomedical Calibration Snapshot Widget -->
+<div class="rounded-xl bg-surface-container/70 backdrop-blur-2xl p-space-md shadow-xl flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Tizim Ishonchlilik Ko'rsatkichi</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">99.4% RAG Matched</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-1000" style="width: 94%;"></div>
+</div>
+<div class="flex items-center justify-between text-outline-variant font-label-sm text-label-sm mt-1">
+<span>O'zbekiston Milliy Standartlari</span>
+<span>EURATOM &amp; IAEA 2024</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Client-side Interactive Enhancement Logic -->
+<script>
+    function insertPrompt(text) {
+      const input = document.getElementById('chatInput');
+      if (input) {
+        input.value = text;
+        input.focus();
+      }
+    }
+
+    function highlightDoc(id) {
+      const card = document.getElementById('doc-card-' + id);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        card.classList.add('bg-surface-container-highest', 'ring-2', 'ring-primary');
+        setTimeout(() => {
+          card.classList.remove('bg-surface-container-highest', 'ring-2', 'ring-primary');
+        }, 2200);
+      }
+    }
+
+    function handleSend(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const val = input.value.trim();
+      if (!val) return;
+
+      // Reset input
+      input.value = '';
+
+      // Subtle dynamic simulation for user demo
+      const thread = document.querySelector('.overflow-y-auto');
+      if (!thread) return;
+
+      const userBubble = document.createElement('div');
+      userBubble.className = "flex justify-end pl-space-xl animate-fade-in";
+      userBubble.innerHTML = `
+        <div class="bg-surface-container-highest/90 text-on-surface rounded-2xl rounded-tr-xs p-space-md shadow-md max-w-2xl flex flex-col gap-space-xs">
+          <div class="flex items-center justify-between gap-space-md mb-1">
+            <span class="font-label-sm text-label-sm text-secondary font-medium uppercase">Klinik Muhandis</span>
+            <span class="font-label-sm text-label-sm text-outline">Hozir</span>
+          </div>
+          <p class="font-body-md text-body-md text-on-surface">${escapeHtml(val)}</p>
+        </div>
+      `;
+      thread.appendChild(userBubble);
+      thread.scrollTop = thread.scrollHeight;
+
+      // Simulated AI typing state
+      setTimeout(() => {
+        const aiBubble = document.createElement('div');
+        aiBubble.className = "flex justify-start pr-space-md animate-fade-in";
+        aiBubble.innerHTML = `
+          <div class="bg-surface-container-low/95 text-on-surface rounded-2xl rounded-tl-xs p-space-lg shadow-xl max-w-3xl flex flex-col gap-space-sm">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-primary text-[18px]">neurology</span>
+                <span class="font-label-md text-label-md text-primary font-bold">AI Neyrokonsultant</span>
+              </div>
+              <span class="font-label-sm text-label-sm text-outline">Qidiruv yakunlandi</span>
+            </div>
+            <p class="font-body-md text-body-md text-on-surface/90">
+              Ushbu so'rov bo'yicha ilmiy kutubxona va xalqaro protokollardan tegishli ma'lumotlar tahlil qilinmoqda. Yangi kalibrovka formulalari tayyorlanmoqda.
+            </p>
+          </div>
+        `;
+        thread.appendChild(aiBubble);
+        thread.scrollTop = thread.scrollHeight;
+      }, 700);
+    }
+
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+  </script>
+</div></main></div></body></html>

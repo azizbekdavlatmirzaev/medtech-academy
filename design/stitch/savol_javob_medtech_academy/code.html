@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="uz"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>MedTech Academy — CT Simulyatsiya &amp; AI Markazi</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-fixed":"#7af8da","secondary-fixed-dim":"#b7c7e5","primary":"#6feed0","on-tertiary-container":"#951c0d","on-secondary":"#213148","on-secondary-fixed-variant":"#384760","secondary-fixed":"#d5e3ff","surface-dim":"#071425","error-container":"#93000a","outline-variant":"#3d4945","on-background":"#d7e3fc","surface-bright":"#2e3a4d","primary-container":"#4fd1b5","on-tertiary-fixed":"#400200","tertiary":"#ffcdc5","surface-tint":"#5bdbbf","on-error-container":"#ffdad6","surface-container-high":"#1f2a3d","secondary":"#b7c7e5","on-primary-fixed":"#00201a","error":"#ffb4ab","primary-fixed-dim":"#5bdbbf","on-surface":"#d7e3fc","on-primary-fixed-variant":"#005143","on-secondary-container":"#a6b6d3","surface-container":"#142032","on-error":"#690005","outline":"#86948f","background":"#071425","on-surface-variant":"#bbcac4","secondary-container":"#384760","on-secondary-fixed":"#0b1c32","on-primary":"#00382e","surface-container-low":"#101c2e","surface-variant":"#2a3548","surface":"#071425","inverse-on-surface":"#253144","tertiary-fixed-dim":"#ffb4a7","on-tertiary":"#670400","on-primary-container":"#005648","on-tertiary-fixed-variant":"#8d1508","tertiary-container":"#ffa697","surface-container-lowest":"#030e20","surface-container-highest":"#2a3548","inverse-primary":"#006b5a","tertiary-fixed":"#ffdad4","inverse-surface":"#d7e3fc"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"margin":"2rem","gutter-mobile":"0.75rem","space-lg":"1.5rem","space-xs":"0.25rem","space-xl":"2.5rem","gutter":"1.5rem","space-sm":"0.5rem","space-md":"1rem","margin-mobile":"1rem"},fontFamily:{"body-sm":["IBM Plex Sans"],"headline-xl":["Space Grotesk"],"label-md":["JetBrains Mono"],"body-lg":["IBM Plex Sans"],"display-lg":["Space Grotesk"],"label-sm":["JetBrains Mono"],"body-md":["IBM Plex Sans"],"display-lg-mobile":["Space Grotesk"],"data-metric":["JetBrains Mono"],"headline-md":["Space Grotesk"],"headline-xl-mobile":["Space Grotesk"],"headline-sm":["Space Grotesk"],"headline-lg":["Space Grotesk"],"label-lg":["JetBrains Mono"]},fontSize:{"body-sm":["12px",{lineHeight:"18px",fontWeight:"400"}],"headline-xl":["36px",{lineHeight:"44px",letterSpacing:"-0.02em",fontWeight:"700"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.03em",fontWeight:"500"}],"body-lg":["16px",{lineHeight:"26px",fontWeight:"400"}],"display-lg":["48px",{lineHeight:"56px",letterSpacing:"-0.03em",fontWeight:"700"}],"label-sm":["10px",{lineHeight:"14px",letterSpacing:"0.05em",fontWeight:"500"}],"body-md":["14px",{lineHeight:"22px",fontWeight:"400"}],"display-lg-mobile":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"700"}],"data-metric":["24px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"700"}],"headline-md":["22px",{lineHeight:"30px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-xl-mobile":["26px",{lineHeight:"34px",letterSpacing:"-0.01em",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"26px",letterSpacing:"-0.005em",fontWeight:"600"}],"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"600"}],"label-lg":["14px",{lineHeight:"20px",letterSpacing:"0.02em",fontWeight:"500"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.45)]"><div class="h-20 w-full px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg shrink-0"><div class="flex items-center gap-space-sm"><img alt="MedTech Academy brand logo: CT gantry ring (circular ring with an inner orbiting dot or detector indicator) and a pulsing heartbeat/ECG line passing horizontally through it, crisp teal #4FD1B5 on dark navy background, Space Grotesk wordmark 'MedTech Academy'. Brand logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VuFG9QUau0inQOrXy7YZdbBVrL0aUr5YZsdnoMtBG4wGoD46Ws8Kq9yoPdhOeezEO78EZaUVzO5jPxHbaV-zBZ70052wFa0fDHpqZFCN-1va78zLQZBvE2kawCd2yov_rerk2rafWrG9aWqoYPNPyz4O5ZG_Dmm8PkQDeedSyORqqmMwlCsEHnnQKL32-CjL57Mls0eXqjqxiD0TPSlgjB5xcaxsqZYoIbIad__ISK7ZECIDzqvJQF1q0"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">MedTech Academy</span><span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">CT Simulyatsiya &amp; AI Markazi</span></div></div><nav class="hidden xl:flex items-center gap-space-xs" data-active-classes="bg-surface-container-high text-primary font-medium rounded-lg"><a class="px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="bosh-sahifa" href="#">Bosh sahifa</a><a class="px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="video-darslar" href="#">Video darslar</a><a class="px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="real-holatlar" href="#">Real holatlar</a><a aria-current="page" class="px-3 py-2 transition-colors bg-surface-container-high text-primary font-medium rounded-lg" data-path="savol-javob" href="#">Savol-javob</a><a class="px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="3d-laboratoriya" href="#">3D laboratoriya</a><a class="px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="trenajor" href="#">Trenajor</a><a class="px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="ai-ustoz" href="#">AI ustoz</a><a class="px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="natijalar" href="#">Natijalar</a></nav></div><div class="flex items-center gap-space-md shrink-0"><div class="hidden 2xl:flex items-center gap-space-xs px-3 py-1.5 rounded-full bg-surface-container-highest shadow-[0_0_12px_rgba(79,209,181,0.1)]"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-primary tracking-wider uppercase font-semibold">FAOL KALIBRATSIYA</span><span class="font-label-sm text-label-sm text-on-surface-variant">|</span><span class="font-label-sm text-label-sm text-on-surface-variant">O‘zbekiston radiologiya va BM markazi</span></div><div class="flex items-center gap-space-sm"><a class="px-4 py-2 rounded-full font-headline-sm text-body-md text-on-surface bg-surface-container-high hover:bg-surface-bright hover:text-on-surface transition-all" data-path="kirish" href="#">Kirish</a><a class="px-5 py-2 rounded-full font-headline-sm text-body-md bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary transition-all shadow-[0_0_16px_rgba(79,209,181,0.35)]" data-path="trenajor" href="#">Boshlash</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center cursor-pointer shadow-[0_0_10px_rgba(79,209,181,0.25)]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-140px)]"><div class="flex flex-col w-full">
+<!-- Interactive Assessment Header Strip -->
+<div class="w-full bg-surface-container-low/90 backdrop-blur-md px-margin py-space-md shadow-sm">
+<div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<!-- Breadcrumb & Module Meta -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant">
+<span class="hover:text-primary transition-colors cursor-pointer">Trenajorlar</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Modul 4: Artefaktlar va diagnostika</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-primary tracking-wider uppercase">
+          Artefaktlar va kalibrovka
+        </span>
+<div class="flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-primary text-[14px]">verified</span>
+<span>Ekspert tasdiqlagan (Dr. R. Aliyev — Bosh radiolog)</span>
+</div>
+</div>
+<!-- Right Telemetry Strip: Circular Progress, Difficulty, Timer -->
+<div class="flex items-center gap-space-lg shrink-0">
+<!-- Circular Progress Ring (30% completed: 3/10) -->
+<div class="flex items-center gap-space-sm">
+<div class="relative w-10 h-10 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-variant" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="30, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<span class="absolute font-label-sm text-label-sm text-primary font-bold">30%</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold leading-none">3/10-savol</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Bosqich</span>
+</div>
+</div>
+<!-- Adaptive Difficulty Indicator -->
+<div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded bg-surface-container font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Qiyinlik:</span>
+<span class="text-primary font-semibold flex items-center gap-0.5">
+            O'rta <span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+</span>
+<span class="text-outline text-[10px] ml-1">(AI moslashtirdi)</span>
+</div>
+<!-- Persistent Precision Timer -->
+<div class="flex items-center gap-space-xs px-3.5 py-1.5 rounded-lg bg-surface-container-highest shadow-inner">
+<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
+<span class="font-label-md text-label-md text-primary tracking-widest font-semibold" id="assessment-timer">04:38</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Showcase -->
+<div class="w-full px-margin py-space-xl max-w-7xl mx-auto flex flex-col gap-space-xl">
+<!-- Section Intro & Context Banner -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-primary uppercase tracking-widest">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span>Interaktiv attestatsiya platformasi</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight mt-1">Savol-javob</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-1 max-w-3xl">
+          KT diagnostikasi va ta'mirlash bo'yicha interaktiv AI test sinovi. Rentgen nayi, DAS zanjirlari va gantry telemetriyasini chuqur tekshiruvdan o'tkazing.
+        </p>
+</div>
+<!-- Quick Assessment Mode Pills -->
+<div class="flex items-center gap-space-xs p-1 rounded-xl bg-surface-container-low shrink-0">
+<button class="px-4 py-1.5 rounded-lg bg-surface-container-high font-label-md text-label-md text-primary font-medium shadow-sm">
+          Aktiv rejim
+        </button>
+<button class="px-4 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">
+          Fizika (Faqat)
+        </button>
+<button class="px-4 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">
+          Boshqaruv paneli
+        </button>
+</div>
+</div>
+<!-- ═════════════════════════════════════════════════════════════════════ -->
+<!-- STATE 1: MULTIPLE CHOICE QUESTION (Hozirgi savol) -->
+<!-- ═════════════════════════════════════════════════════════════════════ -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-primary/10 text-primary uppercase font-bold tracking-wider">
+            Holat 1 / Nazariy tahlil
+          </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Uchinchi avlod KT kinematikasi</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">IEC 60601-2-44 § 201.7</span>
+</div>
+<!-- Main Interactive Question Box -->
+<div class="rounded-xl bg-surface-container p-space-lg shadow-xl relative overflow-hidden">
+<!-- Question Text -->
+<div class="flex flex-col gap-space-sm mb-space-lg">
+<div class="flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0 text-primary font-headline-sm text-headline-sm">
+              3
+            </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface leading-snug">
+              Uchinchi avlod kompyuter tomografida markaziy o'q atrofida konsentrik doiralar (halqalar) paydo bo'lishining eng asosiy sababi nima?
+            </h2>
+</div>
+</div>
+<!-- 4 Frosted Option Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md" id="mcq-options">
+<!-- Option A -->
+<div class="cursor-pointer group rounded-xl p-space-md bg-surface-container-low hover:bg-surface-container-high transition-all duration-200 flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high group-hover:bg-surface-bright flex items-center justify-center font-label-md text-label-md text-on-surface font-semibold shrink-0">
+              A
+            </div>
+<div class="flex flex-col flex-1">
+<span class="font-body-md text-body-md text-on-surface">Bemorning tekshiruv vaqtida chuqur nafas olishi yoki qimirlashi</span>
+<span class="font-label-sm text-label-sm text-outline mt-1">Haraktlanish artefakti (Streak artifact) xavfi</span>
+</div>
+</div>
+<!-- Option B (Selected - Correct Glow) -->
+<div class="cursor-pointer rounded-xl p-space-md bg-surface-container-high shadow-[0_0_24px_rgba(79,209,181,0.25)] flex items-start gap-space-md relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center font-label-md text-label-md font-bold shrink-0">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface font-semibold">
+                  Detektor blokidagi bitta yoki bir nechta datchik elementining kalibrovkadan og'ishi (drift)
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-primary mt-1 font-medium flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                Tanlangan javob — To'g'ri tahlil!
+              </span>
+</div>
+</div>
+<!-- Option C -->
+<div class="cursor-pointer group rounded-xl p-space-md bg-surface-container-low hover:bg-surface-container-high transition-all duration-200 flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high group-hover:bg-surface-bright flex items-center justify-center font-label-md text-label-md text-on-surface font-semibold shrink-0">
+              C
+            </div>
+<div class="flex flex-col flex-1">
+<span class="font-body-md text-body-md text-on-surface">Rentgen trubkasi filamenti kuchlanishining keskin pasayishi</span>
+<span class="font-label-sm text-label-sm text-outline mt-1">Katod oqimi mottle (shovqin) hosil qiladi</span>
+</div>
+</div>
+<!-- Option D -->
+<div class="cursor-pointer group rounded-xl p-space-md bg-surface-container-low hover:bg-surface-container-high transition-all duration-200 flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high group-hover:bg-surface-bright flex items-center justify-center font-label-md text-label-md text-on-surface font-semibold shrink-0">
+              D
+            </div>
+<div class="flex flex-col flex-1">
+<span class="font-body-md text-body-md text-on-surface">Slip-ring kontaktlarida elektr yoyi (arcing) hosil bo'lishi</span>
+<span class="font-label-sm text-label-sm text-outline mt-1">Gantri telemetriyasida yuqori chastotali uzilishlar</span>
+</div>
+</div>
+</div>
+<!-- Feedback & Real-time AI Explanation State -->
+<div class="mt-space-lg rounded-xl bg-surface-container-lowest p-space-lg flex flex-col md:flex-row gap-space-lg items-start justify-between shadow-md">
+<div class="flex items-start gap-space-md flex-1">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[22px]">psychology</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs">
+<span class="px-2.5 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-semibold tracking-wide">
+                  AI izohi &amp; Tasdiqlangan tahlil
+                </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Aniqlik: 99.4%</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mt-1 leading-relaxed">
+                Uchinchi avlod KT apparatlarida gantry aylanishi davomida detektor bloki va rentgen nayi birga harakatlanadi. Agar detektor datchiklarining birortasida sezgirlik og'ishi (gain/offset drift) yuz bersa, barcha 360 daraja proyeksiyalarda bitta radius bo'ylab xato o'tadi va orqaga proyeksiyalash (filtered backprojection) natijasida mukammal halqa hosil bo'ladi.
+              </p>
+<div class="flex items-center gap-space-sm mt-2 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+<a class="underline hover:text-primary-fixed transition-colors" href="#">Manba: IAEA Radiation Protection in CT, 4.2-bob [2]</a>
+</div>
+</div>
+</div>
+<button class="shrink-0 px-6 py-3 rounded-full bg-primary-container text-on-primary-container font-headline-sm text-headline-sm hover:bg-primary transition-all shadow-[0_0_16px_rgba(79,209,181,0.35)] flex items-center gap-space-xs">
+<span>Keyingi savolga o'tish</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ═════════════════════════════════════════════════════════════════════ -->
+<!-- STATE 2: IMAGE ANALYSIS QUESTION (Tasviriy diagnostika savoli) -->
+<!-- ═════════════════════════════════════════════════════════════════════ -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-secondary uppercase font-bold tracking-wider">
+            Holat 2 / Tasviriy diagnostika
+          </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Miya aksial kesimi (Brain parenchyma slice)</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">DICOM ID: #UZ-2026-CT99</span>
+</div>
+<div class="rounded-xl bg-surface-container p-space-lg shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<!-- Interactive Grayscale CT Brain Scan with Zoom Target Visual -->
+<div class="lg:col-span-7 flex flex-col gap-space-sm">
+<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-lowest flex items-center justify-center group cursor-crosshair">
+<!-- CT Scan Image Placeholder -->
+<img class="w-full h-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-105" data-alt="Realistic grayscale CT axial brain scan slice on clinical monitor showing brain anatomy with a visible concentric circular ring artifact centered in the parenchyma, sharp biomedical imaging style, dark diagnostic ambient glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuLpJyAYhJ7HAZYoxIwhWc5QHJUtC-OKdaNS2jlouLT4IYeSSSzr68gevll19z3ktvUCjFA2292mhD_IBxaZgNoEY-XdotgMe5CAYNCipa7FGBGuTXYYpi2W4ywPbophaOt_TWJwPhiAY4EVqpEunV-8CrvHrkoIRuEhyxmIOWQ1BzfVgUrMUBdSlKFTYLjyo-qXZ6hnaBGR9I1CYCdzoRGXc4LCTUDjUYpP0376C-U1m_YxOvJoQS"/>
+<!-- Coordinate HUD Overlay -->
+<div class="absolute top-3 left-3 flex flex-col gap-0.5 font-label-sm text-label-sm text-primary bg-surface-container-lowest/80 px-2.5 py-1.5 rounded backdrop-blur-md">
+<span>FOV: 220mm</span>
+<span>Slice: 1.25mm</span>
+<span>W: 80 L: 40 (Brain window)</span>
+</div>
+<!-- Concentric Ring Artifact Simulated Indicator -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-48 h-48 rounded-full border-2 border-dashed border-primary/70 animate-[spin_20s_linear_infinite] flex items-center justify-center shadow-[0_0_20px_rgba(79,209,181,0.2)]">
+<div class="w-32 h-32 rounded-full border border-primary/40"></div>
+</div>
+</div>
+<!-- Interactive Zoom-Lens Reticle in Center-Right -->
+<div class="absolute right-12 top-10 w-28 h-28 rounded-full bg-surface-container-highest/90 shadow-[0_0_25px_rgba(0,0,0,0.8)] p-1 backdrop-blur-md flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-[9px] text-primary uppercase font-bold tracking-wider">Lupa: 2.5x</span>
+<svg class="w-12 h-12 text-primary" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="42" stroke="currentColor" stroke-dasharray="4 2" stroke-width="2"></circle>
+<circle cx="50" cy="50" fill="none" r="24" stroke="currentColor" stroke-width="2.5"></circle>
+<line stroke="currentColor" stroke-opacity="0.4" stroke-width="1" x1="50" x2="50" y1="10" y2="90"></line>
+<line stroke="currentColor" stroke-opacity="0.4" stroke-width="1" x1="10" x2="90" y1="50" y2="50"></line>
+</svg>
+<span class="font-label-sm text-[9px] text-tertiary font-bold tracking-tight">Xatolik o'chog'i</span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm bg-surface-container-lowest/70 px-3 py-1 rounded backdrop-blur">
+<span>Gantry burchagi: 0.0°</span>
+<span class="text-primary font-medium">Bosh miya bazal yadrolari sathi</span>
+</div>
+</div>
+</div>
+<!-- Question & Image-labelled Selection Chips -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">Tasviriy tahlil</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mt-1">
+              Tasvirda ko'rsatilgan artefakt turini aniqlang:
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+              Kollimator va datchik elementlari geometriyasini tahlil qilib, ekranda paydo bo'lgan geometrik anomaliyani tanlang.
+            </p>
+</div>
+<!-- Selection Chips Stack -->
+<div class="flex flex-col gap-space-sm" id="image-artifact-options">
+<!-- Halqa artefakti (Correct Selected State) -->
+<button class="w-full text-left p-space-md rounded-xl bg-surface-container-high shadow-[0_0_16px_rgba(79,209,181,0.2)] flex items-center justify-between group transition-all">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[18px]">done</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-lg text-on-surface font-semibold">Halqa artefakti (Ring)</span>
+<span class="font-label-sm text-label-sm text-primary">Detektor elementi drifti natijasida</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-primary bg-primary/10 px-2 py-0.5 rounded">To'g'ri javob</span>
+</button>
+<!-- Shovqin artefakti -->
+<button class="w-full text-left p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-colors flex items-center justify-between group">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant font-label-md text-label-md">
+                  2
+                </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-lg text-on-surface">Shovqin artefakti (Quantum mottle)</span>
+<span class="font-label-sm text-label-sm text-outline">Yetarli bo'lmagan foton oqimi (past mA)</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px] opacity-0 group-hover:opacity-100 transition-opacity">radio_button_unchecked</span>
+</button>
+<!-- Cupping -->
+<button class="w-full text-left p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-colors flex items-center justify-between group">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant font-label-md text-label-md">
+                  3
+                </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-lg text-on-surface">Cupping (Nurlar qattiqlashuvi)</span>
+<span class="font-label-sm text-label-sm text-outline">Filtr kalibratsiyasining buzilishi</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px] opacity-0 group-hover:opacity-100 transition-opacity">radio_button_unchecked</span>
+</button>
+<!-- Bemor harakati -->
+<button class="w-full text-left p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-colors flex items-center justify-between group">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant font-label-md text-label-md">
+                  4
+                </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-lg text-on-surface">Bemor harakati (Motion streak)</span>
+<span class="font-label-sm text-label-sm text-outline">Skanning vaqtida fazoviy siljish</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px] opacity-0 group-hover:opacity-100 transition-opacity">radio_button_unchecked</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ═════════════════════════════════════════════════════════════════════ -->
+<!-- STATE 3: CLINICAL CASE & FREE-TEXT QUESTION -->
+<!-- ═════════════════════════════════════════════════════════════════════ -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-tertiary-container text-on-tertiary-container uppercase font-bold tracking-wider">
+            Holat 3 / Amaliy nosozlik vaziyati
+          </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Muhandislik keysi</span>
+</div>
+<div class="flex items-center gap-1 text-tertiary font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span>Haqiqiy klinika log-fayli</span>
+</div>
+</div>
+<div class="rounded-xl bg-surface-container p-space-lg shadow-xl flex flex-col gap-space-lg">
+<!-- Symptom / Hardware Error Alert Box -->
+<div class="rounded-xl bg-surface-container-low p-space-lg flex flex-col lg:flex-row gap-space-lg justify-between items-start lg:items-center">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-error-container/40 text-error flex items-center justify-center shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-[28px]">hardware</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Klinik vaziyat: Siemens Somatom KT apparati</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-error font-label-sm text-label-sm font-bold tracking-wider">
+                  ERR_DET_CAL_64
+                </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-4xl">
+                Har 5-bemor skaner qilinganda <span class="font-label-sm text-label-sm text-primary bg-surface-container-highest px-1.5 py-0.5 rounded">ERR_DET_CAL_64</span> xatolik kodi qayd etiladi va xom tasvirlarda gorizontal chiziqlar uchraydi. Gantri ichki harorati 34°C, barqaror.
+              </p>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-end font-label-sm text-label-sm text-outline">
+<span>Protokol: Abdominal CT</span>
+<span>Kuchlanish: 120 kVp / 250 mAs</span>
+</div>
+</div>
+<!-- Free-text Answer Box with Real-time AI Validator Pill -->
+<div class="flex flex-col gap-space-sm">
+<label class="font-headline-sm text-body-lg text-on-surface flex items-center justify-between" for="case-input">
+<span>Muhandislik yechimi: Qaysi qismni tekshirasiz va nima uchun?</span>
+<span class="font-label-sm text-label-sm text-outline">Maksimum 500 belgi</span>
+</label>
+<div class="relative w-full">
+<textarea class="w-full rounded-xl bg-surface-container-lowest p-space-md font-body-md text-body-md text-on-surface placeholder:text-outline/60 focus:outline-none focus:ring-2 focus:ring-primary focus:shadow-[0_0_16px_rgba(79,209,181,0.25)] resize-none transition-all" id="case-input" placeholder="Qaysi qismni tekshirasiz va nima uchun? (Masalan: DAS (Data Acquisition System) platasi, havo kalibrovkasi zanjiri, optik slip-ring linzalari)..." rows="4"></textarea>
+<div class="absolute bottom-3 right-3 flex items-center gap-space-sm">
+<span class="hidden sm:flex items-center gap-1 font-label-sm text-label-sm text-primary bg-surface-container-high/90 px-3 py-1 rounded-full backdrop-blur">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+<span>AI fikrni 12 ta parametr bo'yicha tahlil qiladi</span>
+</span>
+<button class="px-4 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md hover:bg-primary font-semibold transition-all">
+                Yuborish
+              </button>
+</div>
+</div>
+</div>
+<!-- Real-time Multi-parameter Verification Preview -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm font-label-sm text-label-sm">
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+<span class="text-on-surface-variant">DAS telemetriyasi</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+<span class="text-on-surface-variant">Optik transceiver tozaligi</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[16px]">pending</span>
+<span class="text-on-surface-variant">Havo kalibrovka sikli</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[16px]">pending</span>
+<span class="text-on-surface-variant">Detektor modul kuchlanishi</span>
+</div>
+</div>
+</div>
+</div>
+<!-- ═════════════════════════════════════════════════════════════════════ -->
+<!-- FINAL SUMMARY & MASTERY CARD -->
+<!-- ═════════════════════════════════════════════════════════════════════ -->
+<div class="rounded-xl bg-surface-container-high p-space-lg shadow-2xl relative overflow-hidden">
+<!-- Ambient Glow Behind Final Score -->
+<div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-primary/10 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col gap-space-xl">
+<!-- Top Summary Row -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg pb-space-lg bg-surface-container-highest/20 rounded-xl p-space-md">
+<div class="flex items-center gap-space-lg">
+<!-- Circular Score Gauge -->
+<div class="relative w-24 h-24 flex items-center justify-center shrink-0">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-primary" fill="none" stroke="currentColor" stroke-dasharray="80, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute flex flex-col items-center justify-center">
+<span class="font-data-metric text-data-metric text-primary font-bold leading-none">8/10</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">BALL</span>
+</div>
+</div>
+<!-- Result Titles -->
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold">
+                  Test natijasi: 80% — Muvaffaqiyatli!
+                </span>
+<span class="material-symbols-outlined text-primary text-[28px]">verified</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                Siz kompyuter tomografiyasi uskunalari diagnostikasi va artefaktlarni tuzatish bo'yicha milliy attestatsiyadan o'tdingiz.
+              </p>
+</div>
+</div>
+<!-- Badge Unlock Showcase Card -->
+<div class="shrink-0 p-space-md rounded-xl bg-surface-container-lowest/80 flex items-center gap-space-md shadow-[0_0_24px_rgba(79,209,181,0.2)]">
+<div class="relative w-14 h-14 rounded-full bg-gradient-to-tr from-primary to-secondary-fixed flex items-center justify-center shadow-lg animate-pulse">
+<span class="material-symbols-outlined text-on-primary font-bold text-[30px]">military_tech</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-widest">Nishon berildi</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">"Artefaktlar ustasi"</span>
+<span class="font-label-sm text-label-sm text-outline">SSV reyestri: #MED-4091</span>
+</div>
+</div>
+</div>
+<!-- Competency Breakdown & Gap Analysis -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left: Competency Progress Bars (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Kompetensiyalar tahlili</span>
+<!-- Competency 1 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-on-surface">Nazariy bilim &amp; Fizika</span>
+<span class="text-primary font-bold">90%</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container-lowest overflow-hidden">
+<div class="h-full rounded-full bg-primary transition-all duration-700" style="width: 90%;"></div>
+</div>
+</div>
+<!-- Competency 2 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-on-surface">Tasviriy tahlil &amp; Vizualizatsiya</span>
+<span class="text-primary font-bold">80%</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container-lowest overflow-hidden">
+<div class="h-full rounded-full bg-primary transition-all duration-700" style="width: 80%;"></div>
+</div>
+</div>
+<!-- Competency 3 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-on-surface">Uskuna nosozligini aniqlash (Hardware Debugging)</span>
+<span class="text-secondary font-bold">70%</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container-lowest overflow-hidden">
+<div class="h-full rounded-full bg-secondary transition-all duration-700" style="width: 70%;"></div>
+</div>
+</div>
+</div>
+<!-- Right: Gap Analysis / Recommendations (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-sm p-space-md rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-space-xs text-error font-headline-sm text-headline-sm font-semibold">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+<span>Xato qilingan mavzular</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Tizim quyidagi bo'lim bo'yicha ko'nikmalarni mustahkamlashni tavsiya etadi:
+            </p>
+<div class="mt-2 p-space-sm rounded-lg bg-surface-container-high flex items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-md text-on-surface font-medium">Slip-ring cho'tkalaridagi shovqin</span>
+<span class="font-label-sm text-label-sm text-outline">Modul 2, 4-mavzu</span>
+</div>
+<a class="px-3 py-1.5 rounded-lg bg-surface-container text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm flex items-center gap-1 transition-colors" href="#">
+<span>Qayta o'rganish (04:30)</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Action Row -->
+<div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<button class="w-full sm:w-auto px-6 py-2.5 rounded-full bg-transparent hover:bg-surface-container text-on-surface font-headline-sm text-body-md flex items-center justify-center gap-space-xs transition-colors">
+<span class="material-symbols-outlined text-[20px]">replay</span>
+<span>Qayta topshirish</span>
+</button>
+<div class="w-full sm:w-auto flex items-center gap-space-sm">
+<button class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-surface-container text-on-surface hover:bg-surface-bright font-headline-sm text-body-md transition-colors">
+              Sertifikatni yuklab olish
+            </button>
+<button class="w-full sm:w-auto px-7 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-primary font-headline-sm text-body-md font-semibold transition-all shadow-[0_0_20px_rgba(79,209,181,0.3)] flex items-center justify-center gap-space-xs">
+<span>Keyingi modulga o'tish</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple countdown timer for interactive assessment simulation
+  (function () {
+    var timerEl = document.getElementById("assessment-timer");
+    if (!timerEl) return;
+    var totalSeconds = 4 * 60 + 38;
+
+    setInterval(function () {
+      if (totalSeconds <= 0) return;
+      totalSeconds--;
+      var mins = Math.floor(totalSeconds / 60);
+      var secs = totalSeconds % 60;
+      timerEl.textContent =
+        (mins < 10 ? "0" + mins : mins) + ":" + (secs < 10 ? "0" + secs : secs);
+    }, 1000);
+  })();
+</script></main><footer class="w-full bg-surface-container-lowest py-space-xl shadow-[0_-1px_12px_rgba(0,0,0,0.5)]"><div class="w-full px-margin flex flex-col gap-space-lg"><div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md"><div class="flex flex-col gap-space-xs"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">MedTech Academy CT</span><span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-primary">v3.4.1</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Toshkent, O‘zbekiston · Tibbiy asbob-uskunalar milliy malaka markazi</p></div><div class="flex flex-col lg:items-end gap-space-xs"><span class="font-label-md text-label-md text-primary tracking-wide">Umummilliy AI Xakaton · Namangan 2026 uchun maxsus ishlab chiqilgan</span><div class="flex flex-wrap items-center gap-space-sm font-label-sm text-label-sm text-on-surface-variant"><span>Xavfsizlik protokollari: IEC 60601-2-44</span><span>·</span><span>IEC 62353</span><span>·</span><span class="text-primary">SSV akkreditatsiyasi</span></div></div></div><div class="pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-outline"><p>© 2026 MedTech Academy. Radiologik fizika va biotibbiyot muhandisligi platformasi.</p><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm text-on-surface-variant">Gantri &amp; Slip-ring telemetriyasi: 240Hz</span><span class="w-1.5 h-1.5 rounded-full bg-primary"></span><span class="font-label-sm text-label-sm text-on-surface-variant">SSV Ruxsatnoma № 44-CT/UZ</span></div></div></div></footer></body></html>
