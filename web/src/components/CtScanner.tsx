@@ -6,6 +6,8 @@ import { createContext, type ReactNode, useContext, useMemo, useRef, useState } 
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
+import EmergencyEffect, { type EffectKind } from "./Effects";
+
 // Ids must match COMPONENTS in api/app/cases.py.
 export const PART_IDS = ["gantry", "xray_tube", "bowtie_filter", "detector", "das_slip_ring", "table"] as const;
 export type PartId = (typeof PART_IDS)[number];
@@ -309,6 +311,7 @@ export type CtScannerProps = {
   labels?: Partial<Record<PartId, string>>;
   tone?: HighlightTone;
   showLabel?: boolean;
+  effect?: { kind: EffectKind; part: PartId } | null;
 };
 
 export default function CtScanner({
@@ -320,6 +323,7 @@ export default function CtScanner({
   labels,
   tone = "fault",
   showLabel = true,
+  effect = null,
 }: CtScannerProps) {
   const [hovered, setHovered] = useState<PartId | null>(null);
   const state = useMemo(
@@ -349,6 +353,7 @@ export default function CtScanner({
         <SceneContext.Provider value={state}>
           <Scanner xray={xray} spinning={spinning} />
         </SceneContext.Provider>
+        {effect && <EmergencyEffect kind={effect.kind} part={effect.part} />}
         <ContactShadows position={[0, -2.73, 1]} opacity={0.55} scale={14} blur={2.4} far={4} />
         <OrbitControls enablePan={false} minDistance={5.5} maxDistance={15} target={[0, -0.3, 0.8]} maxPolarAngle={Math.PI / 1.9} />
       </Canvas>

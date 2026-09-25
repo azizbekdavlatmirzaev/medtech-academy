@@ -99,6 +99,7 @@ Run the phase test checklist → mark the phase in Phases → commit `spec: mark
 | M3 | AI trainer: case → diagnosis → grading → highlight | 25 Sept (CP1) | done (live LLM check pending API key) |
 | M4 | AI tutor with RAG + citations | 26 Sept | done |
 | M5 | Dashboard: progress, readiness, recruitment list | 26 Sept (CP2) | done |
+| M5b | Emergency drills (smoke, fire, sparks, overheat) with 3D effects | 26 Sept | done |
 | M6 | Polish, README, demo script rehearsal, deploy | 26 Sept (CP2) | next |
 
 ## 8. Test checklist (manual, "like a user")

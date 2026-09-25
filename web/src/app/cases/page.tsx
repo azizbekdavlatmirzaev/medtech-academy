@@ -1,19 +1,23 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CloudFog, Flame, Siren, Thermometer, Zap } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { type CaseSummary, caseImageUrl, getCases } from "@/lib/api";
+import { type CaseSummary, type Drill, type DrillEffect, caseImageUrl, getCases, getDrills } from "@/lib/api";
 
 const LEVEL = ["", "Oson", "O‘rta", "Qiyin"];
 
+const EFFECT_ICON: Record<DrillEffect, typeof Flame> = { smoke: CloudFog, fire: Flame, sparks: Zap, overheat: Thermometer };
+
 export default function CasesPage() {
   const [cases, setCases] = useState<CaseSummary[]>([]);
+  const [drills, setDrills] = useState<Drill[]>([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     getCases().then(setCases).catch(() => setError(true));
+    getDrills().then(setDrills).catch(() => setError(true));
   }, []);
 
   return (
@@ -53,6 +57,38 @@ export default function CasesPage() {
           </li>
         ))}
       </ul>
+
+      <section className="flex flex-col gap-4 pt-6">
+        <div>
+          <p className="eyebrow flex items-center gap-2 text-coral!">
+            <Siren size={14} /> Xavfsizlik mashg‘ulotlari
+          </p>
+          <h2 className="mt-1 font-display text-3xl font-bold tracking-tight">Favqulodda holatlar</h2>
+          <p className="mt-1 max-w-2xl text-muted">Tutun, olov, uchqun, qizib ketish — vaqt bosimi ostida to‘g‘ri harakatlar tartibini mashq qiling.</p>
+        </div>
+        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {drills.map((d, i) => {
+            const Icon = EFFECT_ICON[d.effect];
+            return (
+              <li key={d.id} className="rise-in" style={{ animationDelay: `${i * 70}ms` }}>
+                <Link
+                  href={`/favqulodda/${d.id}`}
+                  className="glass-fault group flex h-full flex-col gap-3 p-5 transition-all duration-300 hover:-translate-y-1"
+                >
+                  <span className="grid h-11 w-11 place-items-center rounded-xl border border-coral/40 bg-coral/10">
+                    <Icon size={22} className="text-coral transition-transform group-hover:scale-110" />
+                  </span>
+                  <h3 className="font-display text-lg font-semibold">{d.title_uz}</h3>
+                  <p className="flex-1 text-sm text-muted">{d.situation_uz}</p>
+                  <span className="flex items-center gap-1 font-mono text-xs text-coral">
+                    Mashg‘ulotni boshlash <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
     </main>
   );
 }

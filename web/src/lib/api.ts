@@ -123,6 +123,30 @@ export async function setConsent(learner: string, consent: boolean, region: stri
   if (!res.ok) throw new Error(`consent: ${res.status}`);
 }
 
+export type DrillEffect = "smoke" | "fire" | "sparks" | "overheat";
+export type Drill = {
+  id: string;
+  title_uz: string;
+  situation_uz: string;
+  effect: DrillEffect;
+  part: string;
+  steps: { prompt_uz: string; options: { id: string; text_uz: string }[] }[];
+};
+export type DrillResult = { correct: boolean; critical: boolean; correct_option: string; explanation_uz: string; source: string };
+
+export const getDrills = () => getJson<Drill[]>("/emergencies");
+export const getDrill = (id: string) => getJson<Drill>(`/emergencies/${id}`);
+
+export async function answerDrill(id: string, step: number, option: string, learner: string): Promise<DrillResult> {
+  const res = await fetch(`${API_URL}/emergencies/${id}/answer`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ step, option, learner }),
+  });
+  if (!res.ok) throw new Error(`drill answer: ${res.status}`);
+  return res.json() as Promise<DrillResult>;
+}
+
 const LEARNER_KEY = "medtech.learner";
 
 export function loadLearner(): string {
