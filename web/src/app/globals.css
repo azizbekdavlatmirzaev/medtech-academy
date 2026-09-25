@@ -168,6 +168,23 @@ body {
   animation: fault-pulse 1.6s ease-in-out infinite;
 }
 
+@keyframes shake {
+  0%,
+  100% {
+    transform: none;
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+.shake {
+  animation: shake 300ms ease-in-out 2;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

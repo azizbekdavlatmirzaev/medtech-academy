@@ -38,6 +38,31 @@ export async function submitAttempt(caseId: string, component: string, reasoning
   return res.json() as Promise<Grade>;
 }
 
+export type QuizQuestion = {
+  id: string;
+  kind: "choice" | "image";
+  topic: string;
+  difficulty: number;
+  prompt_uz: string;
+  options: { id: string; text_uz: string }[];
+  image: string | null;
+};
+
+export type QuizResult = { correct: boolean; correct_option: string; explanation_uz: string; source: string };
+
+export const getQuiz = () => getJson<QuizQuestion[]>("/quiz");
+export const quizImageUrl = (path: string) => `${API_URL}${path}`;
+
+export async function answerQuiz(id: string, option: string, learner: string): Promise<QuizResult> {
+  const res = await fetch(`${API_URL}/quiz/${id}/answer`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ option, learner }),
+  });
+  if (!res.ok) throw new Error(`quiz answer: ${res.status}`);
+  return res.json() as Promise<QuizResult>;
+}
+
 const LEARNER_KEY = "medtech.learner";
 
 export function loadLearner(): string {
