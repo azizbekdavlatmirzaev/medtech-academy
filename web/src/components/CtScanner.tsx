@@ -9,11 +9,14 @@ import * as THREE from "three";
 export const PART_IDS = ["gantry", "xray_tube", "bowtie_filter", "detector", "das_slip_ring", "table"] as const;
 export type PartId = (typeof PART_IDS)[number];
 
+// "fault" = coral (broken part), "info" = teal (part being explained).
+export type HighlightTone = "fault" | "info";
 
 type SceneState = {
   hovered: PartId | null;
   selected: PartId | null;
   highlight: PartId | null;
+  tone: HighlightTone;
   setHovered: (id: PartId | null) => void;
   onSelect?: (id: PartId) => void;
 };
@@ -60,7 +63,7 @@ function Part({
       <meshStandardMaterial
         ref={material}
         color={color}
-        emissive={scene.highlight === id ? "#ff5a3c" : "#2ee6c0"}
+        emissive={scene.highlight === id && scene.tone === "fault" ? "#ff5a3c" : "#2ee6c0"}
         emissiveIntensity={0}
         transparent={opacity < 1}
         opacity={opacity}
@@ -150,6 +153,8 @@ export type CtScannerProps = {
   xray?: boolean;
   spinning?: boolean;
   labels?: Partial<Record<PartId, string>>;
+  tone?: HighlightTone;
+  showLabel?: boolean;
 };
 
 export default function CtScanner({
@@ -159,16 +164,19 @@ export default function CtScanner({
   xray = true,
   spinning = false,
   labels,
+  tone = "fault",
+  showLabel = true,
 }: CtScannerProps) {
   const [hovered, setHovered] = useState<PartId | null>(null);
   const state = useMemo(
-    () => ({ hovered, selected, highlight, setHovered, onSelect }),
-    [hovered, selected, highlight, onSelect],
+    () => ({ hovered, selected, highlight, tone, setHovered, onSelect }),
+    [hovered, selected, highlight, tone, onSelect],
   );
 
   // The part label is a plain HTML overlay: drei's <Html> mounts a separate
   // React root per label, which races with React when labels change.
-  const labelled = hovered ?? highlight ?? selected;
+  const labelled = showLabel ? (hovered ?? highlight ?? selected) : null;
+  const faultLabel = labelled === highlight && tone === "fault";
 
   return (
     <div className="relative h-full w-full">
@@ -185,7 +193,7 @@ export default function CtScanner({
       {labelled && (
         <div
           className={`pointer-events-none absolute bottom-3 right-3 rounded-full border px-3 py-1 font-mono text-xs backdrop-blur ${
-            labelled === highlight ? "border-coral/60 bg-coral/15 text-coral" : "border-teal/40 bg-bg/80 text-teal"
+            faultLabel ? "border-coral/60 bg-coral/15 text-coral" : "border-teal/40 bg-bg/80 text-teal"
           }`}
         >
           {labels?.[labelled] ?? labelled}
