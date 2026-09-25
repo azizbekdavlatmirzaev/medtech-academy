@@ -2,6 +2,7 @@
 
 from app import db
 from app.cases import CASES, CASES_BY_ID, COMPONENTS, NOT_A_DEVICE_FAULT
+from app.emergencies import DRILLS_BY_ID
 
 READY_THRESHOLD = 70  # readiness % from which an engineer is listed as ready
 
@@ -13,6 +14,21 @@ SKILLS = {
     "das_slip_ring": "DAS",
     NOT_A_DEVICE_FAULT: "Bemor artefaktlari",
 }
+
+
+def _kind(case_id: str) -> str:
+    if case_id in CASES_BY_ID:
+        return "trainer"
+    return "emergency" if case_id.startswith("emg:") else "quiz"
+
+
+def _title(case_id: str) -> str:
+    if case_id in CASES_BY_ID:
+        return CASES_BY_ID[case_id].title_uz
+    if case_id.startswith("emg:"):
+        drill = DRILLS_BY_ID.get(case_id.split(":")[1])
+        return f"Favqulodda: {drill.title_uz}" if drill else "Favqulodda holat"
+    return f"Test savoli {case_id[5:]}"
 
 
 def summary(learner: str) -> dict:
@@ -38,8 +54,8 @@ def summary(learner: str) -> dict:
     recent = [
         {
             "case_id": r["case_id"],
-            "title_uz": CASES_BY_ID[r["case_id"]].title_uz if r["case_id"] in CASES_BY_ID else f"Test savoli {r['case_id'][5:]}",
-            "kind": "trainer" if r["case_id"] in CASES_BY_ID else "quiz",
+            "title_uz": _title(r["case_id"]),
+            "kind": _kind(r["case_id"]),
             "answer_uz": COMPONENTS.get(r["component"], {}).get("name_uz", r["component"]),
             "correct": bool(r["correct"]),
             "score": r["score"],

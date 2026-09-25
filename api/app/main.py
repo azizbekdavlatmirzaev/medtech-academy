@@ -15,6 +15,7 @@ from pydantic import BaseModel, Field
 
 from app import config, db, llm, progress, tutor
 from app.cases import CASES, CASES_BY_ID, COMPONENTS, NOT_A_DEVICE_FAULT
+from app.emergencies import DRILLS, DRILLS_BY_ID, SOURCE
 from app.grader import Attempt, Grade, grade
 from app.library import PLAYBOOKS_BY_ID
 from app.library import search as search_library
@@ -144,6 +145,49 @@ def learner_consent(body: Consent, learner: str = Path(min_length=1, max_length=
 @app.get("/recruitment")
 def recruitment_list() -> list[dict]:
     return progress.recruitment()
+
+
+class DrillAnswer(BaseModel):
+    step: int = Field(ge=0, le=10)
+    option: str = Field(max_length=32)
+    learner: str = Field(default="demo", min_length=1, max_length=64)
+
+
+@app.get("/emergencies")
+def list_drills() -> list[dict]:
+    return [d.public() for d in DRILLS]
+
+
+@app.get("/emergencies/{drill_id}")
+def get_drill(drill_id: str) -> dict:
+    return _drill_or_404(drill_id).public()
+
+
+@app.post("/emergencies/{drill_id}/answer")
+def answer_drill(drill_id: str, body: DrillAnswer) -> dict:
+    drill = _drill_or_404(drill_id)
+    if body.step >= len(drill.steps):
+        raise HTTPException(status_code=404, detail="step not found")
+    step = drill.steps[body.step]
+    chosen = next((o for o in step.options if o.id == body.option), None)
+    if chosen is None:
+        raise HTTPException(status_code=422, detail="unknown option")
+    correct = chosen.id == step.answer
+    db.save_attempt(body.learner, f"emg:{drill.id}:{body.step}", chosen.id, correct, 10 if correct else 0, ai_used=False)
+    return {
+        "correct": correct,
+        "critical": chosen.critical,
+        "correct_option": step.answer,
+        "explanation_uz": step.explanation_uz,
+        "source": SOURCE,
+    }
+
+
+def _drill_or_404(drill_id: str):
+    drill = DRILLS_BY_ID.get(drill_id)
+    if drill is None:
+        raise HTTPException(status_code=404, detail="drill not found")
+    return drill
 
 
 class TutorQuestion(BaseModel):
