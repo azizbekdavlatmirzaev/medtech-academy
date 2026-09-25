@@ -78,6 +78,22 @@ export type Playbook = PlaybookSummary & { steps: { title_uz: string; text_uz: s
 export const searchLibrary = (q: string) => getJson<PlaybookSummary[]>(`/library?q=${encodeURIComponent(q)}`);
 export const getPlaybook = (id: string) => getJson<Playbook>(`/library/${id}`);
 
+export type Citation = { n: number; doc: string; section: string; source: string; snippet: string };
+export type TutorAnswer = { answer_uz: string; citations: Citation[]; grounded: boolean; ai_used: boolean };
+export type TutorSource = { doc: string; source: string; sections: string[] };
+
+export const getTutorSources = () => getJson<TutorSource[]>("/tutor/sources");
+
+export async function askTutor(question: string): Promise<TutorAnswer> {
+  const res = await fetch(`${API_URL}/tutor`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question }),
+  });
+  if (!res.ok) throw new Error(`tutor: ${res.status}`);
+  return res.json() as Promise<TutorAnswer>;
+}
+
 const LEARNER_KEY = "medtech.learner";
 
 export function loadLearner(): string {
