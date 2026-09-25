@@ -14,6 +14,8 @@ from pydantic import BaseModel, Field
 from app import config, db, llm
 from app.cases import CASES, CASES_BY_ID, COMPONENTS, NOT_A_DEVICE_FAULT
 from app.grader import Attempt, Grade, grade
+from app.library import PLAYBOOKS_BY_ID
+from app.library import search as search_library
 from app.quiz import QUESTIONS, QUESTIONS_BY_ID
 from app.simulator import simulate, to_uint8
 
@@ -104,6 +106,19 @@ def answer_quiz(question_id: str, body: QuizAnswer) -> dict:
     correct = body.option == q.answer
     db.save_attempt(body.learner, f"quiz:{q.id}", body.option, correct, 10 if correct else 0, ai_used=False)
     return {"correct": correct, "correct_option": q.answer, "explanation_uz": q.explanation_uz, "source": q.source}
+
+
+@app.get("/library")
+def list_library(q: str = "") -> list[dict]:
+    return [p.summary() for p in search_library(q[:200])]
+
+
+@app.get("/library/{playbook_id}")
+def get_playbook(playbook_id: str) -> dict:
+    p = PLAYBOOKS_BY_ID.get(playbook_id)
+    if p is None:
+        raise HTTPException(status_code=404, detail="playbook not found")
+    return p.detail()
 
 
 @app.get("/reference/normal.png")
