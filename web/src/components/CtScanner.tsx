@@ -1,6 +1,6 @@
 "use client";
 
-import { Html, OrbitControls } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { Canvas, type ThreeElements, type ThreeEvent, useFrame } from "@react-three/fiber";
 import { createContext, type ReactNode, useContext, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
@@ -9,14 +9,6 @@ import * as THREE from "three";
 export const PART_IDS = ["gantry", "xray_tube", "bowtie_filter", "detector", "das_slip_ring", "table"] as const;
 export type PartId = (typeof PART_IDS)[number];
 
-const LABEL_POS: Record<PartId, [number, number, number]> = {
-  gantry: [2.3, 1.9, 0.7],
-  xray_tube: [0, 2.05, 0.7],
-  bowtie_filter: [0.6, 1.1, 0.7],
-  detector: [0, -2.0, 0.7],
-  das_slip_ring: [-1.9, 0.6, 0.7],
-  table: [0, -0.3, 2.6],
-};
 
 type SceneState = {
   hovered: PartId | null;
@@ -27,7 +19,6 @@ type SceneState = {
 };
 
 const SceneContext = createContext<SceneState | null>(null);
-const LabelContext = createContext<Partial<Record<PartId, string>> | undefined>(undefined);
 
 function Part({
   part: id,
@@ -130,10 +121,7 @@ function Rotor({ spinning }: { spinning: boolean }) {
 }
 
 function Scanner({ xray, spinning }: { xray: boolean; spinning: boolean }) {
-  const scene = useContext(SceneContext)!;
-  const labels = useContext(LabelContext);
   const housing = useMemo(() => housingGeometry(), []);
-  const labelled = scene.hovered ?? scene.highlight ?? scene.selected;
 
   return (
     <group>
@@ -151,13 +139,6 @@ function Scanner({ xray, spinning }: { xray: boolean; spinning: boolean }) {
       <Part part="table" color="#b9c3ca" position={[0, -1.85, 2.6]}>
         <boxGeometry args={[0.7, 2.4, 1.2]} />
       </Part>
-      {labelled && (
-        <Html position={LABEL_POS[labelled]} center style={{ pointerEvents: "none" }}>
-          <div className="whitespace-nowrap rounded-md bg-[#0F1B2D]/90 px-3 py-1 text-sm font-semibold text-white">
-            {labels?.[labelled] ?? labelled}
-          </div>
-        </Html>
-      )}
     </group>
   );
 }
@@ -185,18 +166,31 @@ export default function CtScanner({
     [hovered, selected, highlight, onSelect],
   );
 
+  // The part label is a plain HTML overlay: drei's <Html> mounts a separate
+  // React root per label, which races with React when labels change.
+  const labelled = hovered ?? highlight ?? selected;
+
   return (
-    <Canvas camera={{ position: [7.5, 3.5, 9.5], fov: 40 }} dpr={[1, 2]}>
-      <color attach="background" args={["#0F1B2D"]} />
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[5, 8, 6]} intensity={1.2} />
-      <directionalLight position={[-6, -2, -4]} intensity={0.4} />
-      <SceneContext.Provider value={state}>
-        <LabelContext.Provider value={labels}>
+    <div className="relative h-full w-full">
+      <Canvas camera={{ position: [7.5, 3.5, 9.5], fov: 40 }} dpr={[1, 2]}>
+        <color attach="background" args={["#0F1B2D"]} />
+        <ambientLight intensity={0.6} />
+        <directionalLight position={[5, 8, 6]} intensity={1.2} />
+        <directionalLight position={[-6, -2, -4]} intensity={0.4} />
+        <SceneContext.Provider value={state}>
           <Scanner xray={xray} spinning={spinning} />
-        </LabelContext.Provider>
-      </SceneContext.Provider>
-      <OrbitControls enablePan={false} minDistance={5} maxDistance={14} />
-    </Canvas>
+        </SceneContext.Provider>
+        <OrbitControls enablePan={false} minDistance={5} maxDistance={14} />
+      </Canvas>
+      {labelled && (
+        <div
+          className={`pointer-events-none absolute bottom-3 right-3 rounded-full border px-3 py-1 font-mono text-xs backdrop-blur ${
+            labelled === highlight ? "border-coral/60 bg-coral/15 text-coral" : "border-teal/40 bg-bg/80 text-teal"
+          }`}
+        >
+          {labels?.[labelled] ?? labelled}
+        </div>
+      )}
+    </div>
   );
 }
