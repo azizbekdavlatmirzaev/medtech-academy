@@ -9,10 +9,12 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from PIL import Image
+from pydantic import BaseModel, Field
 
 from app import config, db, llm
 from app.cases import CASES, CASES_BY_ID, COMPONENTS, NOT_A_DEVICE_FAULT
 from app.grader import Attempt, Grade, grade
+from app.quiz import QUESTIONS, QUESTIONS_BY_ID
 from app.simulator import simulate, to_uint8
 
 app = FastAPI(title="MedTech Academy API", version="0.1.0")
@@ -72,6 +74,36 @@ def submit_attempt(case_id: str, attempt: Attempt) -> Grade:
     result = grade(case, attempt)
     db.save_attempt(attempt.learner, case.id, attempt.component, result.correct, result.score, result.ai_used)
     return result
+
+
+class QuizAnswer(BaseModel):
+    option: str = Field(max_length=32)
+    learner: str = Field(default="demo", min_length=1, max_length=64)
+
+
+@app.get("/quiz")
+def list_quiz() -> list[dict]:
+    return [q.public() for q in QUESTIONS]
+
+
+@app.get("/quiz/{question_id}/image.png")
+def quiz_image(question_id: str) -> Response:
+    q = QUESTIONS_BY_ID.get(question_id)
+    if q is None or q.fault is None:
+        raise HTTPException(status_code=404, detail="question image not found")
+    return Response(_render_png(q.fault, q.seed), media_type="image/png")
+
+
+@app.post("/quiz/{question_id}/answer")
+def answer_quiz(question_id: str, body: QuizAnswer) -> dict:
+    q = QUESTIONS_BY_ID.get(question_id)
+    if q is None:
+        raise HTTPException(status_code=404, detail="question not found")
+    if body.option not in {oid for oid, _ in q.options}:
+        raise HTTPException(status_code=422, detail="unknown option")
+    correct = body.option == q.answer
+    db.save_attempt(body.learner, f"quiz:{q.id}", body.option, correct, 10 if correct else 0, ai_used=False)
+    return {"correct": correct, "correct_option": q.answer, "explanation_uz": q.explanation_uz, "source": q.source}
 
 
 @app.get("/reference/normal.png")
