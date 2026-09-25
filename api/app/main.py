@@ -10,8 +10,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from PIL import Image
 
-from app import config
-from app.cases import CASES, CASES_BY_ID, COMPONENTS
+from app import config, db, llm
+from app.cases import CASES, CASES_BY_ID, COMPONENTS, NOT_A_DEVICE_FAULT
+from app.grader import Attempt, Grade, grade
 from app.simulator import simulate, to_uint8
 
 app = FastAPI(title="MedTech Academy API", version="0.1.0")
@@ -29,6 +30,7 @@ def health() -> dict:
     return {
         "status": "ok",
         "llm_provider": config.LLM_PROVIDER,
+        "llm_configured": llm.is_configured(),
         "time": datetime.now(ZoneInfo(config.TIMEZONE)).isoformat(),
     }
 
@@ -60,6 +62,16 @@ def _render_png(fault: str, seed: int) -> bytes:
 def case_image(case_id: str) -> Response:
     case = _case_or_404(case_id)
     return Response(_render_png(case.fault, case.seed), media_type="image/png")
+
+
+@app.post("/cases/{case_id}/attempts")
+def submit_attempt(case_id: str, attempt: Attempt) -> Grade:
+    case = _case_or_404(case_id)
+    if attempt.component not in COMPONENTS and attempt.component != NOT_A_DEVICE_FAULT:
+        raise HTTPException(status_code=422, detail="unknown component")
+    result = grade(case, attempt)
+    db.save_attempt(attempt.learner, case.id, attempt.component, result.correct, result.score, result.ai_used)
+    return result
 
 
 @app.get("/reference/normal.png")
