@@ -63,6 +63,21 @@ export async function answerQuiz(id: string, option: string, learner: string): P
   return res.json() as Promise<QuizResult>;
 }
 
+export type PlaybookSummary = {
+  id: string;
+  device: string;
+  title_uz: string;
+  symptom_uz: string;
+  component: string;
+  tags: string[];
+  case_id: string;
+};
+
+export type Playbook = PlaybookSummary & { steps: { title_uz: string; text_uz: string }[]; safety_uz: string };
+
+export const searchLibrary = (q: string) => getJson<PlaybookSummary[]>(`/library?q=${encodeURIComponent(q)}`);
+export const getPlaybook = (id: string) => getJson<Playbook>(`/library/${id}`);
+
 const LEARNER_KEY = "medtech.learner";
 
 export function loadLearner(): string {
