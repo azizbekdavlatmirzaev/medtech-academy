@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight, Eye, EyeOff, Pause, Play } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -22,33 +23,34 @@ export default function LabPage() {
   const info = components.find((c) => c.id === selected);
 
   return (
-    <main className="flex flex-1 flex-col gap-4 p-4 lg:flex-row">
-      <section className="relative h-[60vh] flex-1 overflow-hidden rounded-xl lg:h-[calc(100vh-2rem)]">
+    <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-4 py-8 lg:flex-row lg:px-8">
+      <section className="glass-strong relative h-[60vh] flex-1 overflow-hidden lg:h-[calc(100vh-10rem)]">
         <ScannerView selected={selected} onSelect={setSelected} xray={xray} spinning={spinning} labels={labels} />
-        <div className="absolute left-3 top-3 flex gap-2">
-          <button onClick={() => setXray((v) => !v)} className="rounded-md bg-white/90 px-3 py-1 text-sm text-[#15202E]">
-            {xray ? "Korpusni ko‘rsat" : "Ichini ko‘rsat"}
+        <div className="absolute left-4 top-4 flex gap-2">
+          <button onClick={() => setXray((v) => !v)} className="btn-ghost bg-bg/80 px-4! py-2! text-sm backdrop-blur">
+            {xray ? <EyeOff size={16} /> : <Eye size={16} />} {xray ? "Korpusni ko‘rsat" : "Ichini ko‘rsat"}
           </button>
-          <button onClick={() => setSpinning((v) => !v)} className="rounded-md bg-white/90 px-3 py-1 text-sm text-[#15202E]">
-            {spinning ? "To‘xtat" : "Aylantir"}
+          <button onClick={() => setSpinning((v) => !v)} className="btn-ghost bg-bg/80 px-4! py-2! text-sm backdrop-blur">
+            {spinning ? <Pause size={16} /> : <Play size={16} />} {spinning ? "To‘xtat" : "Aylantir"}
           </button>
         </div>
+        <p className="absolute bottom-4 left-4 font-mono text-[11px] text-muted">Sichqoncha bilan aylantiring · g‘ildirak bilan yaqinlashtiring</p>
       </section>
 
-      <aside className="flex w-full flex-col gap-4 lg:w-96">
-        <Link href="/" className="text-sm opacity-70 hover:opacity-100">
-          ← Bosh sahifa
-        </Link>
-        <h1 className="text-2xl font-bold">KT uskunasi: 3D laboratoriya</h1>
-        <p className="text-sm opacity-80">Qismni modelda yoki ro‘yxatda bosing — nomi va vazifasi chiqadi.</p>
-        {error && <p className="text-sm text-red-600">API bilan aloqa yo‘q</p>}
+      <aside className="glass flex w-full flex-col gap-4 p-6 lg:w-96">
+        <div>
+          <p className="eyebrow">Operator yo‘nalishi</p>
+          <h1 className="mt-1 font-display text-2xl font-bold">3D laboratoriya</h1>
+          <p className="mt-1 text-sm text-muted">Qismni modelda yoki ro‘yxatda bosing — nomi va vazifasi chiqadi.</p>
+        </div>
+        {error && <p className="text-sm text-coral">API bilan aloqa yo‘q</p>}
         <ul className="flex flex-col gap-2">
           {components.map((c) => (
             <li key={c.id}>
               <button
                 onClick={() => setSelected(c.id as PartId)}
-                className={`w-full rounded-lg border px-3 py-2 text-left text-sm ${
-                  selected === c.id ? "border-[#0E7C6B] bg-[#E3EFEC] text-[#0B5E52]" : "border-current/20"
+                className={`w-full rounded-xl border px-4 py-2.5 text-left text-sm transition-all duration-200 ${
+                  selected === c.id ? "border-teal bg-teal/10 text-teal shadow-[0_0_12px_rgba(79,209,181,0.25)]" : "border-line/60 hover:border-teal/50"
                 }`}
               >
                 {c.name_uz}
@@ -57,9 +59,12 @@ export default function LabPage() {
           ))}
         </ul>
         {info && (
-          <div className="rounded-lg border border-[#0E7C6B] p-4">
-            <h2 className="font-semibold">{info.name_uz}</h2>
-            <p className="mt-1 text-sm opacity-80">{info.description_uz}</p>
+          <div className="rise-in rounded-xl border border-teal/40 bg-bg/60 p-4">
+            <h2 className="font-display font-semibold text-teal">{info.name_uz}</h2>
+            <p className="mt-1 text-sm text-muted">{info.description_uz}</p>
+            <Link href="/cases" className="mt-3 flex items-center gap-1 font-mono text-xs text-teal">
+              Shu qism bo‘yicha mashq <ArrowRight size={14} />
+            </Link>
           </div>
         )}
       </aside>
