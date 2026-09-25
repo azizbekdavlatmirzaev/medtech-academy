@@ -4,13 +4,11 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
 
-// Low-poly patient in a hospital gown: walks to the couch, sits on its edge
+// Smooth white mannequin patient: walks to the couch, sits on its edge
 // and lies down supine with the head toward the gantry, then the loop repeats.
 
-const SKIN = new THREE.MeshStandardMaterial({ color: "#d6a384", roughness: 0.7 });
-const GOWN = new THREE.MeshStandardMaterial({ color: "#8fb8d4", roughness: 0.85 });
-const HAIR = new THREE.MeshStandardMaterial({ color: "#2b211c", roughness: 0.9 });
-const SOCK = new THREE.MeshStandardMaterial({ color: "#e8ecef", roughness: 0.9 });
+// One glossy white material: a neutral mannequin, like a training dummy.
+const BODY = new THREE.MeshPhysicalMaterial({ color: "#eef1f3", roughness: 0.32, clearcoat: 0.6, clearcoatRoughness: 0.3 });
 
 const SCALE = 0.9;
 const FLOOR_Y = -2.74; // world floor under the scanner
@@ -57,13 +55,44 @@ function pose(t: number): { p: Pose; stride: number } {
   return { p: mix(SIT, LIE, phase(t, T_SIT, T_LIE)), stride: 0 };
 }
 
-function Limb({ length, radius, material }: { length: number; radius: number; material: THREE.Material }) {
+// Tapered limb segment hanging down from its joint, with a ball at the joint
+// so segments blend like a smooth mannequin.
+function Limb({ length, top, bottom }: { length: number; top: number; bottom: number }) {
   return (
-    <mesh position={[0, -length / 2, 0]} material={material} castShadow>
-      <capsuleGeometry args={[radius, length - 2 * radius, 4, 12]} />
-    </mesh>
+    <>
+      <mesh material={BODY} castShadow>
+        <sphereGeometry args={[top, 20, 14]} />
+      </mesh>
+      <mesh position={[0, -length / 2, 0]} material={BODY} castShadow>
+        <cylinderGeometry args={[top, bottom, length, 20]} />
+      </mesh>
+    </>
   );
 }
+
+function torsoGeometry() {
+  // Smooth lathe profile from the hips to the neck: (radius, height).
+  const profile = new THREE.SplineCurve(
+    [
+      [0.0, -0.24],
+      [0.26, -0.2],
+      [0.36, -0.02],
+      [0.33, 0.35],
+      [0.29, 0.65],
+      [0.35, 1.05],
+      [0.37, 1.3],
+      [0.26, 1.48],
+      [0.11, 1.58],
+      [0.1, 1.76],
+      [0.0, 1.78],
+    ].map(([r, y]) => new THREE.Vector2(r, y)),
+  );
+  const geo = new THREE.LatheGeometry(profile.getPoints(48), 40);
+  geo.scale(1.08, 1, 0.66);
+  return geo;
+}
+
+const TORSO = torsoGeometry();
 
 export default function Patient() {
   const root = useRef<THREE.Group>(null);
@@ -105,34 +134,13 @@ export default function Patient() {
 
   return (
     <group ref={root} scale={SCALE}>
-      {/* Pelvis */}
-      <mesh material={GOWN} castShadow>
-        <boxGeometry args={[0.8, 0.36, 0.46]} />
-      </mesh>
-
-      {/* Torso, neck and head */}
+      {/* Torso with neck, and head */}
       <group ref={chest}>
-        <mesh position={[0, 0.78, 0]} material={GOWN} castShadow>
-          <capsuleGeometry args={[0.36, 0.72, 6, 16]} />
-        </mesh>
-        <mesh position={[0, 0.78, 0]} scale={[1.18, 1, 0.72]} material={GOWN}>
-          <capsuleGeometry args={[0.36, 0.72, 6, 16]} />
-        </mesh>
+        <mesh geometry={TORSO} material={BODY} castShadow />
       </group>
-      <mesh position={[0, 1.6, 0]} material={SKIN}>
-        <cylinderGeometry args={[0.11, 0.13, 0.22, 12]} />
+      <mesh position={[0, 1.98, 0]} scale={[0.95, 1.05, 1]} material={BODY} castShadow>
+        <sphereGeometry args={[0.27, 32, 24]} />
       </mesh>
-      <group position={[0, 1.96, 0.02]}>
-        <mesh material={SKIN} castShadow>
-          <sphereGeometry args={[0.28, 24, 18]} />
-        </mesh>
-        <mesh position={[0, 0.06, -0.04]} scale={[1.04, 0.92, 1.02]} material={HAIR}>
-          <sphereGeometry args={[0.28, 24, 18, 0, Math.PI * 2, 0, Math.PI / 2]} />
-        </mesh>
-        <mesh position={[0, -0.02, 0.27]} material={SKIN}>
-          <sphereGeometry args={[0.05, 8, 8]} />
-        </mesh>
-      </group>
 
       {/* Arms */}
       {(
@@ -141,10 +149,13 @@ export default function Patient() {
           [1, shR, elR],
         ] as const
       ).map(([side, sh, el]) => (
-        <group key={side} ref={sh} position={[side * 0.5, 1.36, 0]} rotation={[0, 0, side * 0.08]}>
-          <Limb length={0.66} radius={0.11} material={GOWN} />
+        <group key={side} ref={sh} position={[side * 0.43, 1.33, 0]} rotation={[0, 0, side * 0.1]}>
+          <Limb length={0.66} top={0.1} bottom={0.08} />
           <group ref={el} position={[0, -0.66, 0]}>
-            <Limb length={0.62} radius={0.085} material={SKIN} />
+            <Limb length={0.6} top={0.08} bottom={0.06} />
+            <mesh position={[0, -0.68, 0]} scale={[0.75, 1.1, 0.4]} material={BODY} castShadow>
+              <sphereGeometry args={[0.11, 16, 12]} />
+            </mesh>
           </group>
         </group>
       ))}
@@ -156,12 +167,12 @@ export default function Patient() {
           [1, hipR, kneeR],
         ] as const
       ).map(([side, hip, knee]) => (
-        <group key={side} ref={hip} position={[side * 0.21, -0.1, 0]}>
-          <Limb length={1.02} radius={0.15} material={GOWN} />
+        <group key={side} ref={hip} position={[side * 0.19, -0.1, 0]}>
+          <Limb length={1.02} top={0.15} bottom={0.1} />
           <group ref={knee} position={[0, -1.02, 0]}>
-            <Limb length={0.98} radius={0.11} material={SKIN} />
-            <mesh position={[0, -1.02, 0.1]} material={SOCK} castShadow>
-              <boxGeometry args={[0.2, 0.12, 0.42]} />
+            <Limb length={0.98} top={0.1} bottom={0.065} />
+            <mesh position={[0, -1.03, 0.1]} scale={[0.6, 0.38, 1.25]} material={BODY} castShadow>
+              <sphereGeometry args={[0.17, 20, 14]} />
             </mesh>
           </group>
         </group>
