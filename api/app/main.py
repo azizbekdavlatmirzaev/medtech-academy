@@ -11,7 +11,7 @@ from fastapi.responses import Response
 from PIL import Image
 from pydantic import BaseModel, Field
 
-from app import config, db, llm
+from app import config, db, llm, tutor
 from app.cases import CASES, CASES_BY_ID, COMPONENTS, NOT_A_DEVICE_FAULT
 from app.grader import Attempt, Grade, grade
 from app.library import PLAYBOOKS_BY_ID
@@ -106,6 +106,23 @@ def answer_quiz(question_id: str, body: QuizAnswer) -> dict:
     correct = body.option == q.answer
     db.save_attempt(body.learner, f"quiz:{q.id}", body.option, correct, 10 if correct else 0, ai_used=False)
     return {"correct": correct, "correct_option": q.answer, "explanation_uz": q.explanation_uz, "source": q.source}
+
+
+class TutorQuestion(BaseModel):
+    question: str = Field(min_length=1, max_length=500)
+
+
+@app.post("/tutor")
+def ask_tutor(body: TutorQuestion) -> dict:
+    return tutor.ask(body.question)
+
+
+@app.get("/tutor/sources")
+def tutor_sources() -> list[dict]:
+    seen: dict[str, dict] = {}
+    for c in tutor.CHUNKS:
+        seen.setdefault(c.doc_title, {"doc": c.doc_title, "source": c.source, "sections": []})["sections"].append(c.section)
+    return list(seen.values())
 
 
 @app.get("/library")
