@@ -5,13 +5,13 @@ from datetime import datetime
 from functools import lru_cache
 from zoneinfo import ZoneInfo
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Path
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from PIL import Image
 from pydantic import BaseModel, Field
 
-from app import config, db, llm, tutor
+from app import config, db, llm, progress, tutor
 from app.cases import CASES, CASES_BY_ID, COMPONENTS, NOT_A_DEVICE_FAULT
 from app.grader import Attempt, Grade, grade
 from app.library import PLAYBOOKS_BY_ID
@@ -106,6 +106,30 @@ def answer_quiz(question_id: str, body: QuizAnswer) -> dict:
     correct = body.option == q.answer
     db.save_attempt(body.learner, f"quiz:{q.id}", body.option, correct, 10 if correct else 0, ai_used=False)
     return {"correct": correct, "correct_option": q.answer, "explanation_uz": q.explanation_uz, "source": q.source}
+
+
+class Consent(BaseModel):
+    consent: bool
+    region: str = Field(default="", max_length=64)
+
+
+
+@app.get("/learners/{learner}/progress")
+def learner_progress(learner: str = Path(min_length=1, max_length=64)) -> dict:
+    return progress.summary(learner)
+
+
+@app.post("/learners/{learner}/consent")
+def learner_consent(body: Consent, learner: str = Path(min_length=1, max_length=64)) -> dict:
+    if body.consent and not body.region.strip():
+        raise HTTPException(status_code=422, detail="region is required to consent")
+    db.set_consent(learner, body.region.strip() if body.consent else None)
+    return {"learner": learner, "consent": body.consent}
+
+
+@app.get("/recruitment")
+def recruitment_list() -> list[dict]:
+    return progress.recruitment()
 
 
 class TutorQuestion(BaseModel):
