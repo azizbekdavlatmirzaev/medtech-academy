@@ -164,3 +164,33 @@ export function saveLearner(name: string): void {
     // storage unavailable (private mode): keep the name in memory only
   }
 }
+
+export type ScanProtocol = {
+  kv: number;
+  mas: number;
+  thickness: number;
+  kernel: "soft" | "sharp";
+  patient_instructed: boolean;
+  door_closed: boolean;
+};
+export type ScanWindow = "brain" | "soft" | "bone";
+export type ScanFeedback = { level: "ok" | "warn" | "error"; text_uz: string };
+export type ScanResult = {
+  ctdi_vol: number;
+  dlp: number;
+  drl_ctdi: number;
+  noise_sd: number | null;
+  quality: "yaxshi" | "qoniqarli" | "past" | "yaroqsiz";
+  feedback: ScanFeedback[];
+  images: Record<ScanWindow, string>;
+};
+
+export async function scanConsole(protocol: ScanProtocol): Promise<ScanResult> {
+  const res = await fetch(`${API_URL}/console/scan`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(protocol),
+  });
+  if (!res.ok) throw new Error(`console: ${res.status}`);
+  return res.json() as Promise<ScanResult>;
+}

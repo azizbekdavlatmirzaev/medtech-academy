@@ -34,6 +34,14 @@ const T_LIE = 12;
 const T_HOLD = 17;
 const T_LOOP = 18;
 
+// How far the couch slides into the bore to bring the head into the scan plane.
+export const TABLE_TRAVEL = 1.15;
+
+// Frame-rate independent easing towards a target; the couch and the patient
+// both use it so they move together.
+export const approach = (current: number, target: number, delta: number) =>
+  current + (target - current) * (1 - Math.exp(-delta * 1.6));
+
 const smooth = (t: number) => t * t * (3 - 2 * t);
 const clamp01 = (t: number) => Math.min(1, Math.max(0, t));
 const phase = (t: number, a: number, b: number) => smooth(clamp01((t - a) / (b - a)));
@@ -94,8 +102,11 @@ function torsoGeometry() {
 
 const TORSO = torsoGeometry();
 
-export default function Patient() {
+// Default: the walk-in loop of the landing page. "lying": the patient stays
+// on the couch and rides with it into the bore (operator console).
+export default function Patient({ lying = false, travel = 0 }: { lying?: boolean; travel?: number }) {
   const root = useRef<THREE.Group>(null);
+  const slide = useRef(0);
   const chest = useRef<THREE.Group>(null);
   const hipL = useRef<THREE.Group>(null);
   const hipR = useRef<THREE.Group>(null);
@@ -106,14 +117,15 @@ export default function Patient() {
   const elL = useRef<THREE.Group>(null);
   const elR = useRef<THREE.Group>(null);
 
-  useFrame(({ clock }) => {
+  useFrame(({ clock }, delta) => {
     const r = root.current;
     if (!r) return;
-    const t = clock.elapsedTime % T_LOOP;
-    r.visible = t < T_HOLD + 0.6;
-    const { p, stride } = pose(t);
+    slide.current = approach(slide.current, travel * TABLE_TRAVEL, delta);
+    const t = lying ? T_LIE + clock.elapsedTime : clock.elapsedTime % T_LOOP;
+    r.visible = lying || t < T_HOLD + 0.6;
+    const { p, stride } = lying ? { p: LIE, stride: 0 } : pose(t);
 
-    r.position.set(p.x, p.y, p.z);
+    r.position.set(p.x, p.y, p.z - slide.current);
     r.rotation.set(p.pitch, p.yaw, 0, "YXZ");
 
     // Gait: legs swing in opposition, the knee bends on the forward swing,

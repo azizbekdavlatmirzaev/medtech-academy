@@ -11,7 +11,7 @@ const CARDS: { role: Role; icon: typeof BookOpen; lead: string; items: string[] 
     role: "talaba",
     icon: GraduationCap,
     lead: "Tibbiyot talabalari va rentgenlaborantlar uchun",
-    items: ["Video darslar", "3D laboratoriya", "Savol-javob testi", "AI ustoz", "Natijalar"],
+    items: ["Video darslar", "3D laboratoriya", "KT boshqaruv pulti", "Savol-javob testi", "AI ustoz", "Natijalar"],
   },
   {
     role: "muhandis",

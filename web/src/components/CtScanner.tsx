@@ -9,7 +9,7 @@ import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeom
 import { type Theme, useTheme } from "@/lib/theme";
 
 import EmergencyEffect, { type EffectKind } from "./Effects";
-import Patient from "./Patient";
+import Patient, { TABLE_TRAVEL, approach } from "./Patient";
 
 // Ids must match COMPONENTS in api/app/cases.py.
 export const PART_IDS = ["gantry", "xray_tube", "bowtie_filter", "detector", "das_slip_ring", "table"] as const;
@@ -170,7 +170,7 @@ function fanGeometry() {
 
 const rounded = (w: number, h: number, d: number, r = 0.08) => new RoundedBoxGeometry(w, h, d, 4, r);
 
-function Rotor({ spinning }: { spinning: boolean }) {
+function Rotor({ spinning, exposing = false }: { spinning: boolean; exposing?: boolean }) {
   const group = useRef<THREE.Group>(null);
   const beam = useRef<THREE.MeshBasicMaterial>(null);
   const filter = useMemo(() => bowtieGeometry(), []);
@@ -184,8 +184,9 @@ function Rotor({ spinning }: { spinning: boolean }) {
   const boardGeo = useMemo(() => rounded(0.3, 0.05, 0.4, 0.01), []);
 
   useFrame(({ clock }, delta) => {
-    if (group.current && spinning) group.current.rotation.z += delta * 0.9;
-    if (beam.current) beam.current.opacity = spinning ? 0.12 + 0.06 * Math.sin(clock.elapsedTime * 6) : 0.08;
+    if (group.current && (spinning || exposing)) group.current.rotation.z += delta * (exposing ? 6 : 0.9);
+    if (beam.current)
+      beam.current.opacity = exposing ? 0.38 + 0.12 * Math.sin(clock.elapsedTime * 30) : spinning ? 0.12 + 0.06 * Math.sin(clock.elapsedTime * 6) : 0.08;
   });
 
   return (
@@ -246,7 +247,39 @@ const ROOM: Record<Theme, { sky: string; floor: string; ambient: number }> = {
   light: { sky: "#e3edf2", floor: "#c9d8e0", ambient: 0.6 },
 };
 
-function Scanner({ xray, spinning, floor }: { xray: boolean; spinning: boolean; floor: string }) {
+// Operator-console state of the scanner: couch position, patient, lasers, exposure.
+export type ScanRig = { travel: number; patient: boolean; laser: boolean; exposing: boolean };
+
+// The cradle eases towards its commanded position like a motorised couch.
+function Cradle({ travel, children }: { travel: number; children: ReactNode }) {
+  const group = useRef<THREE.Group>(null);
+  useFrame((_, delta) => {
+    if (group.current) group.current.position.z = -approach(-group.current.position.z, travel * TABLE_TRAVEL, delta);
+  });
+  return <group ref={group}>{children}</group>;
+}
+
+// Red positioning lasers: cross-hair on the gantry face and the scan plane.
+function Lasers() {
+  return (
+    <group raycast={() => null}>
+      <mesh position={[0, 0, 0.955]}>
+        <boxGeometry args={[0.012, 2.9, 0.004]} />
+        <meshBasicMaterial color="#ff2a2a" toneMapped={false} />
+      </mesh>
+      <mesh position={[0, 0, 0.955]}>
+        <boxGeometry args={[2.9, 0.012, 0.004]} />
+        <meshBasicMaterial color="#ff2a2a" toneMapped={false} />
+      </mesh>
+      <mesh>
+        <circleGeometry args={[BORE_R - 0.02, 64]} />
+        <meshBasicMaterial color="#ff3b3b" transparent opacity={0.12} side={THREE.DoubleSide} depthWrite={false} />
+      </mesh>
+    </group>
+  );
+}
+
+function Scanner({ xray, spinning, floor, rig }: { xray: boolean; spinning: boolean; floor: string; rig?: ScanRig }) {
   const housing = useMemo(() => housingGeometry(), []);
   const pedestal = useMemo(() => rounded(3.6, 0.9, 2.0, 0.2), []);
   const coverOpacity = xray ? 0.14 : 1;
@@ -288,18 +321,34 @@ function Scanner({ xray, spinning, floor }: { xray: boolean; spinning: boolean; 
         ))}
       </Part>
 
-      <Rotor spinning={spinning} />
+      <Rotor spinning={spinning} exposing={rig?.exposing} />
+      {rig?.laser && <Lasers />}
+      {/* X-ray warning lamp on top of the gantry: lit during exposure. */}
+      {rig && (
+        <mesh position={[0, 2.32, 0.6]} raycast={() => null}>
+          <boxGeometry args={[0.7, 0.14, 0.14]} />
+          <meshStandardMaterial
+            color={rig.exposing ? "#ffb020" : "#3a4350"}
+            emissive={rig.exposing ? "#ff9900" : "#000000"}
+            emissiveIntensity={rig.exposing ? 2.5 : 0}
+          />
+        </mesh>
+      )}
 
       <Part part="table" color="#f1f4f5" roughness={0.4} clearcoat={0.6}>
         {/* Cradle that slides into the bore. */}
-        <M geometry={rounded(1.0, 0.12, 5.4, 0.05)} position={[0, -0.78, 1.7]} />
+        <Cradle travel={rig?.travel ?? 0}>
+          <M geometry={rounded(1.0, 0.12, 5.4, 0.05)} position={[0, -0.78, 1.7]} />
+        </Cradle>
         {/* Pedestal and foot. */}
         <M geometry={rounded(1.1, 1.9, 1.5, 0.12)} position={[0, -1.85, 3.4]} />
         <M geometry={rounded(1.7, 0.16, 2.3, 0.06)} position={[0, -2.95, 3.4]} />
       </Part>
       <Part part="table" color="#26374f" roughness={0.8}>
-        <M geometry={rounded(0.84, 0.1, 4.3, 0.05)} position={[0, -0.67, 2.0]} />
-        <M geometry={rounded(0.5, 0.14, 0.45, 0.06)} position={[0, -0.58, -0.25]} />
+        <Cradle travel={rig?.travel ?? 0}>
+          <M geometry={rounded(0.84, 0.1, 4.3, 0.05)} position={[0, -0.67, 2.0]} />
+          <M geometry={rounded(0.5, 0.14, 0.45, 0.06)} position={[0, -0.58, -0.25]} />
+        </Cradle>
       </Part>
 
       {/* Floor. */}
@@ -322,6 +371,7 @@ export type CtScannerProps = {
   showLabel?: boolean;
   effect?: { kind: EffectKind; part: PartId } | null;
   patient?: boolean;
+  rig?: ScanRig;
 };
 
 export default function CtScanner({
@@ -335,6 +385,7 @@ export default function CtScanner({
   showLabel = true,
   effect = null,
   patient = false,
+  rig,
 }: CtScannerProps) {
   const [hovered, setHovered] = useState<PartId | null>(null);
   const room = ROOM[useTheme()];
@@ -363,9 +414,10 @@ export default function CtScanner({
           <Lightformer intensity={0.8} position={[6, 1, -2]} rotation-y={-Math.PI / 2} scale={[8, 2, 1]} color="#4fd1b5" />
         </Environment>
         <SceneContext.Provider value={state}>
-          <Scanner xray={xray} spinning={spinning} floor={room.floor} />
+          <Scanner xray={xray} spinning={spinning} floor={room.floor} rig={rig} />
         </SceneContext.Provider>
-        {patient && <Patient />}
+        {patient && !rig && <Patient />}
+        {rig?.patient && <Patient lying travel={rig.travel} />}
         {effect && <EmergencyEffect kind={effect.kind} part={effect.part} />}
         <ContactShadows position={[0, -2.73, 1]} opacity={0.55} scale={14} blur={2.4} far={4} />
         <OrbitControls enablePan={false} minDistance={5.5} maxDistance={15} target={[0, -0.3, 0.8]} maxPolarAngle={Math.PI / 1.9} />

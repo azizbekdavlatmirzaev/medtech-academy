@@ -16,6 +16,7 @@ export const NAV = [
   { href: "/holatlar", label: "Real holatlar" },
   { href: "/savol-javob", label: "Savol-javob" },
   { href: "/lab", label: "3D laboratoriya" },
+  { href: "/pult", label: "KT pulti" },
   { href: "/cases", label: "Trenajor" },
   { href: "/ustoz", label: "AI ustoz" },
   { href: "/natijalar", label: "Natijalar" },

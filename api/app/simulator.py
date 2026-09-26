@@ -7,6 +7,8 @@ the slice is reconstructed with filtered back-projection and shown in a
 clinical brain window, so every artifact is genuine.
 """
 
+from functools import lru_cache
+
 import numpy as np
 from skimage.filters import gaussian
 from skimage.transform import iradon, radon
@@ -112,6 +114,32 @@ def simulate(fault: str, seed: int = 0) -> np.ndarray:
 
     mu = iradon(p, theta=theta, filter_name="shepp-logan", circle=True)
     mu = gaussian(mu, sigma=SOFT_KERNEL_SIGMA, preserve_range=True)
+    return (mu / MU_WATER - 1) * 1000
+
+
+@lru_cache(maxsize=1)
+def _still_sinogram() -> np.ndarray:
+    # The patient never changes, so the noiseless projections are computed once.
+    return radon(_attenuation(_PHANTOM_HU), theta=_angles(), circle=True)
+
+
+def acquire(i0: float, *, motion: bool = False, kernel_sigma: float = SOFT_KERNEL_SIGMA, seed: int = 0) -> np.ndarray:
+    """Scan the healthy device with an operator-chosen photon count and kernel.
+
+    Used by the operator console: fewer photons (lower mAs / kV, thinner
+    slices) give more quantum noise; a patient who was not told to keep
+    still adds motion artifacts.
+    """
+    rng = np.random.default_rng(seed)
+    noise_rng = np.random.default_rng(seed + 10_000)
+    att = _attenuation(_PHANTOM_HU)
+    theta = _angles()
+    p = _motion(att, theta, rng) if motion else _still_sinogram().copy()
+    if np.isfinite(i0):
+        p = _measure(p, i0, noise_rng)
+    mu = iradon(p, theta=theta, filter_name="shepp-logan", circle=True)
+    if kernel_sigma > 0:
+        mu = gaussian(mu, sigma=kernel_sigma, preserve_range=True)
     return (mu / MU_WATER - 1) * 1000
 
 

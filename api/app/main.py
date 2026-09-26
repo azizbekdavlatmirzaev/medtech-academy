@@ -1,5 +1,6 @@
 """MedTech Academy API entry point."""
 
+import base64
 import io
 import threading
 from contextlib import asynccontextmanager
@@ -13,7 +14,7 @@ from fastapi.responses import Response
 from PIL import Image
 from pydantic import BaseModel, Field
 
-from app import config, db, llm, progress, tutor
+from app import config, console, db, llm, progress, tutor
 from app.cases import CASES, CASES_BY_ID, COMPONENTS, NOT_A_DEVICE_FAULT
 from app.emergencies import DRILLS, DRILLS_BY_ID, SOURCE
 from app.grader import Attempt, Grade, grade
@@ -29,6 +30,7 @@ async def lifespan(_: FastAPI):
     def warm() -> None:
         for fault, seed in {("normal", 1), *((c.fault, c.seed) for c in CASES), *((q.fault, q.seed) for q in QUESTIONS if q.fault)}:
             _render_png(fault, seed)
+        console.scan(console.Protocol())  # reference protocol for the operator console
 
     threading.Thread(target=warm, daemon=True).start()
     yield
@@ -224,6 +226,34 @@ def get_playbook(playbook_id: str) -> dict:
 def normal_image() -> Response:
     # A healthy slice for side-by-side comparison.
     return Response(_render_png("normal", 1), media_type="image/png")
+
+
+@app.get("/console/options")
+def console_options() -> dict:
+    return {
+        "kv": list(console.KV_OPTIONS),
+        "thickness": list(console.THICKNESS_OPTIONS),
+        "kernels": list(console.KERNELS),
+        "reference": console.Protocol().model_dump(),
+        "drl_ctdi": console.DRL_HEAD_CTDI,
+    }
+
+
+@app.post("/console/scan")
+def console_scan(protocol: console.Protocol) -> dict:
+    # Safety interlock, as on a real scanner: no exposure with the door open.
+    if not protocol.door_closed:
+        raise HTTPException(status_code=409, detail="door open: exposure blocked")
+    try:
+        hu, metrics = console.scan(protocol)
+    except ValueError as e:
+        raise HTTPException(status_code=422, detail=str(e)) from e
+    images = {}
+    for name, window in console.WINDOWS.items():
+        buf = io.BytesIO()
+        Image.fromarray(to_uint8(hu, window)).save(buf, format="PNG")
+        images[name] = "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode()
+    return {**metrics, "images": images}
 
 
 def _case_or_404(case_id: str):
