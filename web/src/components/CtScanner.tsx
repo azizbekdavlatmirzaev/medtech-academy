@@ -6,6 +6,8 @@ import { createContext, type ReactNode, useContext, useMemo, useRef, useState } 
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
+import { type Theme, useTheme } from "@/lib/theme";
+
 import EmergencyEffect, { type EffectKind } from "./Effects";
 import Patient from "./Patient";
 
@@ -238,7 +240,13 @@ function Rotor({ spinning }: { spinning: boolean }) {
   );
 }
 
-function Scanner({ xray, spinning }: { xray: boolean; spinning: boolean }) {
+// Scan room per site theme: a dim control room, or a bright clinic.
+const ROOM: Record<Theme, { sky: string; floor: string; ambient: number }> = {
+  dark: { sky: "#0F1B2D", floor: "#0c1829", ambient: 0.35 },
+  light: { sky: "#e3edf2", floor: "#c9d8e0", ambient: 0.6 },
+};
+
+function Scanner({ xray, spinning, floor }: { xray: boolean; spinning: boolean; floor: string }) {
   const housing = useMemo(() => housingGeometry(), []);
   const pedestal = useMemo(() => rounded(3.6, 0.9, 2.0, 0.2), []);
   const coverOpacity = xray ? 0.14 : 1;
@@ -297,7 +305,7 @@ function Scanner({ xray, spinning }: { xray: boolean; spinning: boolean }) {
       {/* Floor. */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3.04, 1]} receiveShadow raycast={() => null}>
         <circleGeometry args={[9, 64]} />
-        <meshStandardMaterial color="#0c1829" roughness={0.9} />
+        <meshStandardMaterial color={floor} roughness={0.9} />
       </mesh>
     </group>
   );
@@ -329,6 +337,7 @@ export default function CtScanner({
   patient = false,
 }: CtScannerProps) {
   const [hovered, setHovered] = useState<PartId | null>(null);
+  const room = ROOM[useTheme()];
   const state = useMemo(
     () => ({ hovered, selected, highlight, tone, setHovered, onSelect }),
     [hovered, selected, highlight, tone, onSelect],
@@ -342,9 +351,9 @@ export default function CtScanner({
   return (
     <div className="relative h-full w-full">
       <Canvas shadows="percentage" camera={{ position: [7.5, 3.2, 9.5], fov: 38 }} dpr={[1, 2]}>
-        <color attach="background" args={["#0F1B2D"]} />
-        <fog attach="fog" args={["#0F1B2D", 14, 26]} />
-        <ambientLight intensity={0.35} />
+        <color attach="background" args={[room.sky]} />
+        <fog attach="fog" args={[room.sky, 14, 26]} />
+        <ambientLight intensity={room.ambient} />
         <directionalLight position={[5, 9, 7]} intensity={1.6} castShadow shadow-mapSize={[1024, 1024]} />
         <directionalLight position={[-6, 3, -5]} intensity={0.5} color="#9fd8ff" />
         {/* Studio reflections built from local light panels: no HDR download. */}
@@ -354,7 +363,7 @@ export default function CtScanner({
           <Lightformer intensity={0.8} position={[6, 1, -2]} rotation-y={-Math.PI / 2} scale={[8, 2, 1]} color="#4fd1b5" />
         </Environment>
         <SceneContext.Provider value={state}>
-          <Scanner xray={xray} spinning={spinning} />
+          <Scanner xray={xray} spinning={spinning} floor={room.floor} />
         </SceneContext.Provider>
         {patient && <Patient />}
         {effect && <EmergencyEffect kind={effect.kind} part={effect.part} />}

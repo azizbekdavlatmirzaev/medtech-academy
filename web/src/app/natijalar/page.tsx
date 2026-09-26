@@ -18,12 +18,12 @@ function TrendChart({ values }: { values: number[] }) {
   return (
     <svg viewBox={`0 0 ${w} ${h}`} className="h-[120px] w-full" aria-label="Oxirgi urinishlar bali">
       {[0, 5, 10].map((g) => (
-        <line key={g} x1="10" x2={w - 10} y1={y(g)} y2={y(g)} stroke="#1f2a3d" strokeDasharray="3 4" />
+        <line key={g} x1="10" x2={w - 10} y1={y(g)} y2={y(g)} stroke="var(--surface-3)" strokeDasharray="3 4" />
       ))}
       <path d={`${d} L${x(values.length - 1)},${h - 10} L10,${h - 10} Z`} fill="rgba(79,209,181,0.12)" />
-      <path d={d} fill="none" stroke="#4FD1B5" strokeWidth="2.5" strokeLinejoin="round" />
+      <path d={d} fill="none" stroke="var(--teal)" strokeWidth="2.5" strokeLinejoin="round" />
       {values.map((v, i) => (
-        <circle key={i} cx={x(i)} cy={y(v)} r="3.5" fill={v >= 6 ? "#4FD1B5" : "#E0523D"} />
+        <circle key={i} cx={x(i)} cy={y(v)} r="3.5" fill={v >= 6 ? "var(--teal)" : "var(--coral)"} />
       ))}
     </svg>
   );
@@ -42,13 +42,13 @@ function SkillsRadar({ skills }: { skills: Record<string, number | null> }) {
     <div className="relative">
       <svg viewBox="0 0 220 220" className="mx-auto h-56 w-56" aria-label="Ko‘nikmalar radari">
         {[25, 50, 75, 100].map((lvl) => (
-          <polygon key={lvl} points={entries.map((_, i) => point(i, lvl).join(",")).join(" ")} fill="none" stroke="#1f2a3d" />
+          <polygon key={lvl} points={entries.map((_, i) => point(i, lvl).join(",")).join(" ")} fill="none" stroke="var(--surface-3)" />
         ))}
         {entries.map((_, i) => {
           const [px, py] = point(i, 100);
-          return <line key={i} x1={c} y1={c} x2={px} y2={py} stroke="#1f2a3d" />;
+          return <line key={i} x1={c} y1={c} x2={px} y2={py} stroke="var(--surface-3)" />;
         })}
-        <polygon points={poly} fill="rgba(79,209,181,0.2)" stroke="#4FD1B5" strokeWidth="2" style={{ transition: "all 600ms ease-out" }} />
+        <polygon points={poly} fill="rgba(79,209,181,0.2)" stroke="var(--teal)" strokeWidth="2" style={{ transition: "all 600ms ease-out" }} />
       </svg>
       {entries.map(([name, v], i) => {
         const [px, py] = point(i, 128);
@@ -106,7 +106,7 @@ export default function ResultsPage() {
             <button
               key={id}
               onClick={() => setTab(id)}
-              className={`rounded-xl px-4 py-2 text-sm transition-colors ${tab === id ? "bg-teal text-bg" : "text-muted hover:text-ink"}`}
+              className={`rounded-xl px-4 py-2 text-sm transition-colors ${tab === id ? "bg-teal text-on-teal" : "text-muted hover:text-ink"}`}
             >
               {label}
             </button>
@@ -120,7 +120,7 @@ export default function ResultsPage() {
           <section className="grid gap-6 lg:grid-cols-12">
             <div className="glass rise-in flex flex-col gap-4 p-6 lg:col-span-4">
               <div className="flex items-center gap-3">
-                <span className="grid h-12 w-12 place-items-center rounded-full bg-teal font-display text-lg font-bold text-bg" suppressHydrationWarning>
+                <span className="grid h-12 w-12 place-items-center rounded-full bg-teal font-display text-lg font-bold text-on-teal" suppressHydrationWarning>
                   {learner.slice(0, 2).toUpperCase()}
                 </span>
                 <div>

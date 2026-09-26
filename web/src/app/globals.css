@@ -1,55 +1,102 @@
 @import "tailwindcss";
 
 /* Design system: "Precision Radiology Lab" (design/stitch/precision_radiology_lab/DESIGN.md). */
+/* Theme colours live in plain variables so [data-theme] can swap them. */
+:root {
+  color-scheme: dark;
+  --bg: #071425;
+  --surface: #101c2e;
+  --surface-2: #142032;
+  --surface-3: #1f2a3d;
+  --line: #3d4945;
+  --ink: #eef3f2;
+  --muted: #a9bbc4;
+  --teal: #4fd1b5;
+  --teal-bright: #6feed0;
+  --teal-ink: #005648;
+  --on-teal: #071425;
+  --coral: #e0523d;
+  --glass: rgba(22, 38, 61, 0.7);
+  --glass-strong: rgba(22, 38, 61, 0.88);
+  --glass-shadow: rgba(15, 27, 45, 0.6);
+  --glass-border: rgba(79, 209, 181, 0.2);
+  --glow-top: rgba(79, 209, 181, 0.08);
+  --glow-mid: rgba(16, 28, 46, 0.6);
+  --glow-edge: rgba(7, 20, 37, 1);
+}
+
+/* Light clinic mode: white surfaces, deeper teal for contrast on white. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #eef4f7;
+  --surface: #ffffff;
+  --surface-2: #f6fafb;
+  --surface-3: #dde8ed;
+  --line: #b4c7cf;
+  --ink: #0f1b2d;
+  --muted: #4d6272;
+  --teal: #0c9a80;
+  --teal-bright: #10b393;
+  --teal-ink: #e3f8f2;
+  --on-teal: #ffffff;
+  --coral: #cf4430;
+  --glass: rgba(255, 255, 255, 0.78);
+  --glass-strong: rgba(255, 255, 255, 0.92);
+  --glass-shadow: rgba(15, 27, 45, 0.08);
+  --glass-border: rgba(12, 154, 128, 0.25);
+  --glow-top: rgba(12, 154, 128, 0.1);
+  --glow-mid: rgba(255, 255, 255, 0.6);
+  --glow-edge: rgba(238, 244, 247, 1);
+}
+
+/* Design system: "Precision Radiology Lab" (design/stitch/precision_radiology_lab/DESIGN.md). */
 @theme inline {
-  --color-bg: #071425;
-  --color-surface: #101c2e;
-  --color-surface-2: #142032;
-  --color-surface-3: #1f2a3d;
-  --color-line: #3d4945;
-  --color-ink: #eef3f2;
-  --color-muted: #a9bbc4;
-  --color-teal: #4fd1b5;
-  --color-teal-bright: #6feed0;
-  --color-teal-ink: #005648;
-  --color-coral: #e0523d;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-teal: var(--teal);
+  --color-teal-bright: var(--teal-bright);
+  --color-teal-ink: var(--teal-ink);
+  --color-on-teal: var(--on-teal);
+  --color-coral: var(--coral);
 
   --font-display: var(--font-space-grotesk), "Space Grotesk", sans-serif;
   --font-sans: var(--font-plex), "IBM Plex Sans", sans-serif;
   --font-mono: var(--font-jetbrains), "JetBrains Mono", monospace;
 }
 
-:root {
-  color-scheme: dark;
-}
-
 body {
-  background: var(--color-bg);
-  color: var(--color-ink);
+  background: var(--bg);
+  transition: background-color 250ms ease-out, color 250ms ease-out;
+  color: var(--ink);
   font-family: var(--font-sans);
 }
 
 /* Frosted navy glass panel (level 1). */
 @utility glass {
-  background: rgba(22, 38, 61, 0.7);
+  background: var(--glass);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(79, 209, 181, 0.2);
+  border: 1px solid var(--glass-border);
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(15, 27, 45, 0.6);
+  box-shadow: 0 8px 32px var(--glass-shadow);
 }
 
 /* Elevated interactive console (level 2). */
 @utility glass-strong {
-  background: rgba(22, 38, 61, 0.88);
+  background: var(--glass-strong);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(79, 209, 181, 0.4);
+  border: 1px solid color-mix(in srgb, var(--teal) 40%, transparent);
   border-radius: 16px;
-  box-shadow: 0 0 20px rgba(79, 209, 181, 0.15), 0 12px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(79, 209, 181, 0.15), 0 12px 40px var(--glass-shadow);
 }
 
 /* Fault state: coral resonance. */
 @utility glass-fault {
-  background: rgba(22, 38, 61, 0.8);
+  background: var(--glass);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(224, 82, 61, 0.45);
   border-radius: 16px;
@@ -61,7 +108,7 @@ body {
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-teal);
+  color: var(--teal);
 }
 
 @utility btn-primary {
@@ -69,14 +116,14 @@ body {
   align-items: center;
   gap: 0.5rem;
   border-radius: 9999px;
-  background: var(--color-teal);
-  color: #0f1b2d;
+  background: var(--teal);
+  color: var(--on-teal);
   font-family: var(--font-display);
   font-weight: 600;
   padding: 0.7rem 1.5rem;
   transition: box-shadow 250ms ease-out, background 250ms ease-out;
   &:hover {
-    background: var(--color-teal-bright);
+    background: var(--teal-bright);
     box-shadow: 0 0 16px rgba(79, 209, 181, 0.45);
   }
   &:disabled {
@@ -91,13 +138,13 @@ body {
   gap: 0.5rem;
   border-radius: 9999px;
   border: 1px solid rgba(79, 209, 181, 0.3);
-  color: var(--color-ink);
+  color: var(--ink);
   font-family: var(--font-display);
   padding: 0.7rem 1.5rem;
   transition: background 250ms ease-out, border-color 250ms ease-out;
   &:hover {
     background: rgba(79, 209, 181, 0.1);
-    border-color: var(--color-teal);
+    border-color: var(--teal);
   }
 }
 
@@ -108,7 +155,7 @@ body {
   border-radius: 9999px;
   border: 1px solid rgba(79, 209, 181, 0.4);
   background: rgba(79, 209, 181, 0.12);
-  color: var(--color-teal);
+  color: var(--teal);
   font-family: var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
@@ -117,16 +164,16 @@ body {
 }
 
 @utility chip-fault {
-  border-color: var(--color-coral);
+  border-color: var(--coral);
   background: rgba(224, 82, 61, 0.15);
-  color: var(--color-coral);
+  color: var(--coral);
 }
 
 /* Quiet room glow behind every page. */
 .gantry-bg {
   background-image:
-    radial-gradient(circle at 50% 0%, rgba(79, 209, 181, 0.08) 0%, rgba(7, 20, 37, 0) 70%),
-    radial-gradient(circle at 50% 50%, rgba(16, 28, 46, 0.6) 0%, rgba(7, 20, 37, 1) 100%);
+    radial-gradient(circle at 50% 0%, var(--glow-top) 0%, transparent 70%),
+    radial-gradient(circle at 50% 50%, var(--glow-mid) 0%, var(--glow-edge) 100%);
 }
 
 @keyframes rise-in {

@@ -27,12 +27,12 @@ function Ring({ value, total, size = 56 }: { value: number; total: number; size?
   const c = 2 * Math.PI * r;
   return (
     <svg viewBox="0 0 60 60" width={size} height={size} aria-hidden="true">
-      <circle cx="30" cy="30" r={r} stroke="#1f2a3d" strokeWidth="5" fill="none" />
+      <circle cx="30" cy="30" r={r} stroke="var(--surface-3)" strokeWidth="5" fill="none" />
       <circle
         cx="30"
         cy="30"
         r={r}
-        stroke="#4FD1B5"
+        stroke="var(--teal)"
         strokeWidth="5"
         fill="none"
         strokeLinecap="round"
@@ -196,7 +196,7 @@ export default function QuizPage() {
                     >
                       <span
                         className={`grid h-8 w-8 shrink-0 place-items-center rounded-lg font-mono text-sm ${
-                          state === "correct" ? "bg-teal text-bg" : state === "wrong" ? "bg-coral text-ink" : "bg-surface-3"
+                          state === "correct" ? "bg-teal text-on-teal" : state === "wrong" ? "bg-coral text-ink" : "bg-surface-3"
                         }`}
                       >
                         {state === "correct" ? <CheckCircle2 size={16} /> : state === "wrong" ? <XCircle size={16} /> : LETTERS[i]}

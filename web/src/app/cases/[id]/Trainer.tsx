@@ -55,12 +55,12 @@ function ScoreRing({ score }: { score: number }) {
   const pass = score >= 6;
   return (
     <svg viewBox="0 0 80 80" className="h-24 w-24 shrink-0" aria-label={`Ball: ${score}/10`}>
-      <circle cx="40" cy="40" r={r} stroke="#1f2a3d" strokeWidth="6" fill="none" />
+      <circle cx="40" cy="40" r={r} stroke="var(--surface-3)" strokeWidth="6" fill="none" />
       <circle
         cx="40"
         cy="40"
         r={r}
-        stroke={pass ? "#4FD1B5" : "#E0523D"}
+        stroke={pass ? "var(--teal)" : "var(--coral)"}
         strokeWidth="6"
         fill="none"
         strokeLinecap="round"
@@ -69,9 +69,9 @@ function ScoreRing({ score }: { score: number }) {
         transform="rotate(-90 40 40)"
         style={{ transition: "stroke-dashoffset 700ms ease-out" }}
       />
-      <text x="40" y="46" textAnchor="middle" fill="#EEF3F2" fontSize="20" fontWeight="700" fontFamily="monospace">
+      <text x="40" y="46" textAnchor="middle" fill="var(--ink)" fontSize="20" fontWeight="700" fontFamily="monospace">
         {score}
-        <tspan fontSize="11" fill="#A9BBC4">
+        <tspan fontSize="11" fill="var(--muted)">
           /10
         </tspan>
       </text>
@@ -169,7 +169,7 @@ export default function Trainer({ caseId }: { caseId: string }) {
                 <img src={caseImageUrl(caseId)} alt="Nosoz uskunadagi KT tasviri" className="w-full" />
               </figure>
               <figure className="overflow-hidden rounded-xl border border-teal/40 bg-bg">
-                <p className="bg-teal/80 px-3 py-1 font-mono text-[11px] uppercase text-bg">Etalon (soz uskuna)</p>
+                <p className="bg-teal/80 px-3 py-1 font-mono text-[11px] uppercase text-on-teal">Etalon (soz uskuna)</p>
                 {/* eslint-disable-next-line @next/next/no-img-element -- generated PNG from our API */}
                 <img src={normalImageUrl()} alt="Soz uskunadagi KT tasviri" className="w-full" />
               </figure>

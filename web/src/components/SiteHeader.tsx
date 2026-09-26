@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { Logo } from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 
 export const NAV = [
   { href: "/", label: "Bosh sahifa" },
@@ -38,7 +39,7 @@ export default function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className={`rounded-full px-3.5 py-1.5 text-sm transition-colors duration-200 ${
+              className={`whitespace-nowrap rounded-full px-3 py-1.5 text-sm transition-colors duration-200 ${
                 isActive(pathname, item.href) ? "bg-surface-3 font-semibold text-teal" : "text-muted hover:bg-surface-3 hover:text-ink"
               }`}
             >
@@ -48,6 +49,7 @@ export default function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <Link href="/cases" className="btn-primary hidden px-5! py-2! text-sm sm:inline-flex">
             Boshlash
           </Link>

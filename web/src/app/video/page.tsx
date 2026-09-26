@@ -97,7 +97,7 @@ export default function VideoPage() {
                 <span
                   className={`relative z-10 grid h-10 w-10 place-items-center rounded-full border transition-all ${
                     isCurrent
-                      ? "border-teal bg-teal text-bg shadow-[0_0_16px_rgba(79,209,181,0.5)]"
+                      ? "border-teal bg-teal text-on-teal shadow-[0_0_16px_rgba(79,209,181,0.5)]"
                       : isDone
                         ? "border-teal bg-bg text-teal"
                         : hasLesson
@@ -132,7 +132,7 @@ export default function VideoPage() {
               {!active && !finished && (
                 <button
                   onClick={() => setPlaying(true)}
-                  className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-teal text-bg shadow-[0_0_24px_rgba(79,209,181,0.5)] transition-transform hover:scale-110"
+                  className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-teal text-on-teal shadow-[0_0_24px_rgba(79,209,181,0.5)] transition-transform hover:scale-110"
                   aria-label="Darsni boshlash"
                 >
                   <Play size={28} />
@@ -229,7 +229,7 @@ export default function VideoPage() {
               <button onClick={() => open(l)} className="glass group flex w-full flex-col overflow-hidden text-left transition-all duration-300 hover:-translate-y-1">
                 <div className="relative grid aspect-video place-items-center bg-[radial-gradient(circle,rgba(79,209,181,0.15),transparent_70%)]">
                   <span className="spin-slow absolute h-24 w-24 rounded-full border border-dashed border-teal/40" />
-                  <span className="grid h-12 w-12 place-items-center rounded-full bg-teal/90 text-bg transition-transform group-hover:scale-110">
+                  <span className="grid h-12 w-12 place-items-center rounded-full bg-teal/90 text-on-teal transition-transform group-hover:scale-110">
                     <Play size={22} />
                   </span>
                   <span className="chip absolute bottom-3 right-3 bg-bg/80">{fmt(l.duration)}</span>

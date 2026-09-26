@@ -82,7 +82,7 @@ export default function TutorPage() {
             {messages.map((m, i) =>
               m.role === "user" ? (
                 <div key={i} className="rise-in flex justify-end gap-2">
-                  <p className="max-w-[80%] rounded-2xl rounded-br-sm bg-teal px-4 py-2 text-sm text-bg">{m.text}</p>
+                  <p className="max-w-[80%] rounded-2xl rounded-br-sm bg-teal px-4 py-2 text-sm text-on-teal">{m.text}</p>
                   <UserRound size={20} className="mt-1 shrink-0 text-muted" />
                 </div>
               ) : (

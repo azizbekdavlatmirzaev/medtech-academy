@@ -3,6 +3,7 @@ import { IBM_Plex_Sans, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { THEME_SCRIPT } from "@/lib/theme-script";
 
 import "./globals.css";
 
@@ -17,7 +18,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="uz" className={`${spaceGrotesk.variable} ${plex.variable} ${jetbrains.variable} h-full antialiased`}>
+    <html lang="uz" className={`${spaceGrotesk.variable} ${plex.variable} ${jetbrains.variable} h-full antialiased`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body className="relative flex min-h-full flex-col">
         <div className="gantry-bg pointer-events-none fixed inset-0 -z-10" />
         <SiteHeader />
