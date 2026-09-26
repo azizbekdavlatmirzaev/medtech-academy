@@ -27,7 +27,7 @@ export function Logo() {
         <span className="font-display text-lg font-bold tracking-tight">
           MedTech <span className="font-semibold text-teal">Academy</span>
         </span>
-        <span className="hidden whitespace-nowrap font-mono text-[10px] tracking-[0.15em] text-muted sm:block">KT SIMULYATORI &amp; AI TA’LIM</span>
+        <span className="hidden whitespace-nowrap font-mono text-[10px] font-bold tracking-[0.15em] text-muted sm:block">KT SIMULYATORI &amp; AI TA’LIM</span>
       </span>
     </span>
   );
