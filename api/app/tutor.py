@@ -21,22 +21,39 @@ MIN_SCORE = 1.0
 
 REFUSAL_UZ = "Bu savolga o‘quv manbalarida javob topilmadi. Iltimos, mutaxassis yoki o‘qituvchiga murojaat qiling."
 
+# Greetings and thanks get a short canned reply instead of a refusal.
+GREETING = re.compile(
+    r"^\W*(assalomu\s+alaykum|assalom|salom|hello|hi|hey|привет|здравствуйте|qalesiz|qalaysiz|yaxshimisiz)\b\W*",
+    re.IGNORECASE,
+)
+THANKS = re.compile(r"^\W*(rahmat|raxmat|tashakkur|thanks|thank you|спасибо)\b\W*", re.IGNORECASE)
+GREETING_UZ = (
+    "Assalomu alaykum! Men AI ustozman — KT uskunasi, artefaktlar, sifat nazorati va nurlanish xavfsizligi "
+    "bo‘yicha savollarga o‘quv manbalari asosida javob beraman. Masalan: “Halqa artefakti nima?”"
+)
+THANKS_UZ = "Arzimaydi! Yana savolingiz bo‘lsa, bemalol so‘rang."
+
 # Frequent Uzbek words that carry no topic meaning.
 STOPWORDS = {
     w[:5]
     for w in "va bu nima qanday uchun bilan qaysi nega kerak bo‘ladi bo‘lsa agar yoki emas bor yo‘q qilish qiladi "
-    "haqida menga ayting tushuntiring nimaga qachon qayerda nechta shu ular uning ham vazifasi vazifani bajaradi".split()
+    "haqida menga ayting tushuntiring nimaga qachon qayerda nechta shu ular uning ham vazifasi vazifani bajaradi "
+    "da ni ga dan u men siz".split()
 }
+
+# Latin/Russian spellings of the same term map to the course's wording.
+SYNONYMS = {"ct": "kt", "кт": "kt"}
 
 _WORD = re.compile(r"[\w‘’'ʻ]+", re.UNICODE)
 
 
 def _tokens(text: str) -> list[str]:
     # Crude stemming: the first 5 letters, so "halqalar" matches "halqa".
+    # Two-letter words stay, so acronyms like "KT" and "HU" are searchable.
     out = []
     for w in _WORD.findall(text.lower()):
-        if len(w) > 2:
-            stem = w[:5]
+        if len(w) >= 2:
+            stem = SYNONYMS.get(w[:5], w[:5])
             if stem not in STOPWORDS:
                 out.append(stem)
     return out
@@ -123,8 +140,15 @@ def _first_sentences(text: str, count: int = 2) -> str:
 
 def ask(question: str) -> dict:
     question = question.strip()[:MAX_QUESTION_CHARS]
-    hits = retrieve(question)
+    # Drop a leading greeting ("Salom, ...") so it neither matches words like
+    # "salomatlik" nor hides the real question after it.
+    polite = GREETING.match(question) or THANKS.match(question)
+    topic = question[polite.end():].strip() if polite else question
+    hits = retrieve(topic) if topic else []
     if not hits:
+        if polite:
+            reply = THANKS_UZ if THANKS.match(question) else GREETING_UZ
+            return {"answer_uz": reply, "citations": [], "grounded": True, "ai_used": False, "smalltalk": True}
         return {"answer_uz": REFUSAL_UZ, "citations": [], "grounded": False, "ai_used": False}
 
     citations = [_citation(i + 1, c) for i, (c, _) in enumerate(hits)]

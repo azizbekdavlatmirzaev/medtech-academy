@@ -2,6 +2,9 @@
 
 Manba: MedTech Academy o‘quv qo‘llanmasi; Hsieh J. “Computed Tomography: Principles, Design, Artifacts, and Recent Advances” (SPIE Press) asosida.
 
+## Kompyuter tomografiya (KT) nima
+Kompyuter tomografiya (KT) — rentgen nurlari yordamida tananing ko‘ndalang kesim tasvirlarini oladigan diagnostika usuli. Rentgen trubkasi va detektor bemor atrofida aylanib, yuzlab burchakdan nur susayishini o‘lchaydi; kompyuter bu proyeksiyalardan kesim tasvirini qayta tiklaydi. Tasvirdagi har bir nuqta Hounsfield birligida (HU) ifodalanadi: suv 0 HU, havo −1000 HU, suyak +1000 HU atrofida. KT asosiy qismlari: gantry, rentgen trubkasi va generator, bowtie filtri, detektor massivi, slip-ring va DAS hamda bemor stoli.
+
 ## Gantry
 Gantry — KT uskunasining aylanuvchi halqasi. Uning ichida rentgen trubkasi va detektor massivi bir-biriga qarama-qarshi o‘rnatilgan va bemor atrofida birga aylanadi. Zamonaviy uskunalarda bitta aylanish soniyadan kam vaqt oladi.
 

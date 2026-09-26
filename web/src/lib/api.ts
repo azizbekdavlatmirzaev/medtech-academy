@@ -79,7 +79,7 @@ export const searchLibrary = (q: string) => getJson<PlaybookSummary[]>(`/library
 export const getPlaybook = (id: string) => getJson<Playbook>(`/library/${id}`);
 
 export type Citation = { n: number; doc: string; section: string; source: string; snippet: string };
-export type TutorAnswer = { answer_uz: string; citations: Citation[]; grounded: boolean; ai_used: boolean };
+export type TutorAnswer = { answer_uz: string; citations: Citation[]; grounded: boolean; ai_used: boolean; smalltalk?: boolean };
 export type TutorSource = { doc: string; source: string; sections: string[] };
 
 export const getTutorSources = () => getJson<TutorSource[]>("/tutor/sources");

@@ -23,6 +23,7 @@ def test_docs_are_loaded():
         ("ALARA tamoyili", "ALARA tamoyili"),
         ("Tasvir donador, shovqin ko‘p", "Kvant shovqini"),
         ("Slip-ring nima vazifani bajaradi?", "Slip-ring va DAS"),
+        ("kt nima", "Kompyuter tomografiya (KT) nima"),
     ],
 )
 def test_retrieval_finds_the_right_section(question, section):
@@ -57,3 +58,18 @@ def test_endpoint_and_sources(no_llm):
     assert client.post("/tutor", json={"question": "Bowtie filtri nima?"}).json()["grounded"]
     assert client.post("/tutor", json={"question": ""}).status_code == 422
     assert len(client.get("/tutor/sources").json()) == 4
+
+
+@pytest.mark.parametrize("text", ["salom", "Assalomu alaykum!", "rahmat"])
+def test_greetings_get_a_friendly_reply(no_llm, text):
+    res = tutor.ask(text)
+    assert res["smalltalk"] and res["grounded"] and res["answer_uz"] != tutor.REFUSAL_UZ
+
+
+def test_greeting_with_a_question_still_answers_from_sources(no_llm):
+    res = tutor.ask("Salom, halqa artefakti nima?")
+    assert res["citations"][0]["section"] == "Halqa artefakti"
+
+
+def test_ct_spelling_and_short_terms_are_found():
+    assert tutor.retrieve("Salom, CT da HU nima?".split(",", 1)[1])[0][0].section == "Kompyuter tomografiya (KT) nima"

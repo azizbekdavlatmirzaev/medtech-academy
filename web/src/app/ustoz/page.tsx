@@ -104,9 +104,11 @@ export default function TutorPage() {
                         ))}
                       </div>
                     )}
-                    <p className="mt-2 font-mono text-[10px] text-muted">
-                      {m.answer.ai_used ? "AI javobi · manbalar bilan tekshirilgan" : "Manbadan iqtibos (AI ulanmagan)"}
-                    </p>
+                    {m.answer.grounded && !m.answer.smalltalk && (
+                      <p className="mt-2 font-mono text-[10px] text-muted">
+                        {m.answer.ai_used ? "AI javobi · manbalar bilan tekshirilgan" : "Manbadan iqtibos (AI ulanmagan)"}
+                      </p>
+                    )}
                   </div>
                 </div>
               ),
