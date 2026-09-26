@@ -96,7 +96,7 @@ Run the phase test checklist → mark the phase in Phases → commit `spec: mark
 | M0 | Repo, spec, `.gitignore`, `.env.example`, both apps boot, `/health` | 24 Sept | done |
 | M1 | Fault simulator: phantom + 5 faults, `GET /cases`, `GET /cases/{id}/image` | 24–25 Sept | done |
 | M2 | 3D viewer: model loads, clickable parts, highlight API | 25 Sept (CP1) | done |
-| M3 | AI trainer: case → diagnosis → grading → highlight | 25 Sept (CP1) | done (live LLM check pending API key) |
+| M3 | AI trainer: case → diagnosis → grading → highlight | 25 Sept (CP1) | done (verified live on Groq `openai/gpt-oss-120b`, 26 Sept) |
 | M4 | AI tutor with RAG + citations | 26 Sept | done |
 | M5 | Dashboard: progress, readiness, recruitment list | 26 Sept (CP2) | done |
 | M5b | Emergency drills (smoke, fire, sparks, overheat) with 3D effects | 26 Sept | done |
