@@ -1,9 +1,11 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { LogIn, LogOut, Menu, UserRound, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+
+import { ROLES, isEngineerPath, logout, useSession } from "@/lib/auth";
 
 import { Logo } from "./Logo";
 import ThemeToggle from "./ThemeToggle";
@@ -26,6 +28,9 @@ function isActive(pathname: string, href: string) {
 export default function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const session = useSession();
+  // Students see only the learning sections; guests and engineers see all.
+  const nav = session?.role === "talaba" ? NAV.filter((item) => !isEngineerPath(item.href)) : NAV;
 
   return (
     <header className="sticky top-0 z-50 border-b border-line/40 bg-surface-2/70 backdrop-blur-2xl">
@@ -35,7 +40,7 @@ export default function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-1 rounded-full bg-bg/70 p-1 xl:flex">
-          {NAV.map((item) => (
+          {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -50,9 +55,29 @@ export default function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Link href="/cases" className="btn-primary hidden px-5! py-2! text-sm sm:inline-flex">
-            Boshlash
-          </Link>
+          {session ? (
+            <>
+              <Link
+                href="/kirish"
+                className="hidden items-center gap-1.5 whitespace-nowrap rounded-full border border-teal/40 bg-teal/10 px-3 py-1.5 text-sm font-semibold text-teal sm:inline-flex"
+                title="Hisob"
+              >
+                <UserRound size={16} /> {ROLES[session.role].title}
+              </Link>
+              <button
+                onClick={logout}
+                className="grid h-9 w-9 place-items-center rounded-full border border-line/60 text-muted transition-colors hover:border-coral hover:text-coral"
+                aria-label="Chiqish"
+                title="Chiqish"
+              >
+                <LogOut size={16} />
+              </button>
+            </>
+          ) : (
+            <Link href="/kirish" className="btn-primary hidden px-5! py-2! text-sm sm:inline-flex">
+              <LogIn size={16} /> Kirish
+            </Link>
+          )}
           <button onClick={() => setOpen((v) => !v)} className="rounded-full p-2 text-ink xl:hidden" aria-label="Menyu">
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -61,7 +86,7 @@ export default function SiteHeader() {
 
       {open && (
         <nav className="flex flex-col gap-1 border-t border-line/40 px-4 py-3 xl:hidden">
-          {NAV.map((item) => (
+          {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -71,6 +96,9 @@ export default function SiteHeader() {
               {item.label}
             </Link>
           ))}
+          <Link href="/kirish" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 font-semibold text-teal sm:hidden">
+            {session ? `Hisob: ${ROLES[session.role].title}` : "Kirish"}
+          </Link>
         </nav>
       )}
     </header>
