@@ -69,7 +69,7 @@ function ScoreRing({ score }: { score: number }) {
         transform="rotate(-90 40 40)"
         style={{ transition: "stroke-dashoffset 700ms ease-out" }}
       />
-      <text x="40" y="46" textAnchor="middle" fill="var(--ink)" fontSize="20" fontWeight="700" fontFamily="monospace">
+      <text x="40" y="46" textAnchor="middle" fill="var(--ink)" fontSize="20" fontWeight="700" fontFamily="Times New Roman, Times, serif">
         {score}
         <tspan fontSize="11" fill="var(--muted)">
           /10

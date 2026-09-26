@@ -28,7 +28,7 @@ const STATS = [
     icon: Users,
   },
   {
-    value: "~90%",
+    value: "90%",
     unit: "import",
     label: "Uskunalar",
     text: "Ro‘yxatdan o‘tgan tibbiy uskunalar asosan xorijdan — servis ham chetga bog‘liq.",
@@ -38,7 +38,7 @@ const STATS = [
     value: "+10%",
     unit: "har yili",
     label: "Bozor o‘sishi",
-    text: "Diagnostika uskunalari bozori 2029-yilgacha yiliga ~10% o‘sadi.",
+    text: "Diagnostika uskunalari bozori 2029-yilgacha yiliga taxminan 10% o‘sadi.",
     icon: TrendingUp,
   },
 ];
